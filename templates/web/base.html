@@ -1,0 +1,317 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Centre for Strategic and International Studies" />
+    <meta name="description" content="Centre for Strategic and International Studies">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Primary Meta Tags -->
+    <title>Centre for Strategic and International Studies</title>
+    <meta name="title" content="Centre for Strategic and International Studies">
+    <meta name="description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metatags.io/">
+    <meta property="og:title" content="Centre for Strategic and International Studies">
+    <meta property="og:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
+    <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metatags.io/">
+    <meta property="twitter:title" content="Centre for Strategic and International Studies">
+    <meta property="twitter:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
+    <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+        <!-- Document title -->
+
+    <!-- Stylesheets & Fonts -->
+    <link href="{% static 'web/css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="body-inner">
+
+        <header id="header" data-transparent="true" data-fullwidth="true" class="dark submenu-light">
+            <div class="header-inner">
+                <div class="container">
+                    <!--Logo-->
+                    <div id="logo"> <a href="{% url 'home' %}"> <span class="logo-default"><img src="{% static 'web/logo.png' %}" style="height: 60px;"></span><span class="logo-dark"><img src="{% static 'web/Logo-White.png' %}" style="height: 60px;"></span></a> </div>
+                    <!--End: Logo-->
+                    <!-- Search -->
+                    <div id="search"><a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i class="icon-x"></i></a>
+                        <form class="search-form" action="search-results-page.html" method="get">
+                            <input class="form-control" name="q" type="text" placeholder="Type & Search..." />
+                            <span class="text-muted">Start typing & press "Enter" or "ESC" to close</span>
+                        </form>
+                    </div>
+                    <!-- end: search -->
+                    <!--Header Extras-->
+                    <div class="header-extras">
+                        <ul>
+                            <li>
+                                <a id="btn-search" href="#"> <i class="icon-search"></i></a>
+                            </li>
+                            <li>
+                                <div class="p-dropdown"> <a href="#"><i class="icon-globe"></i><span>EN</span></a>
+                                    <ul class="p-dropdown-content">
+                                        <li><a href="#">Indonesia</a></li>
+                                        <li><a href="#">English</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <!--end: Header Extras-->
+                    <!--Navigation Resposnive Trigger-->
+                    <div id="mainMenu-trigger"> <a class="lines-button x"><span class="lines"></span></a> </div>
+                    <!--end: Navigation Resposnive Trigger-->
+                    <!--Navigation-->
+                    <div id="mainMenu" class="menu-center">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                    <li class="dropdown"><a href="#">Research</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{% url 'project' %}">Project</a></li>
+                                            <li><a href="{% url 'researcher' %}">Researchers</a></li>
+                                            <li class="dropdown-submenu"><span class="dropdown-menu-title-only">Department</span>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{% url 'depekon' %}">Economic</a></li>
+                                                    <li><a href="{% url 'dephi' %}">International Relations</a></li>
+                                                    <li><a href="{% url 'deppol' %}">Politic and Social Changes</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown mega-menu-item"><a href="#">Publications</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="mega-menu-content">
+                                                <div class="row">
+                                                    <div class="col-lg-2-5 p-l-0 pb">
+                                                        <img src="{% static 'web/bg/publications.jpeg' %}" class="text-theme" style="width: 200px; padding-bottom: 10px;">
+                                                        <h4 style="color: black !important;">Lorem Ipsum dolor Sit Amet</h3>
+                                                        <p class="m-b-0">The most happiest time of the day!. Morbi sagittis, sem quis ipsum dolor sit amet lacinia faucibus.</p>
+                                                    </div>  
+                                                    <div class="col-lg-2-5">
+                                                        <ul>
+                                                            <li class="mega-menu-title">Recent Publications</li>
+                                                            <li><a href="{% url 'publication-detail' %}">lorem ipsum dolor sit amet</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Three Columns</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Four Columns</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Five Columns</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Six Columns</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Sidebar Sticky</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Wide version</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">No page title</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-2-5">
+                                                        <ul>
+                                                            <li class="mega-menu-title">Commentaries</li>
+                                                            <li><a href="{% url 'publication-detail' %}">Left Sidebar</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Right Sidebar</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Both Sidebars</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Fullwidth (Wide)</a></li>
+                                                            <li class="mega-menu-title">Covid-19 Commentaries</li>
+                                                            <li><a href="{% url 'publication-detail' %}">Load more</a><a href="shop-load-more-sidebar.html">Load Sidebar</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Infinity Scroll</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-2-5">
+                                                        <ul>
+                                                            <li class="mega-menu-title">Working Paper</li>
+                                                            <li><a class="animsition-link" href="{% url 'publication-detail' %}">Shoping Cart</a></li>
+                                                            <li><a class="animsition-link" href="{% url 'publication-detail' %}">Shoping Cart - Empty</a></li>
+                                                            <li><a class="animsition-link" href="{% url 'publication-detail' %}">Checkout</a></li>
+                                                            <li><a class="animsition-link" href="{% url 'publication-detail' %}">Checkout Completed</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Wishlist</a></li>
+                                                            <li><a href="{% url 'publication-detail' %}">Wishlist Empty</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-2-5">
+                                                        <ul>
+                                                            <li class="mega-menu-title">All Publications</li>
+                                                            <li class="mega-menu-title">Books</li>
+                                                            <li class="mega-menu-title">Commentaries</li>
+                                                            <li class="mega-menu-title">Covid-19 Commentaries</li>
+                                                            <li class="mega-menu-title">Event Report</li>
+                                                            <li class="mega-menu-title">Policy Briefs</li>
+                                                            <li class="mega-menu-title">Policy Paper Series</li>
+                                                            <li class="mega-menu-title">Press Release</li>
+                                                            <li class="mega-menu-title">Research Reports</li>
+                                                            <li class="mega-menu-title">Working Papers</li>
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'event' %}">Events</a></li>
+                                    <li><a href="{% url 'news' %}">News</a></li>
+                                    <li class="dropdown"><a href="#">Dashboard</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">COVID-19 Dashborad</a></li>
+                                            <li><a href="#">Hatespeech Dashborad</a></li>
+                                        </ul>    
+                                    <li class="dropdown"><a href="#">About</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-submenu"><a href="#">Sliders</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="slider-revolution-slider.html">Revolution Slider</a></li>
+                                                    <li><a href="slider-inspiro-slider.html">Inspiro Slider</a></li>
+                                                    <li><a href="slider-static-media-image.html">Fullscreen Image</a></li>
+                                                    <li><a href="slider-static-media-parallax.html">Fullscreen Parallax</a></li>
+                                                    <li><a href="slider-static-media-text-rotator.html">Fullscreen Text Rotator</a></li>
+                                                    <li><a href="slider-static-media-video.html">Fullscreen HTML5 Video</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="widgets.html">Widgets</a></li>
+                                            <li><a href="page-loaders.html">Page Loaders<span class="badge bg-danger">NEW</span></a></li>
+                                            <li class="dropdown-submenu"><a href="#">Modal Auto Open<span class="badge bg-danger">NEW</span></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="modal-auto-open-subscription.html">Subscription</a></li>
+                                                    <li><a href="modal-auto-open-shop.html">Shop Promotion</a></li>
+                                                    <li><a href="modal-auto-open-login.html">Login Form</a></li>
+                                                    <li><a href="modal-auto-open-audio.html">Audio Player</a></li>
+                                                    <li><a href="modal-auto-open-video.html">HTML5 Video</a></li>
+                                                    <li><a href="modal-auto-open-youtube.html">YouTube Video</a></li>
+                                                    <li><a href="modal-auto-open-vimeo.html">Vimeo Video</a></li>
+                                                    <li><a href="modal-auto-open-iframe.html">Iframe</a></li>
+                                                    <li><a href="modal-auto-open.html">Sample Text</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu"><a href="#">Cookie Notify<span class="badge bg-danger">NEW</span></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="cookie-notify.html">Top position</a></li>
+                                                    <li><a href="cookie-notify-bottom.html">Bottom position</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="shape-dividers.html">Shape Dividers<span class="badge bg-danger">NEW</span></a></li>
+                                            <li class="dropdown-submenu"><a href="#">Menu Labels</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Label (new)<span class="badge bg-danger">NEW</span></a></li>
+                                                    <li><a href="#">Label (hot)<span class="badge bg-danger">HOT</span></a></li>
+                                                    <li><a href="#">Label (popular)<span class="badge bg-success">POPULAR</span></a></li>
+                                                    <li><a href="#">Label (sale)<span class="badge bg-warning">SALE</span></a></li>
+                                                    <li><a href="#">Label (info)<span class="badge bg-info">INFO</span></a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!--end: Navigation-->
+                </div>
+            </div>
+        </header>
+        <!-- end: Header -->
+
+
+
+    {% block content %}
+    {% endblock %}
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="widget">
+
+                            <div class="widget-title">Centre for strategic and international Studies</div>
+                            <p class="mb-5 text-white">Pakarti Centre Building, Jl. Tanah Abang 3 No. 23-27, Jakarta 10160, Indonesia</p>
+                            <p class="mb-5 text-white">+62 21 386 5532 <br>csis@csis.or.id</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="widget">
+                                    <div class="widget-title">Discover</div>
+                                    <ul class="list">
+                                        <li><a href="#">Features</a></li>
+                                        <li><a href="#">Layouts</a></li>
+                                        <li><a href="#">Corporate</a></li>
+                                        <li><a href="#">Updates</a></li>
+                                        <li><a href="#">Pricing</a></li>
+                                        <li><a href="#">Customers</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="widget">
+                                    <div class="widget-title">Features</div>
+                                    <ul class="list">
+                                        <li><a href="#">Layouts</a></li>
+                                        <li><a href="#">Headers</a></li>
+                                        <li><a href="#">Widgets</a></li>
+                                        <li><a href="#">Footers</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="widget">
+                                    <div class="widget-title">Pages</div>
+                                    <ul class="list">
+                                        <li><a href="#">Portfolio</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Shop</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="widget">
+                                    <div class="widget-title">Social Media</div>
+                                    <ul class="list">
+                                        <li><a href="#">Facebook</a></li>
+                                        <li><a href="#">Instagram</a></li>
+                                        <li><a href="#">Linkedin</a></li>
+                                        <li><a href="#">Twitter</a></li>
+                                        <li><a href="#">YouTube</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright-content">
+            <div class="container">
+                <div class="copyright-text text-center">&copy; 2022 Centre for Strategic and International Studies. All Rights Reserved.<a href="https://www.inspiro-media.com" target="_blank" rel="noopener"> INSPIRO</a> </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end: Footer -->
+
+</div>
+<!-- end: Body Inner -->
+
+<!-- Scroll top -->
+<a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+<!--Plugins-->
+<script src="{% static 'web/js/jquery.js' %}"></script>
+<script src="{% static 'web/js/plugins.js' %}"></script>
+
+<!--Template functions-->
+<script src="{% static 'web/js/functions.js' %}"></script>
+
+</body>
+
+</html>

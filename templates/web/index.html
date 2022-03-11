@@ -1,0 +1,149 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block content %}
+        <div id="slider" class="inspiro-slider dots-creative" data-height-xs="360">
+            <!-- Slide 1 -->
+            <div class="slide" style="background-image:url('{% static 'web/bg/hatespeech.jpeg' %}');">
+                <div class="bg-overlay"></div>
+                <div class="container">
+                    <div class="slide-captions text-left text-light col-lg-6">
+                        <!-- Captions -->
+                        <h3 style="font-size: 40px;">CSIS HATE SPEECH DASHBOARD</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
+                       <p>read more</p>
+                        <!-- end: Captions -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: Slide 1 -->
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image:url('{% static 'web/bg/covid.jpeg' %}');">
+                <div class="bg-overlay"></div>
+                <div class="container">
+                    <div class="slide-captions text-left text-light col-lg-6">
+                        <!-- Captions -->
+                        <h3 style="font-size: 40px;">COVID-19 DASHBOARD</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
+                       <p>read more</p>
+                        <!-- end: Captions -->
+                        <!-- end: Captions -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: Slide 2 -->
+        </div>
+        <!--end: Inspiro Slider -->
+        <!-- SECTION BOXED GRID -->
+        <section style="padding: 30px 0;">
+            <div class="container">
+                <div class="col-lg-6">
+                    <div class="heading-text heading-section">
+                        <h2 style="font-size: 30px;">WHAT'S ON CSIS</h2>
+                    </div>
+                </div>
+
+                <!-- Portfolio -->
+                <div id="portfolio" class="grid-layout portfolio-3-columns" data-margin="20">
+
+                    <!-- portfolio item -->
+                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="portfolio-page-grid-gallery.html">
+                                    <h3>Let's Go Outside</h3>
+                                    <span>Illustrations / Graphics</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: portfolio item -->
+
+                    <!-- portfolio item -->
+                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="portfolio-page-grid-gallery.html">
+                                    <h3>Let's Go Outside</h3>
+                                    <span>Illustrations / Graphics</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: portfolio item -->
+
+                     <!-- portfolio item -->
+                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="portfolio-page-grid-gallery.html">
+                                    <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
+                                    <span>Event Report | Nuroji Lukmansyah</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: portfolio item -->
+                     <!-- portfolio item -->
+                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="portfolio-page-grid-gallery.html">
+                                    <h3>Let's Go Outside</h3>
+                                    <span>Illustrations / Graphics</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: portfolio item -->
+                     <!-- portfolio item -->
+                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="portfolio-page-grid-gallery.html">
+                                    <h3>Let's Go Outside</h3>
+                                    <span>Illustrations / Graphics</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: portfolio item -->
+                     <!-- portfolio item -->
+                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="portfolio-page-grid-gallery.html">
+                                    <h3>Let's Go Outside</h3>
+                                    <span>Illustrations / Graphics</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: portfolio item -->
+                </div>
+                <!-- end: Portfolio -->
+            </div>
+        </section>
+        <!-- end: SECTION BOXED GRID -->
+        <section class="p-b-10">
+        </section>
+
+ {% endblock %}
