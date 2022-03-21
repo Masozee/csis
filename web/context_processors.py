@@ -1,0 +1,3 @@
+ 
+def menu(request):
+    pass
