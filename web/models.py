@@ -2,11 +2,13 @@ from distutils.command.upload import upload
 from operator import mod
 from os import link
 from statistics import mode
+from tkinter.tix import Tree
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
+import datetime
 
 
 # Create your models here.
@@ -34,7 +36,7 @@ class Person (models.Model):
 
     name = models.CharField(max_length=150)
     slug = models.SlugField(default='', editable=False, max_length=160)
-    photo = models.ImageField(upload_to = 'media/person')
+    photo = models.ImageField(upload_to = 'media/person', blank=True, null=True)
     position = models.CharField(max_length=150)
     organization = models.CharField(max_length=100)
     category = models.CharField(max_length=10, choices=KATEGORI_CHOICES)
@@ -69,7 +71,7 @@ class Publication_category(models.Model):
     
     class Meta:
         verbose_name = ("Publication Category")
-        verbose_name_plural = ("Publication Category")
+        verbose_name_plural = ("Publication Categories")
 
 
 class Publication(models.Model):
@@ -106,7 +108,7 @@ class Event(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=320)
     date_start = models.DateTimeField()
-    date_end = models.DateTimeField(default=date_start)
+    date_end = models.DateTimeField(default=datetime.datetime.now())
     image = models.ImageField(upload_to='media/event/img/')
     file = models.FileField(upload_to='media/event/file/', blank=True, null=True)
     link = models.URLField(blank=True)
@@ -134,4 +136,5 @@ class Event(models.Model):
     @property
     def tglmulai(self):
         return self.date_end.strftime('%d %B %Y')
+
 

@@ -15,7 +15,7 @@ urlpatterns = [
     path('news/detail', TemplateView.as_view(template_name='web/news-detail.html'), name='news-detail'),
     path('faq/', TemplateView.as_view(template_name='web/faq.html'), name='faq'),
     path('privacy-policy/', TemplateView.as_view(template_name='web/home-grid.html'), name='privacy-policy'),
-    path('about-us/', TemplateView.as_view(template_name='web/home-grid.html'), name='about'),
+    path('about-us/', TemplateView.as_view(template_name='web/about.html'), name='about'),
     path('department/economics/', TemplateView.as_view(template_name='web/depekon.html'), name='depekon'),
     path('department/politics-and-social-changes/', TemplateView.as_view(template_name='web/deppol.html'), name='deppol'),
     path('department/international-relations/', TemplateView.as_view(template_name='web/dephi.html'), name='dephi'),
