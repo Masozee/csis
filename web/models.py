@@ -1,9 +1,13 @@
+from distutils.command.upload import upload
 from operator import mod
+from os import link
 from statistics import mode
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
+from taggit.models import TaggedItemBase
+
 
 # Create your models here.
 class Department (models.Model):
@@ -83,7 +87,7 @@ class Publication(models.Model):
     tags = TaggableManager()
 
     def __str__(self):
-        return self.name
+        return self.title
         
     class Meta:
         verbose_name = ("Publication")
@@ -97,3 +101,37 @@ class Publication(models.Model):
     @property
     def tgl(self):
         return self.date_created.strftime('%d %B %Y')
+
+class Event(models.Model):
+    title = models.CharField(max_length=300)
+    slug = models.SlugField(default='', editable=False, max_length=320)
+    date_start = models.DateTimeField()
+    date_end = models.DateTimeField(default=date_start)
+    image = models.ImageField(upload_to='media/event/img/')
+    file = models.FileField(upload_to='media/event/file/', blank=True, null=True)
+    link = models.URLField(blank=True)
+    description = RichTextField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    publish = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+        
+    class Meta:
+        verbose_name = ("Event")
+        verbose_name_plural = ("Events")
+    
+    def save(self, *args, **kwargs):
+        value = self.title
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+    
+    @property
+    def tglmulai(self):
+        return self.date_start.strftime('%d %B %Y')
+
+    @property
+    def tglmulai(self):
+        return self.date_end.strftime('%d %B %Y')
+

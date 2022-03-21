@@ -5,9 +5,9 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
 
-admin.sites.AdminSite.site_header = 'PPH UNIKA ATMA JAYA'
-admin.sites.AdminSite.site_title = 'PPH UNIKA ATMA JAYA'
-admin.sites.AdminSite.index_title = 'PPH UNIKA ATMA JAYA'
+admin.sites.AdminSite.site_header = 'Centre for Strategic and International Studies'
+admin.sites.AdminSite.site_title = 'Centre for Strategic and International Studies'
+admin.sites.AdminSite.index_title = 'Centre for Strategic and International Studies'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
