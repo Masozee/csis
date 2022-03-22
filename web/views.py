@@ -14,3 +14,18 @@ def home(request):
        
     }
     return render(request, "web/index.html", context)
+
+def Scholars(request):
+    scholar = Person.objects.filter(is_active=True).order_by('name').distinct()
+    return render(request, "web/researcher.html", {"scholar":scholar})
+
+def ScholarDetail(request, Person_slug):
+    scholar = Person.objects.get(slug=Person_slug)
+    publication = Publication.objects.filter( authors = scholar.id)
+    
+
+    context = {
+        "scholar": scholar,
+        "publication": publication,
+    }
+    return render(request, "web/researcher-detail.html", context)

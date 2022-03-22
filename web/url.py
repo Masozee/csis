@@ -1,11 +1,12 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from web import views as webviews
 
 urlpatterns = [
     path('', webviews.home, name='home'),
-    path('researcher/', TemplateView.as_view(template_name='web/researcher.html'), name='researcher'),
-    path('researcher/detail', TemplateView.as_view(template_name='web/researcher-detail.html'), name='researcher-detail'),
+    path('scholar/', webviews.Scholars, name='researcher'),
+    re_path('scholar/(?P<Person_slug>[\w-]+)/$', webviews.ScholarDetail, name='researcher-detail'),
+ #   path('researcher/detail', TemplateView.as_view(template_name='web/researcher-detail.html'), name='researcher-detail'),
     path('publication/', TemplateView.as_view(template_name='web/publications.html'), name='publication'),
     path('publication/detail', TemplateView.as_view(template_name='web/publication-detail.html'), name='publication-detail'),
     path('events/', TemplateView.as_view(template_name='web/events.html'), name='event'),
