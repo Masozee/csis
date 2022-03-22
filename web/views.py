@@ -68,3 +68,27 @@ def DepartmentDetail(request, Department_slug):
         "acara": acara,
     }
     return render(request, "web/department.html", context)
+
+
+def Publications(request):
+    publication = Publication.objects.filter(publish=True).order_by('date_created').distinct()
+    paginator = Paginator(publication, 12)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        publications = paginator.page(page)
+    except PageNotAnInteger:
+        publications = paginator.page(1)
+    except EmptyPage:
+        publications = paginator.page(paginator.num_pages)
+    
+    return render(request, "web/publications.html", {"publications":publications})
+
+def PublicationDetail(request, Publication_slug):
+    publication = Publication.objects.get(slug=Publication_slug)
+    
+    context = {
+        "publications": publication,
+        
+    }
+    return render(request, "web/publication-detail.html", context)
