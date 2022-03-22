@@ -86,9 +86,9 @@
                             <div class="col-lg-6" data-animate="fadeInUp" data-animate-delay="0">
                                 <div class="icon-box effect small border small">
                                     <div class="icon">
-                                        <a href="#"><i class="fa fa-calendar"></i></a>
+                                        <a href="/event/{{c.title|slugify}}"><i class="fa fa-calendar"></i></a>
                                     </div>
-                                    <h3>{{c.title}}</h3>
+                                   <h3> <a href="/event/{{c.title|slugify}}" style="text-decoration: none; color: #3c4043 ;">{{c.title}}</a></h3>
                                     <p>{{c.date_start}} - {{c.date_end}}</p>
                                     <p>{{c.description |safe| truncatewords_html:20}}</p>
                                 </div>
