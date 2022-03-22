@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'api',
     'taggit',
     'ckeditor',
+    'config',
+    'embed_video',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-#                'web.context_processors.menu',
+                'web.context_processors.menu',
             ],
         },
     },

@@ -46,102 +46,65 @@
                 <!-- Portfolio -->
                 <div id="portfolio" class="grid-layout portfolio-3-columns" data-margin="20">
 
+                    {% for a in print %}
                     <!-- portfolio item -->
                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
                         <div class="portfolio-item-wrap">
                             <div class="portfolio-image">
-                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
+                                <a href="#"><img src="media/{{a.image}}" alt=""></a>
                             </div>
                             <div class="portfolio-description">
                                 <a href="portfolio-page-grid-gallery.html">
-                                    <h3>Let's Go Outside</h3>
-                                    <span>Illustrations / Graphics</span>
+                                    <h3>{{a.title}}</h3>
+                                    <span>{% for b in a.authors.all %}{{b.name}}{% endfor %} / {{a.category}}</span>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- end: portfolio item -->
-
+                    {% endfor %}
                     <!-- portfolio item -->
-                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                        <div class="portfolio-item-wrap">
-                            <div class="portfolio-image">
-                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
-                            </div>
-                            <div class="portfolio-description">
-                                <a href="portfolio-page-grid-gallery.html">
-                                    <h3>Let's Go Outside</h3>
-                                    <span>Illustrations / Graphics</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: portfolio item -->
+                    
 
-                     <!-- portfolio item -->
-                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                        <div class="portfolio-item-wrap">
-                            <div class="portfolio-image">
-                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
-                            </div>
-                            <div class="portfolio-description">
-                                <a href="portfolio-page-grid-gallery.html">
-                                    <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
-                                    <span>Event Report | Nuroji Lukmansyah</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: portfolio item -->
-                     <!-- portfolio item -->
-                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                        <div class="portfolio-item-wrap">
-                            <div class="portfolio-image">
-                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
-                            </div>
-                            <div class="portfolio-description">
-                                <a href="portfolio-page-grid-gallery.html">
-                                    <h3>Let's Go Outside</h3>
-                                    <span>Illustrations / Graphics</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: portfolio item -->
-                     <!-- portfolio item -->
-                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                        <div class="portfolio-item-wrap">
-                            <div class="portfolio-image">
-                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
-                            </div>
-                            <div class="portfolio-description">
-                                <a href="portfolio-page-grid-gallery.html">
-                                    <h3>Let's Go Outside</h3>
-                                    <span>Illustrations / Graphics</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: portfolio item -->
-                     <!-- portfolio item -->
-                     <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                        <div class="portfolio-item-wrap">
-                            <div class="portfolio-image">
-                                <a href="#"><img src="{% static 'web/bg/featured_image_643.png' %}" alt=""></a>
-                            </div>
-                            <div class="portfolio-description">
-                                <a href="portfolio-page-grid-gallery.html">
-                                    <h3>Let's Go Outside</h3>
-                                    <span>Illustrations / Graphics</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: portfolio item -->
                 </div>
                 <!-- end: Portfolio -->
             </div>
         </section>
+        <section style="background-color: #f8f8f8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="col-lg-4" data-animate="fadeIn">
+                            <div class="heading-text heading-section">
+                                <h1 class="text-medium">Events</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            {% for c in Acara %}
+                            <div class="col-lg-6" data-animate="fadeInUp" data-animate-delay="0">
+                                <div class="icon-box effect small border small">
+                                    <div class="icon">
+                                        <a href="#"><i class="fa fa-calendar"></i></a>
+                                    </div>
+                                    <h3>{{c.title}}</h3>
+                                    <p>{{c.date_start}} - {{c.date_end}}</p>
+                                    <p>{{c.description |safe| truncatewords_html:20}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                   
+
+                   
+                </div>
+            </div>
+
+        </section>
+        <!-- end: Services -->
         <!-- end: SECTION BOXED GRID -->
         <section class="p-b-10">
         </section>

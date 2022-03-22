@@ -1,8 +1,9 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
+from web import views as webviews
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='web/index.html'), name='home'),
+    path('', webviews.home, name='home'),
     path('researcher/', TemplateView.as_view(template_name='web/researcher.html'), name='researcher'),
     path('researcher/detail', TemplateView.as_view(template_name='web/researcher-detail.html'), name='researcher-detail'),
     path('publication/', TemplateView.as_view(template_name='web/publications.html'), name='publication'),
