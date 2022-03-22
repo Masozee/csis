@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def home(request):
@@ -29,3 +30,41 @@ def ScholarDetail(request, Person_slug):
         "publication": publication,
     }
     return render(request, "web/researcher-detail.html", context)
+
+def Acara(request):
+    acara = Event.objects.filter(publish=True).order_by('date_start').distinct()
+    paginator = Paginator(acara, 5)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        acara = paginator.page(page)
+    except PageNotAnInteger:
+        acara = paginator.page(1)
+    except EmptyPage:
+        acara = paginator.page(paginator.num_pages)
+    
+    return render(request, "web/events.html", {"acara":acara})
+
+def AcaraDetail(request, Event_slug):
+    acara = Event.objects.get(slug=Event_slug)
+    
+    context = {
+        "acara": acara,
+        
+    }
+    return render(request, "web/event-detail.html", context)
+
+
+def DepartmentDetail(request, Department_slug):
+    dept = Department.objects.get(slug=Department_slug)
+    publication = Publication.objects.filter( department = dept.id)
+    scholars = Person.objects.filter( department = dept.id)
+    acara = Event.objects.filter( department = dept.id)
+
+    context = {
+        "Dept": dept,
+        "publication": publication,
+        "Scholars": scholars,
+        "acara": acara,
+    }
+    return render(request, "web/department.html", context)

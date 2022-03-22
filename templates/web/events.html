@@ -23,116 +23,51 @@
                 <!-- end: Portfolio Filter -->
                 <!-- Blog -->
                 <div id="blog" class="grid-layout post-thumbnails m-b-30" data-item="post-item">
+                    
+                    {% for a in acara %}<!-- Post item-->
+                    <div class="post-item border">
+                        <div class="post-item-wrap">
+                            <div class="post-image">
+                                <a href="#">
+                                    <img alt="" style="max-width: 75%;" src="/media/{{a.image}}">
+                                </a>
+                                
+                            </div>
+                            <div class="post-item-description">
+                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{a.date_start |date:"d b Y, H:i"}} - {{a.date_end |date:"d b Y, H:i"}}</span>
+                                
+                                <h2><a href="/event/{{a.title | slugify }}">{{a.title}}
+                                    </a></h2>
+                                <p>{{a.description | safe | truncatewords_html:30 }}</p>
+                                <a href="/event/{{a.title| slugify }}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Post item-->
+                    {% endfor %}
                     <!-- Post item-->
-                    <div class="post-item border bc-upcoming">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="#">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="#">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
-                    <!-- Post item-->
-                    <div class="post-item border bc-previous">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="#">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="#">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
-                    <div class="post-item border bc-upcoming bc-previous">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="#">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="#">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
-                    <div class="post-item border bc-previous">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="#">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="#">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
-                    <div class="post-item border bc-upcoming">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="#">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="#">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
+                    
                 </div>
                 <!-- end: Blog -->
                 <!-- Pagination -->
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                    {% if acara.has_previous  %}
+                    <li class="page-item"><a class="page-link" href="?page=1"><i class="fa fa-angle-left"></i></a></li>
+                    {% endif %}
+                    {% for n in acara.paginator.page_range %}
+                        {% if acara.number == n %}
+                        <li class="page-item"><a class="page-link" href="#">{{ n }}</a></li>
+                        {% elif n > acara.number|add:'-2' and n < acara.number|add:'2' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if berita.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ acara.paginator.num_pages }}"><i class="fa fa-angle-right"></i></a></li>
+                    {% endif %}
+
                 </ul>
                 <!-- end: Pagination -->
             </div>
-        </section>
+        </section>s
 {% endblock %}

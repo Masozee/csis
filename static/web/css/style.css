@@ -1775,7 +1775,7 @@ Portfolio
 
 .post-item .post-item-description > h2, .post-item .post-item-description > h2 > a { font-size: 18px; letter-spacing: -0.1px; line-height: 23px; margin-bottom: 16px; color: #444; font-weight: 600; }
 
-.post-item .post-item-description .post-meta-date, .post-item .post-item-description .post-meta-comments, .post-item .post-item-description .post-meta-category { color: #C2C2C2; position: relative; top: -4px; font-size: 12px; margin-right: 8px; }
+.post-item .post-item-description .post-meta-date, .post-item .post-item-description .post-meta-comments, .post-item .post-item-description .post-meta-category { color: #444; position: relative; top: -4px; font-size: 12px; margin-right: 8px; }
 
 .post-item .post-item-description .post-meta-date i, .post-item .post-item-description .post-meta-comments i, .post-item .post-item-description .post-meta-category i { margin-right: 4px !important; }
 
