@@ -85,9 +85,9 @@
                                             <li><a href="{% url 'researcher' %}">Scholars</a></li>
                                             <li class="dropdown-submenu"><span class="dropdown-menu-title-only">Departments</span>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="{% url 'depekon' %}">Economics</a></li>
-                                                    <li><a href="{% url 'dephi' %}">International Relations</a></li>
-                                                    <li><a href="{% url 'deppol' %}">Politics and Social Change</a></li>
+                                                    {% for c in menu_dep %}
+                                                    <li><a href="/department/{{c.name|slugify}}">{{c.name}}</a></li>
+                                                    {% endfor %}
                                                 </ul>
                                             </li>
                                         </ul>
@@ -97,21 +97,18 @@
                                             <li class="mega-menu-content">
                                                 <div class="row">
                                                     <div class="col-lg-2-5 p-l-0 pb">
-                                                        <img src="{% static 'web/bg/publications.jpeg' %}" class="text-theme" style="width: 200px; padding-bottom: 10px;">
-                                                        <h4 style="color: black !important;">Lorem Ipsum dolor Sit Amet</h3>
-                                                        <p class="m-b-0">The most happiest time of the day!. Morbi sagittis, sem quis ipsum dolor sit amet lacinia faucibus.</p>
+                                                        {% for f in recent_pub %}
+                                                        <img src="/media/{{f.image}}" class="text-theme" style="width: 200px; padding-bottom: 10px;">
+                                                        <h4 style="color: black !important;">{{f.title}}</h3>
+                                                        <p class="m-b-0">{{f.description | safe | truncatewords_html:8}}</p>
+                                                        {% endfor %}
                                                     </div>  
                                                     <div class="col-lg-2-5">
                                                         <ul>
                                                             <li class="mega-menu-title">Recent Publications</li>
-                                                            <li><a href="{% url 'publication-detail' %}">lorem ipsum dolor sit amet</a></li>
-                                                            <li><a href="{% url 'publication-detail' %}">Three Columns</a></li>
-                                                            <li><a href="{% url 'publication-detail' %}">Four Columns</a></li>
-                                                            <li><a href="{% url 'publication-detail' %}">Five Columns</a></li>
-                                                            <li><a href="{% url 'publication-detail' %}">Six Columns</a></li>
-                                                            <li><a href="{% url 'publication-detail' %}">Sidebar Sticky</a></li>
-                                                            <li><a href="{% url 'publication-detail' %}">Wide version</a></li>
-                                                            <li><a href="{% url 'publication-detail' %}">No page title</a></li>
+                                                            {% for e in menu_pub %}
+                                                            <li><a href="/publication/{{e.title | slugify}}">{{ e.title }}</a></li>
+                                                            {% endfor %}
                                                         </ul>
                                                     </div>
                                                     <div class="col-lg-2-5">
@@ -139,16 +136,10 @@
                                                     </div>
                                                     <div class="col-lg-2-5">
                                                         <ul>
-                                                            <li class="mega-menu-title">All Publications</li>
-                                                            <li class="mega-menu-title">Books</li>
-                                                            <li class="mega-menu-title">Commentaries</li>
-                                                            <li class="mega-menu-title">Covid-19 Commentaries</li>
-                                                            <li class="mega-menu-title">Event Report</li>
-                                                            <li class="mega-menu-title">Policy Briefs</li>
-                                                            <li class="mega-menu-title">Policy Paper Series</li>
-                                                            <li class="mega-menu-title">Press Release</li>
-                                                            <li class="mega-menu-title">Research Reports</li>
-                                                            <li class="mega-menu-title">Working Papers</li>
+                                                            <a href="{% url 'publication' %}"><li class="mega-menu-title">All Publications</li></a>
+                                                            {% for d in cat %}
+                                                            <a href="{% url 'publication' %}"><li class="mega-menu-title">{{d.name}}</li></a>
+                                                            {% endfor %}
                                                         </ul>
                                                     </div>
                                                     
