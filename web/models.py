@@ -7,6 +7,8 @@ from taggit.models import TaggedItemBase
 from django.utils.timezone import now
 from embed_video.fields  import  EmbedVideoField
 from datetime import date
+from taggit.managers import TaggableManager
+from taggit.models import TaggedItemBase
 
 
 # Create your models here.
@@ -66,6 +68,9 @@ class Person (models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
+class TaggedProject(TaggedItemBase):
+    content_object = models.ForeignKey('Project', on_delete=models.CASCADE)
+
 class Project(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=160)
@@ -75,12 +80,14 @@ class Project(models.Model):
     image = models.ImageField(upload_to = 'media/project')
     periode_start = models.DateField(blank=True, null=True)
     periode_end = models.DateField(blank=True, null=True)
+    publish = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-    tags = TaggableManager(blank=True)
+
+    tags = TaggableManager(through=TaggedProject)
 
     def __str__(self):
-        return self.name
+        return self.title
         
     class Meta:
         verbose_name = ("Project")
@@ -94,6 +101,7 @@ class Project(models.Model):
 
 class Publication_category(models.Model):
     name = models.CharField(max_length=150)
+    slug = models.SlugField(default='', editable=False, max_length=200)
     keterangan = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -105,6 +113,13 @@ class Publication_category(models.Model):
         verbose_name = ("Publication Category")
         verbose_name_plural = ("Publication Categories")
 
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+class TaggedPublication(TaggedItemBase):
+    content_object = models.ForeignKey('Publication', on_delete=models.CASCADE)
 
 class Publication(models.Model):
     title = models.CharField(max_length=300)
@@ -119,7 +134,7 @@ class Publication(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     publish = models.BooleanField(default=False)
-    tags = TaggableManager(blank=True)
+    tags = TaggableManager(through=TaggedPublication)
 
     def __str__(self):
         return self.title
@@ -137,6 +152,9 @@ class Publication(models.Model):
     def tgl(self):
         return self.date_created.strftime('%d %B %Y')
 
+class TaggedEvent(TaggedItemBase):
+    content_object = models.ForeignKey('Event', on_delete=models.CASCADE)
+
 class Event(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=320)
@@ -151,7 +169,7 @@ class Event(models.Model):
     description = RichTextField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-    tags = TaggableManager(blank=True)
+    tags = TaggableManager(through=TaggedEvent)
     publish = models.BooleanField(default=False)
 
 
@@ -183,3 +201,29 @@ class Event(models.Model):
         return date.today() > self.date
 
 
+class TaggedNews(TaggedItemBase):
+    content_object = models.ForeignKey('News', on_delete=models.CASCADE)
+
+class News(models.Model):
+    title = models.CharField(max_length=300)
+    slug = models.SlugField(default='', editable=False, max_length=160)
+    date_release = models.DateField(default=now, blank=True, null=True)
+    description = RichTextField()
+    image = models.ImageField(upload_to = 'media/project')
+    publish = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    tags = TaggableManager(through=TaggedNews)
+
+    def __str__(self):
+        return self.title
+        
+    class Meta:
+        verbose_name = ("News")
+        verbose_name_plural = ("News")
+    
+    def save(self, *args, **kwargs):
+        value = self.title
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)

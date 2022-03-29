@@ -86,9 +86,68 @@ def Publications(request):
 
 def PublicationDetail(request, Publication_slug):
     publication = Publication.objects.get(slug=Publication_slug)
+    post_related = publication.tags.similar_objects()[:5]
+    post_recent = Publication.objects.all().order_by('date_created').distinct()[:5]
     
     context = {
         "publications": publication,
+        "post_related": post_related,
+        "post_recent": post_recent,
         
     }
     return render(request, "web/publication-detail.html", context)
+
+def Projects(request):
+    projects = Project.objects.filter(publish=True).order_by('date_created').distinct()
+    paginator = Paginator(projects, 12)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+    
+    return render(request, "web/project.html", {"projects":projects})
+
+def ProjectDetail(request, Project_slug):
+    projects = Project.objects.get(slug=Project_slug)
+    publication = Publication.objects.filter( project = projects.id)
+    acara = Event.objects.filter( project = projects.id)
+
+    
+    context = {
+        "projects": projects,
+        "publication": publication,
+        "acara": acara,
+        
+    }
+    return render(request, "web/project-detail.html", context)
+
+def news(request):
+    newslist = News.objects.filter(publish=True).order_by('date_created').distinct()
+    paginator = Paginator(newslist, 12)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        newslist = paginator.page(page)
+    except PageNotAnInteger:
+        newslist = paginator.page(1)
+    except EmptyPage:
+        newslist = paginator.page(paginator.num_pages)
+    
+    return render(request, "web/news.html", {"newslist":newslist})
+
+def newsDetail(request, News_slug):
+    news = News.objects.get(slug=News_slug)
+    post_related = news.tags.similar_objects()[:5]
+    post_recent = News.objects.all().order_by('date_created').distinct()[:5]
+    
+    context = {
+        "newslist": news,
+        "post_related": post_related,
+        "post_recent": post_recent,
+        
+    }
+    return render(request, "web/news-detail.html", context)

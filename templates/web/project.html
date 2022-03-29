@@ -5,7 +5,7 @@
         <section id="page-title" style="background-color:#005354; width: 100%">
             <div class="container">
                 <div class="page-title text-white text-center" >
-                    <h2>PROJECT</h2>
+                    <h2>PROJECTS</h2>
                 </div>
             </div>
         </section>
@@ -15,191 +15,46 @@
                 <!-- Blog -->
                 <div id="blog" class="grid-layout post-3-columns m-b-30" data-item="post-item">
                     <!-- Post item-->
+                    {% for a in projects %}
                     <div class="post-item border">
                         <div class="post-item-wrap">
                             <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
+                                <a href="/project/{{a.title | slugify}}">
+                                    <img alt="" src="/media/{{a.image}}">
                                 </a>
-                                
                             </div>
                             <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
+                                <span class="post-meta-date"><i class="fa fa-calendar"></i>{{a.date_created |date:"d b Y"}}</span><br>
+                                <span class="post-meta-comments text-black"><a href=""><i class="fa fa-user-circle"></i>{% for b in a.project_member.all %}{{b.name}}, {% endfor %}</a></span>
+                                <h2><a href="/project/{{a.title | slugify}}">{{a.title}}
                                     </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                                {{a.description | safe | truncatewords_html:30}}
+                                <a href="/project/{{a.title}}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <!-- end: Post item-->
-                    <!-- Post item-->
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
-                    <!-- Post item-->
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
-                    <!-- Post item-->
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
-                            <div class="post-image">
-                                <a href="{% url 'project-detail' %}">
-                                    <img alt="" src="{% static 'web/images/blog/12.jpg' %}">
-                                </a>
-                                
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>33 Comments</a></span>
-                                <h2><a href="{% url 'project-detail' %}">Standard post with a single image
-                                    </a></h2>
-                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
-                                <a href="{% url 'project-detail' %}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: Post item-->
-                </div>
+                    {% endfor %}
+                   </div>
+                   
                 <!-- end: Blog -->
                 <!-- Pagination -->
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="{% url 'project-detail' %}"><i class="fa fa-angle-left"></i></a></li>
-                    <li class="page-item"><a class="page-link" href="{% url 'project-detail' %}">1</a></li>
-                    <li class="page-item"><a class="page-link" href="{% url 'project-detail' %}">2</a></li>
-                    <li class="page-item active"><a class="page-link" href="{% url 'project-detail' %}">3</a></li>
-                    <li class="page-item"><a class="page-link" href="{% url 'project-detail' %}">4</a></li>
-                    <li class="page-item"><a class="page-link" href="{% url 'project-detail' %}">5</a></li>
-                    <li class="page-item"><a class="page-link" href="{% url 'project-detail' %}"><i class="fa fa-angle-right"></i></a></li>
+                    {% if projects.has_previous  %}
+                    <li class="page-item"><a class="page-link" href="?page=1"><i class="fa fa-angle-left"></i></a></li>
+                    {% endif %}
+                    {% for n in projects.paginator.page_range %}
+                        {% if projects.number == n %}
+                        <li class="page-item"><a class="page-link" href="#">{{ n }}</a></li>
+                        {% elif n > projects.number|add:'-2' and n < projects.number|add:'2' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if berita.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ projects.paginator.num_pages }}"><i class="fa fa-angle-right"></i></a></li>
+                    {% endif %}
+
                 </ul>
                 <!-- end: Pagination -->
             </div>
