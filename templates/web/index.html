@@ -54,7 +54,7 @@
                                 <a href="#"><img src="media/{{a.image}}" alt=""></a>
                             </div>
                             <div class="portfolio-description">
-                                <a href="portfolio-page-grid-gallery.html">
+                                <a href="/publication/{{a.title | slugify}}">
                                     <h3>{{a.title}}</h3>
                                     <span>{% for b in a.authors.all %}{{b.name}}{% endfor %} / {{a.category}}</span>
                                 </a>
