@@ -22,14 +22,11 @@
                                 <a href="/news/{{a.title|slugify}}">
                                     <img alt="" src="/media/{{a.image}}">
                                 </a>
-                                
                             </div>
                             <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{a.date_created}}</span>
-                                
-                                <h2><a href="/news/{{a.title|slugify}}">{{a.title}}
-                                    </a></h2>
-                                <p>{{a.description| safe| truncatewords_html:20}}</p>
+                                <h2><a href="/news/{{a.title|slugify}}">{{a.title}}</a></h2>
+                                <p class="post-meta-date"><i class="fa fa-calendar"></i> {{a.date_created |date:"d b Y"}}</p>
+                                <p>{{a.description| safe| truncatewords_html:50}}</p>
                                 <a href="/news/{{a.title|slugify}}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
                             </div>
                         </div>

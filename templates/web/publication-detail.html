@@ -6,6 +6,7 @@
             <div class="container">
                 <div class="page-title text-white text-center" >
                     <h2>{{publications.title}}</h2>
+                    <h3>{% for f in publications.authors.all %}<a href="/scholar/{{f.name | slugify}}">{{f.name}}</a>{% endfor %}</a></p>
                 </div>
             </div>
         </section>
@@ -14,42 +15,35 @@
             <div class="container">
                 <div class="row">
                     <!-- content -->
-                    <div class="content col-lg-9">
+                    <div class="content col-lg-8">
                         <!-- Blog -->
                         <div id="blog" class="single-post">
                             <!-- Post single item-->
                             <div class="post-item">
                                 <div class="post-item-wrap">
-                                    <div class="post-image">
-                                        <a href="#">
-                                            <img alt="" src="/media/{{publications.image}}">
-                                        </a>
-                                    </div>
-                                    <div class="post-item-description">
-                                        <div class="post-meta">
-                                            <span class="post-meta-date"><i class="fa fa-calendar"></i>{{publications.date_created}}</span>
-                                            <span class="post-meta-comments"><a href=""><i class="fa fa-user-circle"></i>{% for f in publications.authors.all %}{{f.name}}{% endfor %}</a></span>
-                                            <span class="post-meta-category"><a href=""><i class="fa fa-tag"></i>{% for a in publications.tags.all %}{{a.name}},{% endfor %}</a></span>
-                                            <div class="post-meta-share">
-                                                <a class="btn btn-xs btn-slide btn-facebook" href="#">
-                                                    <i class="fab fa-facebook-f"></i>
-                                                    <span>Facebook</span>
-                                                </a>
-                                                <a class="btn btn-xs btn-slide btn-twitter" href="#" data-width="100">
-                                                    <i class="fab fa-twitter"></i>
-                                                    <span>Twitter</span>
-                                                </a>
-                                                <a class="btn btn-xs btn-slide btn-instagram" href="#" data-width="118">
-                                                    <i class="fab fa-instagram"></i>
-                                                    <span>Instagram</span>
-                                                </a>
-                                                <a class="btn btn-xs btn-slide btn-googleplus" href="mailto:#" data-width="80">
-                                                    <i class="icon-mail"></i>
-                                                    <span>Mail</span>
-                                                </a>
+                                        <div class="text-justify">{{publications.description|safe}}</div>
+                                        <div class="post-item-description">
+                                            <div class="post-meta">
+                                                <span class="post-meta-date"><i class="fa fa-calendar"></i>{{publications.date_created |date:"d b Y"}}</span>                                                
+                                                <div class="post-meta-share">
+                                                    <a class="btn btn-xs btn-slide btn-facebook" href="#">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                        <span>Facebook</span>
+                                                    </a>
+                                                    <a class="btn btn-xs btn-slide btn-twitter" href="#" data-width="100">
+                                                        <i class="fab fa-twitter"></i>
+                                                        <span>Twitter</span>
+                                                    </a>
+                                                    <a class="btn btn-xs btn-slide btn-instagram" href="#" data-width="118">
+                                                        <i class="fab fa-instagram"></i>
+                                                        <span>Instagram</span>
+                                                    </a>
+                                                    <a class="btn btn-xs btn-slide btn-googleplus" href="mailto:#" data-width="80">
+                                                        <i class="icon-mail"></i>
+                                                        <span>Mail</span>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        {{publications.description|safe}}
                                     </div>
                                    
                                     
@@ -62,10 +56,18 @@
                     </div>
                     <!-- end: content -->
                     <!-- Sidebar-->
-                    <div class="sidebar sticky-sidebar col-lg-3">
+                    <div class="sidebar sticky-sidebar col-lg-4">
                         <!--widget newsletter-->
                         
                         <!--end: widget newsletter-->
+                        <div class="side-video">
+                            <img src="/media/{{publications.image}}" class="side-video" alt="">
+                        </div>
+                        <div class="btn-csis">
+                            
+                            <button type="button" class="btn btn-primary btn-block side-video">Download</button>
+                            
+                        </div>
                         <!--Tabs with Posts-->
                         <div class="widget">
                             <div class="tabs">

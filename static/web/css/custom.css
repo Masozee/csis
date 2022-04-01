@@ -1,8 +1,32 @@
-/* 
 
-1. Add your custom Css styles below
-2. Place the this code in your template: 
+.hs {
+    border-bottom: 1px solid #f3f3f3;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
 
- <link href="css/custom.css" rel="stylesheet">
+.side-video {
+    max-width: 300px;
+}
 
-*/
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.btn-csis {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+
+
+
+
+
+@media (max-width: 991.98px) { /*	Grid post*/
+.side-video {
+    max-width: 420px;
+}
+}
