@@ -4,15 +4,21 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="author" content="INSPIRO" />
-    <meta name="description" content="Themeforest Template Polo, html template">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta name="author" content="Centre for Strategic and International Studies" />
+    <meta name="description" content="Centre for Strategic and International Studies">
+    <link rel="icon" type="image/png" href="{% static 'web/images/favicon.png' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Document title -->
-    <title>POLO | The Multi-Purpose HTML5 Template</title>
+    <!-- Primary Meta Tags -->
+    <title>Centre for Strategic and International Studies</title>
+    <meta name="title" content="Centre for Strategic and International Studies">
+    <meta name="description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
+
+    {% block OG%}
+    {% endblock %}
     <!-- Stylesheets & Fonts -->
-    <link href="css/plugins.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{% static 'web/css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'web/css/custom.css' %}" rel="stylesheet">
 </head>
 
 <body>

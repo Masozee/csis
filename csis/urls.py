@@ -27,6 +27,7 @@ urlpatterns = [
          name="password_reset_complete"),
 ]
 
+handler404 = "web.views.page_not_found_view"
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

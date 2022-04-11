@@ -28,7 +28,7 @@
                                     <div class="post-item-description">
                                         <div class="post-meta">
                                             <span class="post-meta-date"><i class="fa fa-calendar"></i>{{newslist.date_created |date:"d b Y"}}</span>
-                                            <span class="post-meta-category"><a href=""><i class="fa fa-tag"></i>{% for c in newslist.tags.all %}{{c.name}}, {% endfor %}</a></span>
+                                            
                                             <div class="post-meta-share">
                                                 <a class="btn btn-xs btn-slide btn-facebook" href="#">
                                                     <i class="fab fa-facebook-f"></i>
@@ -48,17 +48,16 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <p>{{newslist.description|safe}}</p>
-                                    </div>
+                                        <div class="text-justify">{{newslist.description|safe}}</p>
+                                        </div>
                                     <div class="post-tags">
-                                        <a href="#">Life</a>
-                                        <a href="#">Sport</a>
-                                        <a href="#">Tech</a>
-                                        <a href="#">Travel</a>
+                                        {% for c in newslist.tags.all %} 
+                                        <a href="#">{{c.name}}</a>
+                                        {% endfor %}
                                     </div>
                                     
                                     <!-- Comments -->
-                                    
+                                    </div>
                                 </div>
                             </div>
                             <!-- end: Post single item-->

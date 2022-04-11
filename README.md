@@ -1,1 +1,2 @@
 # csis
+Founded in 1971, the Centre for Strategic and International Studies (CSIS) has won recognition as an important research and policy institution both within Indonesia and internationally. Its development over more than three decades is entwined with the history of Indonesia itself.
