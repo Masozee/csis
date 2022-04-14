@@ -15,7 +15,7 @@ SECRET_KEY = config('PROD_SECRET_KEY'),
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'beta.csis.or.id']
 
 
 # Application definition
@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'config',
     'embed_video',
     'django_webp',
-    
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -128,14 +128,32 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-STATICFILES_DIRS    = [
-    os.path.join(BASE_DIR, 'static/'),
-]
+#STATICFILES_DIRS    = [
+#    os.path.join(BASE_DIR, 'static/'),
+#]
 
 
 #STATIC_ROOT         = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL          = '/static/'
+#STATIC_URL          = '/static/'
+
+
+    # aws settings
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+AWS_LOCATION = 'static'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+#    STATICFILES_DIRS    = [os.path.join(BASE_DIR, 'static/'),]
+ #   STATIC_ROOT         = os.path.join(BASE_DIR, 'static')
+ #   STATIC_URL          = '/static/'
+
 
 MEDIA_URL           = '/media/'
 
