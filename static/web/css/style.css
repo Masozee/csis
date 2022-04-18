@@ -4437,7 +4437,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu { display: block; }
 
 .tabs .nav-tabs .nav-link.disabled { color: rgba(60, 64, 67, 0.5); }
 
-.tabs .nav-tabs .nav-link.active { color: #2250fc; background-color: transparent; border-bottom: 2px solid #2250fc; }
+.tabs .nav-tabs .nav-link.active { color: #B6941F; background-color: #005354; border-bottom: 2px solid #2250fc; }
 
 .tabs .nav-tabs .dropdown-menu { border-radius: 0.42rem; border: 0; box-shadow: 0 6px 12px rgba(140, 152, 164, 0.075); }
 
