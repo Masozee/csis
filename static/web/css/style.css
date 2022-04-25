@@ -2705,7 +2705,7 @@ Play Button
 
 .toggle-item.toggle-active i:nth-of-type(1) { visibility: hidden; position: absolute; }
 
-.image-hover-zoom { position: relative; overflow: hidden; cursor: url("../images/expand.png"), default; /*hover state*/ }
+.image-hover-zoom { position: relative; overflow: hidden; cursor: url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/expand.png"), default; /*hover state*/ }
 
 .image-hover-zoom img { -webkit-transition: all .4s ease; transition: all .4s ease; opacity: 1; }
 
@@ -2725,7 +2725,7 @@ iframe { width: 100%; }
 -----------------------------------------------------------------*/
 .block-shadow { box-shadow: 0 25px 75px 0 rgba(0, 0, 0, 0.2); margin-left: -100px; }
 
-.portfolio-item .new-badge { background-image: url("../preview/images/new-badge.png"); background-position: 0 0; background-repeat: no-repeat; height: 61px; position: absolute; right: 12px; top: 3px; width: 55px; z-index: 100; }
+.portfolio-item .new-badge { background-image: url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/preview/images/new-badge.png"); background-position: 0 0; background-repeat: no-repeat; height: 61px; position: absolute; right: 12px; top: 3px; width: 55px; z-index: 100; }
 
 /* ----------------------------------------------------------------
     Bar Rating
@@ -4579,7 +4579,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu { display: block; }
             transform: translateY(100%); }
   51% { opacity: 1; } }
 
-@font-face { font-family: 'inspiro-icons'; src: url("../webfonts/inspiro-icons.ttf?ijzgpf") format("truetype"), url("../webfonts/inspiro-icons.woff?ijzgpf") format("woff"); font-weight: normal; font-style: normal; font-display: block; }
+@font-face { font-family: 'inspiro-icons'; src: url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/webfonts/inspiro-icons.ttf?ijzgpf") format("truetype"), url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/webfonts/inspiro-icons.woff?ijzgpf") format("woff"); font-weight: normal; font-style: normal; font-display: block; }
 
 i:not(.fa):not(.fab):not(.far):not(.fas) { font-family: inspiro-icons !important; speak: none; font-style: normal; font-weight: 400; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
@@ -5839,9 +5839,9 @@ body.breakpoint-xs hr.space-xxlg, body.breakpoint-sm hr.space-xxlg { height: 80p
 
 .seperator.seperator-over-top, .separator.seperator-over-top { margin-bottom: -17px; position: relative; top: -13px !important; }
 
-.triangle-divider-bottom { background-image: url("../images/triangle-divider-down.png"); background-position: left center; background-repeat: repeat-x; bottom: 0; height: 12px; position: absolute; width: 100%; }
+.triangle-divider-bottom { background-image: url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/triangle-divider-down.png"); background-position: left center; background-repeat: repeat-x; bottom: 0; height: 12px; position: absolute; width: 100%; }
 
-.triangle-divider-top { background-image: url("../images/triangle-divider-top.png"); background-position: left center; background-repeat: repeat-x; top: 0; height: 12px; position: absolute; width: 100%; }
+.triangle-divider-top { background-image: url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/triangle-divider-top.png"); background-position: left center; background-repeat: repeat-x; top: 0; height: 12px; position: absolute; width: 100%; }
 
 /* ----------------------------------------------------------------
 	Blockquotes
