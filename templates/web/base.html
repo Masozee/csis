@@ -124,7 +124,7 @@
                                                         <ul>
                                                             <a href="{% url 'publication' %}"><li class="mega-menu-title">All Publications</li></a>
                                                             {% for d in cat %}
-                                                            <a href="{% url 'publication' %}"><li class="mega-menu-title">{{d.name}}</li></a>
+                                                            <a href="/publications/{{d.name | slugify}}"><li class="mega-menu-title">{{d.name}}</li></a>
                                                             {% endfor %}
                                                         </ul>
                                                     </div>

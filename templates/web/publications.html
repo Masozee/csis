@@ -31,31 +31,32 @@
                 </div>
                 <!-- end: Page title -->
                 <!-- Blog -->
-                <div id="blog" class="grid-layout post-3-columns m-b-30" data-item="post-item" data-stagger="10">
-                    {% for a in publications %}
+                <div id="blog" class="grid-layout col-lg-12" data-item="post-item">
                     <!-- Post item-->
-                    <div class="post-item border">
-                        <div class="post-item-wrap">
+                    <div class="post-item ">
+                        <div class="row">
+                        {% for a in publications %}
+                        <div class="post-item-wrap col-lg-4">
                             <div class="post-image">
-                                <a href="#">
-                                    <img alt="" src="/media/{{a.image}}">
+                                <a href="/publication/{{a.title | slugify}}">
+                                    <img alt="" src="/media/{{a.image}}" >
                                 </a>
+                                
                             </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{a.date_created}}</span>
-                                <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>{% for i in a.authors.all %} {{i.name}} {% endfor %}</a></span>
-                                <h2><a href="/publication/{{a.title|slugify}}">{{a.title}}
-                                    </a></h2>
-                                <p>{{a.description | safe| truncatewords_html:15}}</p>
-                                <a href="/publication/{{a.title|slugify}}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                            <div class="post-item-description-2">
+                                <p>{{a.category}}</p>
+                                <h2><a href="/publication/{{a.title | slugify}}">{{a.title}}</a></h2>
+                                <p>{% for b in a.authors.all %}{{b.name}}, {% endfor %}</p>
                             </div>
+                            <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                         </div>
+                        {% endfor %}
+                    </div>
                     </div>
                     <!-- end: Post item-->
-                    {% endfor %}
-                    <!-- Post item-->
-                   
+                    
                 </div>
+                
                 <!-- end: Blog -->
                 <!-- Pagination -->
                 <ul class="pagination">

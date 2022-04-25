@@ -1,0 +1,135 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block content %}
+        <div id="slider" class="inspiro-slider dots-creative" data-height-xs="360">
+            <!-- Slide 1 -->
+            <div class="slide" style="background-image:url('{% static 'web/bg/hatespeech.jpeg' %}');">
+                <div class="bg-overlay"></div>
+                <div class="container">
+                    <div class="slide-captions text-left text-light col-lg-6">
+                        <!-- Captions -->
+                        <h3>CSIS HATE SPEECH DASHBOARD</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
+                       <p>read more</p>
+                        <!-- end: Captions -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: Slide 1 -->
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image:url('{% static 'web/bg/covid.jpeg' %}');">
+                <div class="bg-overlay"></div>
+                <div class="container">
+                    <div class="slide-captions text-left text-light col-lg-6">
+                        <!-- Captions -->
+                        <h3 >COVID-19 DASHBOARD</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
+                       <p>read more</p>
+                        <!-- end: Captions -->
+                        <!-- end: Captions -->
+                    </div>
+                </div>
+            </div>
+            <!-- end: Slide 2 -->
+        </div>
+        <!--end: Inspiro Slider -->
+        <!-- SECTION BOXED GRID -->
+        <section style="padding: 30px 0;">
+            <div class="container">
+                <div class="col-lg-6">
+                    <div class="heading-text heading-section">
+                        <h2 style="font-size: 30px;">WHAT'S ON CSIS</h2>
+                    </div>
+                </div>
+
+                <!-- Portfolio -->
+                <div id="portfolio" class="grid-layout portfolio-3-columns" data-margin="20">
+
+                    {% for a in print %}
+                    <!-- portfolio item -->
+                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="media/{{a.image}}" alt=""></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="/publication/{{a.title | slugify}}">
+                                    <h3>{{a.title}}</h3>
+                                    <span>{% for b in a.authors.all %}{{b.name}}{% endfor %} / {{a.category}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: portfolio item -->
+                    {% endfor %}
+                    <!-- portfolio item -->
+                    
+
+                </div>
+                <!-- end: Portfolio -->
+            </div>
+        </section>
+        <section style="background-color: #f8f8f8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="col-lg-4" data-animate="fadeIn">
+                            <div class="heading-text heading-section">
+                                <h1 style="font-size: 30px; font-weight: 500;">Events</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            {% for c in Acara %}
+                            <div class="col-lg-6" data-animate="fadeInUp" data-animate-delay="0">
+                                <div class="icon-box effect small border small">
+                                    <div class="icon">
+                                        <a href="/event/{{c.title|slugify}}"><i class="fa fa-calendar"></i></a>
+                                    </div>
+                                   <h3> <a href="/event/{{c.title|slugify}}" style="text-decoration: none; color: #3c4043 ;">{{c.title}}</a></h3>
+                                    <p>{{c.date_start}} - {{c.date_end}}</p>
+                                    <p>{{c.description |safe| truncatewords_html:20}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                   
+
+                   
+                </div>
+            </div>
+
+        </section>
+        <!-- end: Services -->
+        <!-- end: SECTION BOXED GRID -->
+        <section">
+        </section>
+
+         <!-- WELCOME -->
+         <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <h2 class="m-b-5 m-t-20">CSIS Youtube</h2>
+                        <p>If you have missed out on our events, check out our YouTube to watch the full recording of them.
+                        </p>
+                        <a href="https://www.youtube.com/channel/UC32liYPlV2F9r5PVdW8434g" class="btn btn-dark">Explore more</a>
+                    </div>
+                    <div class="col-lg-6 offset-1 m-b-5">
+                        <div class="ratio ratio-16x9">
+                            <div class="ratio ratio-16x9">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/N0zzdT42Vb8?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- end: WELCOME -->
+
+ {% endblock %}

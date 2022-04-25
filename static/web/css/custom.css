@@ -19,8 +19,40 @@
     padding-bottom: 30px;
 }
 
+.title-event > h3 {
+    font-size: 18px;
+    letter-spacing: 0px;
+    font-weight: 700;
+}
 
+.line-10 {
+    clear: both;
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+    border-top: 1px solid #e3e3e3;
+}
+.line-bottom {
+    clear: both;
+    position: absolute;
+    width: 100%;
+    margin: 10px 0;
+    border-top: 1px solid #e3e3e3;
+}
 
+.post-item .post-item-description-2 { padding: 10px 0px 0px 0px; line-height: 28px; color: #676767; }
+
+.post-item .post-item-description-2 > h2, .post-item .post-item-description-2 > h2 > a { font-size: 18px; letter-spacing: -0.1px; line-height: 23px; margin-bottom: 20px; color: #444; font-weight: 600; }
+
+.post-item .post-item-description-2 .post-meta-date, .post-item .post-item-description-2 .post-meta-comments, .post-item .post-item-description-2 .post-meta-category { color: #444; position: relative; top: -4px; font-size: 12px; margin-right: 8px; }
+
+.post-item .post-item-description-2 .post-meta-date i, .post-item .post-item-description-2 .post-meta-comments i, .post-item .post-item-description-2 .post-meta-category i { margin-right: 4px !important; }
+
+.post-item .post-item-description-2 .post-meta-date a, .post-item .post-item-description-2 .post-meta-comments a, .post-item .post-item-description-2 .post-meta-category a { color: #C2C2C2; }
+
+.post-item .post-item-description-2 .post-post-likes { float: right; font-size: 14px; color: #aaa; }
+
+.post-item .post-item-description-2 .post-post-likes i { margin-right: 8px; color: #aaa; }
 
 
 

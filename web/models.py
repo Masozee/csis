@@ -74,7 +74,7 @@ class TaggedProject(TaggedItemBase):
 class Project(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=160)
-    department = models.ManyToManyField(Department, blank=True, null=True)
+    department = models.ManyToManyField(Department, blank=True)
     project_member = models.ManyToManyField(Person)
     description = RichTextField()
     image = models.ImageField(upload_to = 'project/')
@@ -134,6 +134,7 @@ class Publication(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     publish = models.BooleanField(default=False)
+    highlight = models.BooleanField(default=False)
     tags = TaggableManager(through=TaggedPublication)
 
     def __str__(self):
@@ -160,6 +161,7 @@ class Event(models.Model):
     slug = models.SlugField(default='', editable=False, max_length=320)
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(default=now)
+    speaker = models.ManyToManyField(Person, blank=True)
     project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
     department = models.ManyToManyField(Department, blank=True)
     image = models.ImageField(upload_to='event/img/')

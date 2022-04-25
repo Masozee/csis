@@ -10,13 +10,17 @@ def page_not_found_view(request, exception):
 # Create your views here.
 def home(request):
    
-    print = Publication.objects.filter(publish=True).order_by('-date_created').distinct()[:3]
-    acara = Event.objects.filter(publish=True).order_by('-date_created').distinct()[:6]
+    print = Publication.objects.filter(publish=True, highlight=True).order_by('-date_created').distinct()[:1]
+    small_pub = Publication.objects.filter(publish=True).order_by('-date_created').distinct()[:3]
+    acara = Event.objects.filter(publish=True).order_by('-date_created').distinct()[:4]
+    project = Publication.objects.filter(publish=True).order_by('-date_created').distinct()[:4]
     
     context = {
         
         'print': print,
+        'smallpub': small_pub,
         'Acara': acara,
+        'Project': project
        
     }
     return render(request, "web/index.html", context)
@@ -101,6 +105,11 @@ def PublicationDetail(request, Publication_slug):
         
     }
     return render(request, "web/publication-detail.html", context)
+
+def PublicationCategoryDetail(request, Publication_category_slug):
+
+    publication = Publication.objects.filter(publish=True, category__slug = Publication_category_slug).order_by('date_created').distinct()
+    return render(request, "web/publications.html", {"publications":publication})
 
 def Projects(request):
     projects = Project.objects.filter(publish=True).order_by('date_created').distinct()

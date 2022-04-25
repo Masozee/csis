@@ -9,7 +9,7 @@
                 <div class="container">
                     <div class="slide-captions text-left text-light col-lg-6">
                         <!-- Captions -->
-                        <h3>CSIS HATE SPEECH DASHBOARD</h3>
+                        <h2>CSIS HATE SPEECH DASHBOARD</h2>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
                        <p>read more</p>
                         <!-- end: Captions -->
@@ -23,7 +23,7 @@
                 <div class="container">
                     <div class="slide-captions text-left text-light col-lg-6">
                         <!-- Captions -->
-                        <h3 >COVID-19 DASHBOARD</h3>
+                        <h2>COVID-19 DASHBOARD</h2>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
                        <p>read more</p>
                         <!-- end: Captions -->
@@ -35,71 +35,92 @@
         </div>
         <!--end: Inspiro Slider -->
         <!-- SECTION BOXED GRID -->
-        <section style="padding: 30px 0;">
-            <div class="container">
-                <div class="col-lg-6">
-                    <div class="heading-text heading-section">
-                        <h2 style="font-size: 30px;">WHAT'S ON CSIS</h2>
-                    </div>
-                </div>
-
-                <!-- Portfolio -->
-                <div id="portfolio" class="grid-layout portfolio-3-columns" data-margin="20">
-
-                    {% for a in print %}
-                    <!-- portfolio item -->
-                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                        <div class="portfolio-item-wrap">
-                            <div class="portfolio-image">
-                                <a href="#"><img src="https://s3-csis-web.s3.amazonaws.com/static/{{a.image}}" alt=""></a>
-                            </div>
-                            <div class="portfolio-description">
-                                <a href="/publication/{{a.title | slugify}}">
-                                    <h3>{{a.title}}</h3>
-                                    <span>{% for b in a.authors.all %}{{b.name}}{% endfor %} / {{a.category}}</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end: portfolio item -->
-                    {% endfor %}
-                    <!-- portfolio item -->
-                    
-
-                </div>
-                <!-- end: Portfolio -->
-            </div>
-        </section>
-        <section style="background-color: #f8f8f8">
+        <section >
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="col-lg-4" data-animate="fadeIn">
+                    <div class=" col-lg-9">
                             <div class="heading-text heading-section">
-                                <h1 style="font-size: 30px; font-weight: 500;">Events</h1>
+                                <h2 style="font-size: 20px;">Publications</h2>
+                            </div> 
+                    <!-- Portfolio -->
+                        <div id="portfolio" class="grid-layout col-lg-12" data-margin="20">
+                            {% for a in print %}
+                            <!-- portfolio item -->
+                            <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                                <div class="portfolio-item-wrap">
+                                    <div class="portfolio-image">
+                                        <a href="#"><img src="media/{{a.image}}" alt=""></a>
+                                    </div>
+                                    <div class="portfolio-description">
+                                        <a href="/publication/{{a.title | slugify}}">
+                                            <h3>{{a.title}}</h3>
+                                            <span>{% for b in a.authors.all %}{{b.name}}{% endfor %} | {{a.category}}</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- end: portfolio item -->
+                            {% endfor %}
+                            <!-- portfolio item -->
                         </div>
+                        <!-- end: Portfolio -->
+                        <div id="blog" class="grid-layout col-lg-12" data-item="post-item">
+                            <!-- Post item-->
+                            <div class="post-item ">
+                                <div class="row">
+                                {% for a in smallpub %}
+                                <div class="post-item-wrap col-lg-4">
+                                    <div class="post-image">
+                                        <a href="/publication/{{a.title | slugify}}">
+                                            <img alt="" src="media/{{a.image}}" style="max-height: 130px;">
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="post-item-description-2">
+                                        <h2><a href="/publication/{{a.title | slugify}}">{{a.title}}</a></h2>
+                                        <a href="/publication/{{a.title | slugify}}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            </div>
+                            <!-- end: Post item-->
+                            
+                        </div>
+                        
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-3">
+                        <div class="heading-text heading-section">
+                            <h2 style="font-size: 20px;">Events</h2>
+                        </div>
                         <div class="row">
                             {% for c in Acara %}
-                            <div class="col-lg-6" data-animate="fadeInUp" data-animate-delay="0">
-                                <div class="icon-box effect small border small">
-                                    <div class="icon">
-                                        <a href="/event/{{c.title|slugify}}"><i class="fa fa-calendar"></i></a>
-                                    </div>
-                                   <h3> <a href="/event/{{c.title|slugify}}" style="text-decoration: none; color: #3c4043 ;">{{c.title}}</a></h3>
-                                    <p>{{c.date_start}} - {{c.date_end}}</p>
-                                    <p>{{c.description |safe| truncatewords_html:20}}</p>
+                            <div class="col-lg-12" data-animate="fadeInUp" data-animate-delay="0">
+                                <div class="title-event">
+                                    <p>{{c.date_start |date:"d b Y"}}</p>
+                                    <h3> <a href="/event/{{c.title|slugify}}" style="text-decoration: none; color: #3c4043 ;">{{c.title}}</a></h3>
+                                    <p>{% for a in c.speaker.all %}{{a.name}}, {% endfor %}</p>
                                 </div>
+                                <div class="line-10 text-justify"></div>
                             </div>
                             {% endfor %}
                             
                         </div>
                     </div>
-                   
-
-                   
+                </div>
+            </div>
+        </section>
+        <section style="background-color: #1B5354">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 text-white">
+                        <div class="col-lg-12" data-animate="fadeIn">
+                            <div class="heading-text heading-section">
+                                <h2 style="font-size: 30px; font-weight: 500;">Newsletter</h2>
+                                <p style="font-weight: 400;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, eveniet saepe! Nemo molestiae minus impedit omnis?</p>
+                            </div>
+                        </div>
+                    </div>                  
                 </div>
             </div>
 
@@ -113,19 +134,51 @@
          <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-5">
-                        <h2 class="m-b-5 m-t-20">CSIS Youtube</h2>
-                        <p>If you have missed out on our events, check out our YouTube to watch the full recording of them.
-                        </p>
-                        <a href="https://www.youtube.com/channel/UC32liYPlV2F9r5PVdW8434g" class="btn btn-dark">Explore more</a>
-                    </div>
-                    <div class="col-lg-6 offset-1 m-b-5">
+                    <div class="col-lg-6">
+                        <div class="heading-text heading-section">
+                            <h2 style="font-size: 20px;">Video</h2>
+                        </div>
                         <div class="ratio ratio-16x9">
-                            <div class="ratio ratio-16x9">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/N0zzdT42Vb8?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="100%" height="auto" src="https://www.youtube.com/embed/N0zzdT42Vb8?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="post-item-description-2" style="padding-top: 30px;">
+                            <h3>CSIS Youtube</h3>
+                            <p>If you have missed out on our events, check out our YouTube to watch the full recording of them.</p>
+                            <a href="https://www.youtube.com/channel/UC32liYPlV2F9r5PVdW8434g" class="btn btn-dark">Explore more</a>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="blog">
+                            <!-- Post item-->
+                            <div class="post-item ">
+                                <div class="heading-text heading-section">
+                                    <h2 style="font-size: 20px;">Projects</h2>
+                                </div> 
+                                <div class="row">
+                                      
+                                {% for a in Project %}
+                                <div class="post-item-wrap col-lg-6" >
+                                    <div class="post-image">
+                                        <a href="/publication/{{a.title | slugify}}">
+                                            <img alt="" src="media/{{a.image}}" style="max-height: 117px;">
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="post-item-description-2">
+                                        <h2><a href="/publication/{{a.title | slugify}}">{{a.title}}</a></h2>
+                                    </div>
+                                    <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
+                                </div>
+                                
+                                {% endfor %}
                             </div>
+                            </div>
+                            <!-- end: Post item-->
+                            
                         </div>
                     </div>
+                    
                 </div>
 
             </div>
