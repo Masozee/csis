@@ -26,12 +26,12 @@
                     <div class="col-lg-3">
                         <div class="team-member">
                             <div class="team-image">
-                                <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.photo}}">
+                                <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.photo}}" style="max-height: 300px; border-radius: 50%;">
                             </div>
                             <div class="team-desc">
                                 <h3><a href="/scholar/{{a.name |slugify}}">{{a.name}}</a></h3>
                                 <span>{{a.position}}</span>
-                                <p>{{a.description | safe | truncatewords_html:20}}</p>
+                                <p class="text-justify">{{a.description | safe | truncatewords_html:20}}</p>
                                 <div class="align-center">
                                     <a class="btn btn-xs btn-slide btn-light" href="#">
                                         <i class="fab fa-facebook-f"></i>
