@@ -7,14 +7,14 @@
     <meta property="og:url" content="{{ request.get_full_path }}">
     <meta property="og:title" content="{{acara.title}}">
     <meta property="og:description" content="{{acara.description | safe| truncatewords_html:50}}">
-    <meta property="og:image" content="http://localhost:8000https://s3-csis-web.s3.amazonaws.com/static/media/{{acara.image}}">
+    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.image}}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="CSIS Events">
     <meta property="twitter:url" content="{{ request.get_full_path }}">
     <meta property="twitter:title" content="{{acara.title}}">
     <meta property="twitter:description" content="{{acara.description | safe| truncatewords_html:50}} ">
-    <meta property="twitter:image" content="http://localhost:8000https://s3-csis-web.s3.amazonaws.com/static/media/{{acara.image}}">
+    <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.image}}">
         <!-- Document title -->
 {% endblock OG%}
 
