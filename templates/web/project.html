@@ -24,8 +24,6 @@
                                 </a>
                             </div>
                             <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar"></i>{{a.date_created |date:"d b Y"}}</span><br>
-                                <span class="post-meta-comments text-black"><a href=""><i class="fa fa-user-circle"></i>{% for b in a.project_member.all %}{{b.name}}, {% endfor %}</a></span>
                                 <h2><a href="/project/{{a.title | slugify}}">{{a.title}}
                                     </a></h2>
                                 {{a.description | safe | truncatewords_html:30}}
