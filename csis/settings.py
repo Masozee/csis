@@ -46,8 +46,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
- #   'django.middleware.cache.UpdateCacheMiddleware',
- #   'django.middleware.cache.FetchFromCacheMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'csis.urls'
@@ -137,7 +137,7 @@ STATICFILES_DIRS    = [
 
 #STATIC_URL          = '/static/'
 
-'''
+
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
@@ -152,17 +152,17 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-'''
+
 
 #    STATICFILES_DIRS    = [os.path.join(BASE_DIR, 'static/'),]
  #   STATIC_ROOT         = os.path.join(BASE_DIR, 'static')s3://s3-csis-web/static/
-STATIC_URL          = '/static/'
+#STATIC_URL          = '/static/'
 
 
-MEDIA_URL           = '/media/'
+#MEDIA_URL           = '/media/'
 
 #MEDIA_ROOT          = '/home/jphivina/JPHIV/MEDIA/'
-MEDIA_ROOT          = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT          = os.path.join(BASE_DIR, 'media')
 
 #setting tanggal---------------------------
 DATE_INPUT_FORMATS = ['%d-%m-%Y']

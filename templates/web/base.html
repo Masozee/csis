@@ -8,7 +8,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="Centre for Strategic and International Studies" />
     <meta name="description" content="Centre for Strategic and International Studies">
-    <link rel="icon" type="image/png" href="{% static 'web/images/favicon.png' %}">
+    <link rel="icon" type="image/png" href="https://s3-csis-web.s3.amazonaws.com/static/web/images/favicon.png' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Primary Meta Tags -->
     <title>Centre for Strategic and International Studies</title>
@@ -18,9 +18,9 @@
     {% block OG %}
     {% endblock %}
     <!-- Stylesheets & Fonts -->
-    <link href="{% static 'web/css/plugins.css' %}" rel="stylesheet">
-    <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
-    <link href="{% static 'web/css/custom.css' %}" rel="stylesheet">
+    <link href="https://s3-csis-web.s3.amazonaws.com/static/web/css/plugins.css" rel="stylesheet">
+    <link href="https://s3-csis-web.s3.amazonaws.com/static/web/css/style.css" rel="stylesheet">
+    <link href="https://s3-csis-web.s3.amazonaws.com/static/web/css/custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
             <div class="header-inner">
                 <div class="container">
                     <!--Logo-->
-                    <div id="logo"> <a href="{% url 'home' %}"> <span class="logo-default"><img src="{% static 'web/logo.png' %}" style="height: 60px;"></span><span class="logo-dark"><img src="{% static 'web/Logo-White.png' %}" style="height: 60px;"></span></a> </div>
+                    <div id="logo"> <a href="{% url 'home' %}"> <span class="logo-default"><img src="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png' %}" style="height: 60px;"></span><span class="logo-dark"><img src="https://s3-csis-web.s3.amazonaws.com/static/web/Logo-White.png' %}" style="height: 60px;"></span></a> </div>
                     <!--End: Logo-->
                     <!-- Search -->
                     <div id="search"><a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i class="icon-x"></i></a>
@@ -86,7 +86,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-2-5 p-l-0 pb">
                                                         {% for f in recent_pub %}
-                                                        <img src="/media/{{f.image}}" class="text-theme" style="width: 200px; padding-bottom: 10px;">
+                                                        <img src="https://s3-csis-web.s3.amazonaws.com/static/media/{{f.image}}" class="text-theme" style="width: 200px; padding-bottom: 10px;">
                                                         <h4 style="color: black !important;">{{f.title}}</h3>
                                                         <p class="m-b-0">{{f.description | safe | truncatewords_html:8}}</p>
                                                         {% endfor %}
@@ -243,11 +243,11 @@
 <!-- Scroll top -->
 <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
 <!--Plugins-->
-<script src="{% static 'web/js/jquery.js' %}"></script>
-<script src="{% static 'web/js/plugins.js' %}"></script>
+<script src="https://s3-csis-web.s3.amazonaws.com/static/web/js/jquery.js' %}"></script>
+<script src="https://s3-csis-web.s3.amazonaws.com/static/web/js/plugins.js' %}"></script>
 
 <!--Template functions-->
-<script src="{% static 'web/js/functions.js' %}"></script>
+<script src="https://s3-csis-web.s3.amazonaws.com/static/web/js/functions.js' %}"></script>
 
 </body>
 
