@@ -84,7 +84,7 @@
                         
                         <!--end: widget newsletter-->
                         <div class="side-video">
-                            <img src="https://s3-csis-web.s3.amazonaws.com/static/media/{{acara.image}}" class="side-video" alt="">
+                            <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.image}}" class="side-video" alt="">
                         </div>
                         <div class="btn-csis">
                             
@@ -108,7 +108,7 @@
                                         <div class="post-thumbnail-list">
                                             {% for a in post_related %}
                                             <div class="post-thumbnail-entry">
-                                                <img alt="" src="https://s3-csis-web.s3.amazonaws.com/static/media/{{a.image}}">
+                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.image}}">
                                                 <div class="post-thumbnail-content">
                                                     <a href="">{{a.title}}</a>
                                                     <span class="post-date"><i class="icon-clock"></i> {{a.date_created |date:"d b Y"}}</span>
@@ -122,7 +122,7 @@
                                         <div class="post-thumbnail-list">
                                             {% for b in post_recent %}  
                                             <div class="post-thumbnail-entry">
-                                                <img alt="" src="https://s3-csis-web.s3.amazonaws.com/static/media/{{b.image}}">
+                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{b.image}}">
                                                 <div class="post-thumbnail-content">
                                                     <a href="">{{b.title}}</a>
                                                     <span class="post-date"><i class="icon-clock"></i> {{b.date_created |date:"d b Y"}}</span>
