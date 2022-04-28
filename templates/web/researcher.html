@@ -29,7 +29,7 @@
                                 <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.photo}}" style="max-height: 300px; border-radius: 50%;">
                             </div>
                             <div class="team-desc">
-                                <h3><a href="/scholar/{{a.name |slugify}}">{{a.name}}</a></h3>
+                                <a href="/scholar/{{a.name |slugify}}"></a><h3>{{a.name}}</h3></a>
                                 <span>{{a.position}}</span>
                                 <p class="text-justify">{{a.description | safe | truncatewords_html:20}}</p>
                                 <div class="align-center">

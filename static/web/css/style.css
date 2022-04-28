@@ -4059,9 +4059,9 @@ button.btn.btn-transparent, .btn:not(.close):not(.mfp-close).btn-transparent, a.
 
 button.btn.btn-transparent.btn-inverted, .btn:not(.close):not(.mfp-close).btn-transparent.btn-inverted, a.btn:not([href]):not([tabindex]).btn-transparent.btn-inverted { color: #fff; }
 
-button.btn.btn-primary, .btn:not(.close):not(.mfp-close).btn-primary, a.btn:not([href]):not([tabindex]).btn-primary { background-color: #2250fc; border-color: #2250fc; }
+button.btn.btn-primary, .btn:not(.close):not(.mfp-close).btn-primary, a.btn:not([href]):not([tabindex]).btn-primary { background-color: #E8A117; border-color: #E8A117; }
 
-button.btn.btn-primary:hover, button.btn.btn-primary:focus, button.btn.btn-primary:not(:disabled):not(.disabled):active, button.btn.btn-primary:not(:disabled):not(.disabled).active, .btn:not(.close):not(.mfp-close).btn-primary:hover, .btn:not(.close):not(.mfp-close).btn-primary:focus, .btn:not(.close):not(.mfp-close).btn-primary:not(:disabled):not(.disabled):active, .btn:not(.close):not(.mfp-close).btn-primary:not(:disabled):not(.disabled).active, a.btn:not([href]):not([tabindex]).btn-primary:hover, a.btn:not([href]):not([tabindex]).btn-primary:focus, a.btn:not([href]):not([tabindex]).btn-primary:not(:disabled):not(.disabled):active, a.btn:not([href]):not([tabindex]).btn-primary:not(:disabled):not(.disabled).active { background-color: #0333e8; border-color: #0333e8; color: #fff; }
+button.btn.btn-primary:hover, button.btn.btn-primary:focus, button.btn.btn-primary:not(:disabled):not(.disabled):active, button.btn.btn-primary:not(:disabled):not(.disabled).active, .btn:not(.close):not(.mfp-close).btn-primary:hover, .btn:not(.close):not(.mfp-close).btn-primary:focus, .btn:not(.close):not(.mfp-close).btn-primary:not(:disabled):not(.disabled):active, .btn:not(.close):not(.mfp-close).btn-primary:not(:disabled):not(.disabled).active, a.btn:not([href]):not([tabindex]).btn-primary:hover, a.btn:not([href]):not([tabindex]).btn-primary:focus, a.btn:not([href]):not([tabindex]).btn-primary:not(:disabled):not(.disabled):active, a.btn:not([href]):not([tabindex]).btn-primary:not(:disabled):not(.disabled).active { background-color: #B6941F; border-color: #B6941F; color: #fff; }
 
 button.btn.btn-secondary, .btn:not(.close):not(.mfp-close).btn-secondary, a.btn:not([href]):not([tabindex]).btn-secondary { background-color: #c1c3ce; border-color: #c1c3ce; }
 
@@ -4365,7 +4365,7 @@ a.btn:not([href]):not([tabindex]).btn-icon-holder.btn-lg i {
 
 .heading-text.heading-section h2 { position: relative; font-size: 48px; line-height: 56px; margin-bottom: 60px; }
 
-.heading-text.heading-section h2:before { content: ""; position: absolute; height: 2px; width: 100px; background-color: #2250fc; bottom: -30px; left: 0; right: 0; }
+.heading-text.heading-section h2:before { content: ""; position: absolute; height: 2px; width: 100px; background-color: #E8A117; bottom: -30px; left: 0; right: 0; }
 
 .heading-text.heading-section.text-center h1:before, .heading-text.heading-section.text-center h2:before, .heading-text.heading-section.text-center h3:before, .heading-text.heading-section.text-center h4:before, .heading-text.heading-section.text-center h5:before, .heading-text.heading-section.text-center h6:before { margin: 0 auto; }
 
@@ -4579,7 +4579,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu { display: block; }
             transform: translateY(100%); }
   51% { opacity: 1; } }
 
-@font-face { font-family: 'inspiro-icons'; src: url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/webfonts/inspiro-icons.ttf?ijzgpf") format("truetype"), url("https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/webfonts/inspiro-icons.woff?ijzgpf") format("woff"); font-weight: normal; font-style: normal; font-display: block; }
+@font-face { font-family: 'inspiro-icons'; src: url("../webfonts/inspiro-icons.ttf") format("truetype"), url("../webfonts/inspiro-icons.woff") format("woff"); font-weight: normal; font-style: normal; font-display: block; }
 
 i:not(.fa):not(.fab):not(.far):not(.fas) { font-family: inspiro-icons !important; speak: none; font-style: normal; font-weight: 400; font-variant: normal; text-transform: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
@@ -5408,7 +5408,7 @@ Carousels
 
 .flickity-button:before { color: #1e2022; }
 
-.flickity-button:hover { background-color: #2250fc; }
+.flickity-button:hover { background-color: #E8A117; }
 
 .flickity-button:hover:before { color: #fff; }
 

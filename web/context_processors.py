@@ -8,7 +8,7 @@ def menu(request):
     menu_cat = Publication_category.objects.all().order_by('name')
     menu_commentaries = Publication.objects.filter(category=1)[:4]
     menu_covid = Publication.objects.filter(category=3)[:3]
-    menu_policy_brief = Publication.objects.filter(category=8)[:7]
+    menu_policy_brief = Publication.objects.filter(category=2)[:7]
 
 
     context = {
