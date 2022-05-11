@@ -80,11 +80,13 @@ class personadmin(admin.ModelAdmin):
 
 admin.site.register(Person, personadmin)
 
-class newsadmin(admin.ModelAdmin):
+class news_admin(admin.ModelAdmin):
     list_display = ('title','date_release','publish')
     search_fields = ['title']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
     
-admin.site.register(News, newsadmin)
+admin.site.register(News, news_admin)
+
+
 
