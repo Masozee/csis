@@ -1,17 +1,57 @@
 {% extends 'web/base.html' %}
 {% load static %}
 
+{% block css %}
+<style>
+    #mainMenu {
+    padding: 0;
+    border-bottom: 1px solid #343434 !important;
+}
+    .dark #mainMenu nav > ul > li > a, #mainMenu.dark nav > ul > li > a {
+    color: #4d4949;
+}
+    .text-right {
+        text-align: right !important;
+    }
+    #images-pub {
+        padding: 0px 0;
+    }
+    .center-cropped {
+        object-fit: none; /* Do not scale the image */
+        object-position: center; /* Center the image within the element */
+        height: 500px;
+        width: 100%;
+        }
+</style>
+{% endblock %}
+
 {% block content %}
-        <section id="page-title" style="background-color:#005354; width: 100%">
+        <section id="page-title" ">
             <div class="container">
-                <div class="page-title text-white text-center" >
-                    <h2>{{publications.title}}</h2>
-                    <h3>{% for f in publications.authors.all %}<a href="/scholar/{{f.name | slugify}}">{{f.name}}</a>{% endfor %}</a></p>
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-title text-black text-left" >
+                        <h5>{{publications.category}}</h5>
+                        <h2>{{publications.title}}</h2>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="page-title text-black text-right" >
+                    <h3>Authors : </h3>
+                    <h4>{% for f in publications.authors.all %}<a href="/scholar/{{f.name | slugify}}">{{f.name}}</a>{% endfor %}</a></h3>
+                    </div>
                 </div>
             </div>
+            </div>
+        </section>
+        <section id="images-pub">
+
+                <img id="images-pub" class="center-cropped" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{publications.image}}" alt="">
+
         </section>
         <!-- Page Content -->
-        <section id="page-content" class="sidebar-right">
+        <section id="page-content" class="sidebar-left">
             <div class="container">
                 <div class="row">
                     <!-- content -->
@@ -24,7 +64,7 @@
                                         <div class="text-justify">{{publications.description|safe}}</div>
                                         <div class="post-item-description">
                                             <div class="post-meta">
-                                                <span class="post-meta-date"><i class="fa fa-calendar"></i>{{publications.date_created |date:"d b Y"}}</span>                                                
+                                                                                               
                                                 <div class="post-meta-share">
                                                     <a class="btn btn-xs btn-slide btn-facebook" href="#">
                                                         <i class="fab fa-facebook-f"></i>
@@ -60,9 +100,7 @@
                         <!--widget newsletter-->
                         
                         <!--end: widget newsletter-->
-                        <div class="side-video">
-                            <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{publications.image}}" class="side-video" alt="">
-                        </div>
+                        
                         <div class="btn-csis">
                             
                             <a href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{publications.file}}"><button type="button" class="btn btn-primary btn-block side-video">Download</button></a>
