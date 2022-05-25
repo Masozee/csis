@@ -130,7 +130,7 @@ class Publication(models.Model):
     category = models.ForeignKey(Publication_category, on_delete=models.CASCADE)
     department = models.ManyToManyField(Department, blank=True)
     image = models.ImageField(upload_to = 'publication/')
-    file = models.FileField(upload_to='doc/')
+    file = models.FileField(upload_to='doc/', blank=True)
     description = RichTextField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
