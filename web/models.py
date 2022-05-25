@@ -124,6 +124,7 @@ class TaggedPublication(TaggedItemBase):
 class Publication(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=320)
+    date_publish = models.DateField(blank=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
     authors = models.ManyToManyField(Person)
     category = models.ForeignKey(Publication_category, on_delete=models.CASCADE)
