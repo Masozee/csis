@@ -51,13 +51,19 @@ class pubcatadmin(admin.ModelAdmin):
     search_fields = ['name',]
 admin.site.register(Publication_category, pubcatadmin)
 
+
+@admin.action(description='Mark selected stories as published')
+def make_published(modeladmin, request, queryset):
+    queryset.update(publish=True)
+
 class publicationadmin(admin.ModelAdmin):
-    list_display = ('title','author', 'category','dept', 'project', 'publish')
+    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish')
     list_filter = ('publish','department', 'category')
     search_fields = ['title','authors__name']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
     autocomplete_fields = ['project', 'authors', 'category']
+    actions = [make_published]
         
     def dept(self, obj):
         return "\n, ".join([p.name for p in obj.department.all()])
