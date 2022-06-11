@@ -145,6 +145,7 @@
                             <h3>CSIS Youtube</h3>
                             <p>If you have missed out on our events, check out our YouTube to watch the full recording of them.</p>
                             <a href="https://www.youtube.com/channel/UC32liYPlV2F9r5PVdW8434g" class="btn btn-dark">Explore more</a>
+  
                             
                         </div>
                         
@@ -162,13 +163,13 @@
                                 {% for a in Project %}
                                 <div class="post-item-wrap col-lg-6" >
                                     <div class="post-image">
-                                        <a href="/publication/{{a.title | slugify}}">
+                                        <a href="/project/{{a.title | slugify}}">
                                             <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.image}}">
                                         </a>
                                         
                                     </div>
                                     <div class="post-item-description-2">
-                                        <h2><a href="/publication/{{a.title | slugify}}">{{a.title}}</a></h2>
+                                        <h2><a href="/project/{{a.title | slugify}}">{{a.title}}</a></h2>
                                     </div>
                                     <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                                 </div>

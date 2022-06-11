@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row">
                     <!-- content -->
-                    <div class="content col-lg-12">
+                    <div class="content col-lg-8">
                         <!-- Blog -->
                         <div id="blog" class="single-post">
                             <!-- Post single item-->
@@ -28,9 +28,7 @@
                                     </div>
                                     <div class="post-item-description">
                                         <div class="post-meta">
-                                            <span class="post-meta-date"><i class="fa fa-calendar"></i>{{projects.date_created |date:"d b Y"}}</span>
-                                            <span class="post-meta-comments"><a href=""><i class="fa fa-user-circle"></i>{% for b in projects.project_member.all %}{{b.name}}, {% endfor %}</a></span>
-                                            <span class="post-meta-category"><a href=""><i class="fa fa-tag"></i>{% for c in projects.tags.all %}{{c.name}}, {% endfor %}</a></span>
+                                           
                                             <div class="post-meta-share">
                                                 <a class="btn btn-xs btn-slide btn-facebook" href="#">
                                                     <i class="fab fa-facebook-f"></i>
@@ -50,7 +48,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        {{projects.description | safe}}
+                                        <span class="text-justify">{{projects.description | safe}}</span>
                                        
                                     </div>
                                                                   
@@ -60,55 +58,43 @@
                         </div>
                     </div>
 
-                    <div class="content col-lg-12">
+                    <div class="content col-lg-4">
                         <div class="tabs">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Publications</a>
+                                    <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Publications</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Events</a>
                                 </li>
                             </ul>
-                            <div class="tab-content" id="myTabContent">
-                                
-                                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div id="blog" class="post-thumbnails">
-                                        <!-- Post item-->
+                            <div class="tab-content" id="tabs-posts-content">
+                                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="popular-tab">
+                                    <div class="post-thumbnail-list">
                                         {% for a in publication %}
-                                        <div class="col-lg-3">
-                                            <div class="team-member">
-                                                <div class="team-image">
-                                                    <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.image}}"  style="max-height: 300px;">
-                                                </div>
-                                                <div class="team-desc">
-                                                    <h3><a href="/publication/{{a.title |slugify}}">{{a.title}}</a></h3>
-                                                    <span>{{a.category}}</span>
-                                                    <p>{{a.description | safe | truncatewords_html:20}}</p>
-                                                    
-                                                </div>
+                                        <div class="post-thumbnail-entry">
+                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.image}}">
+                                            <div class="post-thumbnail-content">
+                                                <a href="/publication/{{a.title | slugify}}">{{a.title}}</a>
+                                                <p class="post-date"><i class="icon-clock"></i> {{a.date_created |date:"d b Y"}}</p>
+                                                
                                             </div>
                                         </div>
                                         {% endfor %}
-                                        <!-- Post item-->
+                                        
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                    <div id="blog" class="post-thumbnails">
-                                        <!-- Post item-->
-                                        {% for a in acara %}
-                                        <div class="col-lg-3">
-                                            <div class="team-member">
-                                                <div class="team-image">
-                                                    <img src="https://s3-csis-web.s3.amazonaws.com/static/media/{{a.image}}" style="max-height: 300px;">
-                                                </div>
-                                                <div class="team-desc">
-                                                    <h3><a href="/event/{{a.title |slugify}}">{{a.title}}</a></h3>
-                                                    <span>{{a.date_start |date:"d b Y, H:i"}} - {{a.date_end |date:"d b Y, H:i"}}</span>
-                                                    <p>{{a.description | safe | truncatewords_html:20}}</p>
-                                                    source 
-                                                </div>
+                                
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="recent-tab">
+                                    <div class="post-thumbnail-list">
+                                        {% for c in acara %}
+                                        <div class="post-thumbnail-entry">
+                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{c.image}}">
+                                            <div class="post-thumbnail-content">
+                                                <a href="/event/{{c.title|slugify}}">{{c.title}}</a>
+                                                <span class="post-date"><i class="icon-clock"></i> {{c.date_created |date:"d b Y"}}</span>
+                                                
                                             </div>
                                         </div>
                                         {% endfor %}

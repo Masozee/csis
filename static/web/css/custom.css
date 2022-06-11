@@ -54,7 +54,13 @@
 
 .post-item .post-item-description-2 .post-post-likes i { margin-right: 8px; color: #aaa; }
 
-
+.project-thumbnail-entry {
+    float: left;
+    display: block;
+    width: 80px;
+    margin-right: 16px;
+    border-radius: 2px;
+}
 
 
 @media (max-width: 991.98px) { /*	Grid post*/

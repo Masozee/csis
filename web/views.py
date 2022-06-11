@@ -12,7 +12,7 @@ def home(request):
    
     print = Publication.objects.filter(publish=True, highlight=True).order_by('-date_publish').distinct()[:1]
     small_pub = Publication.objects.filter(publish=True).order_by('-date_publish').distinct()[:3]
-    acara = Event.objects.filter(publish=True).order_by('-date_created').distinct()[:4]
+    acara = Event.objects.filter(publish=True).order_by('-date_created').distinct()[:5]
     project = Project.objects.filter(publish=True).order_by('-date_created').distinct()[:2]
     
     context = {
