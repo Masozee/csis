@@ -10,6 +10,13 @@ class deptAdmin(admin.ModelAdmin):
     search_fields = ['name']
 admin.site.register(Department, deptAdmin)
 
+class topicAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent', 'date_created', 'date_modified', 'publish')
+    search_fields = ['name',]
+    date_hierarchy = 'date_created'
+    readonly_fields = ('date_created', 'date_modified')
+    autocomplete_fields = ['parent']
+admin.site.register(Topic, topicAdmin)
 
 class projectadmin(admin.ModelAdmin):
     list_display = ('title', 'dept','member', 'periode_start', 'periode_end', 'publish')
@@ -36,7 +43,7 @@ class eventadmin(admin.ModelAdmin):
     search_fields = ['title',]
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['project', 'speaker', 'department']
+    autocomplete_fields = ['project', 'speaker', 'department', 'topic']
         
     def dept(self, obj):
         return "\n, ".join([p.name for p in obj.department.all()])
@@ -62,7 +69,7 @@ class publicationadmin(admin.ModelAdmin):
     search_fields = ['title','authors__name']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['project', 'authors', 'category']
+    autocomplete_fields = ['project', 'authors','department', 'category', 'topic']
     actions = [make_published]
         
     def dept(self, obj):
@@ -78,8 +85,8 @@ class personadmin(admin.ModelAdmin):
     list_filter = ('category','department',)
     search_fields = ['name','organization']
     date_hierarchy = 'date_created'
-    readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['department']
+    readonly_fields = ('date_created', 'date_modified', )
+    autocomplete_fields = ['department', 'expertise']
         
     def dept(self, obj):
         return "\n, ".join([p.name for p in obj.department.all()])

@@ -141,5 +141,4 @@ envi.txt
 
 web/migrations/*
 config/migrations/*
-
-/web/context_processors.py
+media/*

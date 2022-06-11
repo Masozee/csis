@@ -15,6 +15,8 @@ urlpatterns = [
     re_path('project/(?P<Project_slug>[\w-]+)/$', webviews.ProjectDetail, name='project-detail'),
     path('news/', webviews.news, name='news'),
     re_path('news/(?P<News_slug>[\w-]+)/$', webviews.newsDetail, name='news-detail'),
+    path('research-topics/', webviews.topic, name='topic'),
+    re_path('research-topic/(?P<Topic_slug>[\w-]+)/$', webviews.topicDetail, name='topic-detail'),
     path('faq/', TemplateView.as_view(template_name='web/faq.html'), name='faq'),
     path('privacy-policy/', TemplateView.as_view(template_name='web/home-grid.html'), name='privacy-policy'),
     path('about-us/', TemplateView.as_view(template_name='web/about.html'), name='about'),

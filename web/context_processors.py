@@ -1,4 +1,4 @@
-from .models import Department, Publication, Publication_category
+from .models import Department, Publication, Publication_category, Topic, Person
 
 
 def menu(request):
@@ -9,6 +9,8 @@ def menu(request):
     menu_commentaries = Publication.objects.filter(category=1)[:4]
     menu_covid = Publication.objects.filter(category=3)[:3]
     menu_policy_brief = Publication.objects.filter(category=2)[:7]
+    menu_experts = Topic.objects.filter(publish=True).order_by('-name')
+    people_experts = Person.objects.filter(highlight=True)[:2]
 
 
     context = {
@@ -19,6 +21,8 @@ def menu(request):
         "menu_commentaries": menu_commentaries,
         "menu_covid": menu_covid,
         "menu_policy_brief": menu_policy_brief,
+        "menu_experts": menu_experts,
+        "people_experts": people_experts,
 
     }
     return context

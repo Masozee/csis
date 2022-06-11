@@ -34,6 +34,37 @@ class Department (models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
+class Topic(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(default='', editable=False, max_length=320)
+    description = RichTextField(blank=True)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to = 'Topic/', blank=True)
+    keterangan = models.TextField(blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    publish = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = ("Reseach Topic")
+        verbose_name_plural = ("Research Topic")
+    
+    def save(self, *args, **kwargs):
+        value = self.name
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    
+    def main_topic(self):
+        return self.objects.all(parent__isNull=True)
+    
+    
+    def sub_topic(self):
+        return self.topic_set.select_related('parent')
+
 class Person (models.Model):
     KATEGORI_CHOICES = (
         ('Scholar', 'Scholar'),
@@ -49,12 +80,14 @@ class Person (models.Model):
     position = models.CharField(max_length=150)
     organization = models.CharField(max_length=100)
     category = models.CharField(max_length=10, choices=KATEGORI_CHOICES)
+    expertise = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
     is_active = models.BooleanField()
     description = RichTextField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     tags = TaggableManager(blank=True)
+    highlight = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -128,6 +161,7 @@ class Publication(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
     authors = models.ManyToManyField(Person)
     category = models.ForeignKey(Publication_category, on_delete=models.CASCADE)
+    topic = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
     image = models.ImageField(upload_to = 'publication/')
     file = models.FileField(upload_to='doc/', blank=True)
@@ -165,6 +199,7 @@ class Event(models.Model):
     speaker = models.ManyToManyField(Person, blank=True)
     project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
     department = models.ManyToManyField(Department, blank=True)
+    topic = models.ManyToManyField(Topic, blank=True)
     image = models.ImageField(upload_to='event/img/')
     file = models.FileField(upload_to='event/file/', blank=True, null=True)
     link = models.URLField(blank=True)

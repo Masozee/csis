@@ -1950,7 +1950,7 @@ Portfolio
 
 .post-thumbnail-list .post-thumbnail-entry img + .post-thumbnail-content { padding-left: 90px; }
 
-.post-thumbnail-list .post-thumbnail-entry > img { float: left; display: block; height: 60px; width: 80px; margin-right: 16px; border-radius: 2px; }
+.post-thumbnail-list .post-thumbnail-entry > img { float: left; display: block; width: 80px; margin-right: 16px; border-radius: 2px; }
 
 .post-thumbnail-list .post-thumbnail-entry .post-thumbnail-content a { font-size: 14px; font-weight: 500; margin: -4px 0 0; }
 
@@ -4365,7 +4365,7 @@ a.btn:not([href]):not([tabindex]).btn-icon-holder.btn-lg i {
 
 .heading-text.heading-section h2 { position: relative; font-size: 48px; line-height: 56px; margin-bottom: 60px; }
 
-.heading-text.heading-section h2:before { content: ""; position: absolute; height: 2px; width: 100px; background-color: #E8A117; bottom: -30px; left: 0; right: 0; }
+.heading-text.heading-section h2:before { content: ""; position: absolute; height: 2px; width: 100px; background-color: #E8A117; bottom: 0px; left: 0; right: 0; }
 
 .heading-text.heading-section.text-center h1:before, .heading-text.heading-section.text-center h2:before, .heading-text.heading-section.text-center h3:before, .heading-text.heading-section.text-center h4:before, .heading-text.heading-section.text-center h5:before, .heading-text.heading-section.text-center h6:before { margin: 0 auto; }
 

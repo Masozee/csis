@@ -148,6 +148,46 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="dropdown mega-menu-item"><a href="#">Experts</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="mega-menu-content">
+                                                <div class="column">
+                                                    <div class="col-lg-2-5 p-l-0 pb">
+                                                        <div class="mega-menu-title bd-btm">Find our Experts</div>
+                                                        {% for f in people_experts %}
+                                                        <img src="https://s3-csis-web.s3.amazonaws.com/static/{{f.photo}}" class="text-theme" style="width: 100px; padding-bottom: 10px; ">
+                                                        <h4 style="color: black !important; line-height: 1.2; font-size: small;">{{f.name}}</h3>
+                                                        <p style="font-size: smaller;">{% for list in f.expertise.all %} {{list}}, {% endfor %}</p>
+                                                        <hr>
+                                                        {% endfor %}
+                                                        <small>find more</small>
+                                                    </div>
+                                                    <div class="col-lg-8-5 p-l-0 pb p-s-10">
+                                                        <div class="mega-menu-title bd-btm">Research Topics</div>
+                                                        <div class="row">
+                                                            <ul class="split-menu">
+                                                                {% for e in menu_experts %}
+                                                                    {% if e.parent == empty %}
+                                                                    <a href="/publication/{{e.title | slugify}}"><li class="mega-menu-title">{{ e.name }}</li></a>
+                                                                        <li>
+                                                                            <ul>
+                                                                                {% for a in e.sub_topic %}
+                                                                                <li style="font-size: small; padding-bottom: 10px;">
+                                                                                    {{a.name}}
+                                                                                </li>
+                                                                                {% endfor %}
+                                                                            </ul>
+                                                                        </li>
+                                                                    {% endif %}  
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li><a href="{% url 'event' %}">Events</a></li>
                                     <li><a href="{% url 'news' %}">News</a></li>
                                     <li class="dropdown"><a href="#">Dashboard</a>
@@ -245,11 +285,31 @@
                 </div>
             </div>
         </div>
+        
         <div class="copyright-content">
-            <div class="container">
-                <div class="copyright-text text-center">&copy; 2022 Centre for Strategic and International Studies. All Rights Reserved.</div>
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Social icons -->
+                            <div class="social-icons social-icons">
+                                <ul>
+                                    <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f" style="color: black;"></i></a></li>
+                                    <li class="social-twitter"><a href="#"><i class="fab fa-twitter" style="color: black;"></i></a></li>
+                                    <li class="social-youtube"><a href="#"><i class="fab fa-youtube" style="color: black;"></i></a></li>
+                                    <li class="social-instagram"><a href="#"><i class="fab fa-instagram" style="color: black;"></i></a></li>
+                                    <li class="social-linkedin"><a href="#"><i class="fab fa-linkedin" style="color: black;"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- end: Social icons -->
+                        </div>
+
+                        <div class="col-lg-6 text-end">
+                            <div class="copyright-text">&copy; 2022 Centre for Strategic and International Studies. All Rights Reserved.</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </footer>
     <!-- end: Footer -->
 

@@ -165,3 +165,33 @@ def newsDetail(request, News_slug):
         
     }
     return render(request, "web/news-detail.html", context)
+
+
+def topic(request):
+    tplist = Topic.objects.filter(publish=True).order_by('date_created').distinct()
+    paginator = Paginator(tplist, 12)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        tplist = paginator.page(page)
+    except PageNotAnInteger:
+        tplist = paginator.page(1)
+    except EmptyPage:
+       tplist = paginator.page(paginator.num_pages)
+    
+    return render(request, "web/news.html", {"list":tplist})
+
+def topicDetail(request, Topic_slug):
+    news = Topic.objects.get(slug=Topic_slug)
+    expert_related = Person.onjects.filter(expertise=news).order_by('date_created')
+    article_related = Publication.objects.filter(topic=news).order_by('date_created')
+    event_related = Event.objects.filter(topic=news).order_by('date_created')
+    
+    context = {
+        "newslist": news,
+        "expert_related": expert_related,
+        "article_related": article_related,
+        "event_related": event_related,
+        
+    }
+    return render(request, "web/news-detail.html", context)

@@ -9,7 +9,8 @@ admin.sites.AdminSite.site_header = 'Centre for Strategic and International Stud
 admin.sites.AdminSite.site_title = 'Centre for Strategic and International Studies'
 admin.sites.AdminSite.index_title = 'Centre for Strategic and International Studies'
 
-urlpatterns = [
+urlpatterns = [ 
+    path('admin/clearcache/', include('clearcache.urls')),
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('web.url')),
