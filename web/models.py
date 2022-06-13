@@ -265,3 +265,26 @@ class News(models.Model):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
+
+
+class Foundation(models.Model):
+    Title = models.CharField(max_length=100)
+    slug = models.SlugField(default='', editable=False, max_length=160)
+    member = models.ManyToManyField(Person)
+    description = RichTextField()
+    image = models.ImageField(upload_to = 'project/')
+    publish = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.Title
+        
+    class Meta:
+        verbose_name = ("BOD/Foundations")
+        verbose_name_plural = ("BOD/Foundations")
+    
+    def save(self, *args, **kwargs):
+        value = self.Title
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)

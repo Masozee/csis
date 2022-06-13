@@ -4139,7 +4139,7 @@ button.btn.btn-reveal, .btn:not(.close):not(.mfp-close).btn-reveal, a.btn:not([h
 
 button.btn.btn-reveal span, .btn:not(.close):not(.mfp-close).btn-reveal span, a.btn:not([href]):not([tabindex]).btn-reveal span { left: 0; position: relative; -webkit-transition: opacity 0.2s ease-out 0s, left 0.2s ease-out 0s; transition: opacity 0.2s ease-out 0s, left 0.2s ease-out 0s; }
 
-button.btn.btn-reveal i, .btn:not(.close):not(.mfp-close).btn-reveal i, a.btn:not([href]):not([tabindex]).btn-reveal i { line-height: 18px; margin-top: -6px; opacity: 0; position: absolute; right: 28px; top: 50%; -webkit-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s; width: 18px; }
+button.btn.btn-reveal i, .btn:not(.close):not(.mfp-close).btn-reveal i, a.btn:not([href]):not([tabindex]).btn-reveal i { line-height: 18px; margin-top: -6px; opacity: 0; right: 28px; top: 50%; -webkit-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s; width: 18px; }
 
 button.btn.btn-reveal:hover span, .btn:not(.close):not(.mfp-close).btn-reveal:hover span, a.btn:not([href]):not([tabindex]).btn-reveal:hover span { left: -10px; }
 
