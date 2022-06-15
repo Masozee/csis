@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from tokenize import blank_re
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
@@ -131,10 +132,10 @@ class Project(models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
-
 class Publication_category(models.Model):
     name = models.CharField(max_length=150)
     slug = models.SlugField(default='', editable=False, max_length=200)
+    background = models.ImageField(upload_to = 'pub_category/', blank=True, null=True)
     keterangan = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

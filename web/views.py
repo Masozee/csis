@@ -107,9 +107,13 @@ def PublicationDetail(request, Publication_slug):
     return render(request, "web/publication-detail.html", context)
 
 def PublicationCategoryDetail(request, Publication_category_slug):
-
+    
     publication = Publication.objects.filter(publish=True, category__slug = Publication_category_slug).order_by('date_created').distinct()
-    return render(request, "web/publications.html", {"publications":publication})
+
+    context = {
+       "publications" : publication 
+    }
+    return render(request, "web/publications.html", context)
 
 def Projects(request):
     projects = Project.objects.filter(publish=True).order_by('date_created').distinct()

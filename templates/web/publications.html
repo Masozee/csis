@@ -7,7 +7,7 @@
 <section id="page-title" style="background-image: url('{% static 'web/bg/publications.jpeg' %}'); width: 100%">
     <div class="container">
         <div class="page-title text-white col-lg-6 col-m-4" >
-            <h1>Publications</h1>
+            <h1>{{ publications.name }}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dicta porro omnis, assumenda molestiae quibusdam fugiat illum id sapiente vero, consequatur, possimus atque! Neque facilis deleniti a pariatur sint quibusdam!</p>
         </div>
         
@@ -21,9 +21,9 @@
                 <div class="page-title">
                     <div class="breadcrumb float-left">
                         <ul>
-                            <li><a href="#">Home</a>
+                            <li><a href="{% url 'home' %}">Home</a>
                             </li>
-                            <li><a href="#">publications</a>
+                            <li><a href="{% url 'publication' %}">publications</a>
                             </li>
                             
                         </ul>
