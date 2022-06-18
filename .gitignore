@@ -136,9 +136,9 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
-csis/settings.py
+./csis/settings.py
 envi.txt
 
-/web/migrations/*
-/config/migrations/*
-/media/*
+./web/migrations/*
+./config/migrations/*
+./media/*
