@@ -4,11 +4,25 @@
 
 {% block content %}
 
-<section id="page-title" style="background-image: url('{% static 'web/bg/publications.jpeg' %}'); width: 100%">
+<section id="page-title" style="background-image: 
+                                    {% if pub.background %}
+                                        url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{pub.background}}');
+                                    {% else %}
+                                        url('{% static 'web/bg/publications.jpeg' %}'); 
+                                    {% endif %}
+                                    width: 100%">
     <div class="container">
         <div class="page-title text-white col-lg-6 col-m-4" >
-            <h1>{{ publications.name }}</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dicta porro omnis, assumenda molestiae quibusdam fugiat illum id sapiente vero, consequatur, possimus atque! Neque facilis deleniti a pariatur sint quibusdam!</p>
+            {% if pub.name %}
+            <h1>{{ pub.name }}</h1>
+            {% else %}
+            <h1>Publications</h1>
+            {% endif %}
+            {% if pub.keterangan %}
+            <p>{{pub.keterangan}}</p>
+            {% else %}
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae vitae dignissimos id iste officiis cum! Incidunt temporibus, nihil quo eum eveniet officia, eaque maxime magni qui ratione corrupti necessitatibus dolore.</p>
+            {% endif %}
         </div>
         
     </div>
@@ -18,20 +32,22 @@
             <div class="container">
                 <!-- post content -->
                 <!-- Page title -->
-                <div class="page-title">
+                <div class="page-title pb-5">
                     <div class="breadcrumb float-left">
                         <ul>
                             <li><a href="{% url 'home' %}">Home</a>
                             </li>
                             <li><a href="{% url 'publication' %}">publications</a>
                             </li>
+                            <li>{{pub.name}}</li>
                             
                         </ul>
                     </div>
                 </div>
+                <hr>
                 <!-- end: Page title -->
                 <!-- Blog -->
-                <div id="blog" class="grid-layout col-lg-12" data-item="post-item">
+                <div id="blog" class="grid-layout col-lg-12 pt-5" data-item="post-item">
                     <!-- Post item-->
                     <div class="post-item ">
                         <div class="row">

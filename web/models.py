@@ -89,6 +89,11 @@ class Person (models.Model):
     date_modified = models.DateTimeField(auto_now=True)
     tags = TaggableManager(blank=True)
     highlight = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(blank=True)
+    twitter = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
 
     def __str__(self):
         return self.name

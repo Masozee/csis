@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'easy_thumbnails',
     'clearcache',
+    'import_export'
 ]
 
 MIDDLEWARE = [

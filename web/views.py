@@ -31,9 +31,17 @@ def Scholars(request):
 
 def ScholarDetail(request, Person_slug):
     scholar = Person.objects.get(slug=Person_slug)
-    publication = Publication.objects.filter( authors = scholar.id)
-    
+    publication = Publication.objects.filter( authors = scholar.id).order_by('-date_publish')[:6]
+    paginator = Paginator(publication, 5)
 
+    page = request.GET.get('page')
+    try:
+        publication = paginator.page(page)
+    except PageNotAnInteger:
+        publication = paginator.page(1)
+    except EmptyPage:
+        publication = paginator.page(paginator.num_pages)
+    
     context = {
         "scholar": scholar,
         "publication": publication,
@@ -107,11 +115,12 @@ def PublicationDetail(request, Publication_slug):
     return render(request, "web/publication-detail.html", context)
 
 def PublicationCategoryDetail(request, Publication_category_slug):
-    
-    publication = Publication.objects.filter(publish=True, category__slug = Publication_category_slug).order_by('date_created').distinct()
+    pub = Publication_category.objects.get(slug=Publication_category_slug)
+    publications_category = Publication.objects.filter(category=pub)
 
     context = {
-       "publications" : publication 
+       "publications" : publications_category,
+       "pub": pub,
     }
     return render(request, "web/publications.html", context)
 
