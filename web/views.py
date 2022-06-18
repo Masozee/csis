@@ -208,3 +208,7 @@ def topicDetail(request, Topic_slug):
         
     }
     return render(request, "web/news-detail.html", context)
+
+
+def handler_404(request):
+    return render(request, "web/404.html")
