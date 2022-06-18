@@ -61,7 +61,7 @@ class eventadmin(ImportExportModelAdmin, admin.ModelAdmin):
 admin.site.register(Event, eventadmin)
 
 class pubcatadmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('id','name')
+    list_display = ('name', 'keterangan', 'background')
     search_fields = ['name',]
 admin.site.register(Publication_category, pubcatadmin)
 
