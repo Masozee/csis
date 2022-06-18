@@ -4,14 +4,15 @@
 
 {% block content %}
 
-<section id="page-title" style="background-image: 
+<section id="page-title" style="background-image:
+                                        linear-gradient(240deg, rgba(223, 223, 224, 0.52), rgba(0, 0, 0, 0.73)),
                                     {% if pub.background %}
                                         url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{pub.background}}');
                                     {% else %}
                                         url('{% static 'web/bg/publications.jpeg' %}'); 
                                     {% endif %}
-                                    width: 100%; 
-                                    background: linear-gradient(90deg, rgba(2,0,36,1) 9%, rgba(53,121,9,0.21052170868347342) 67%);">
+                                width: 100%; 
+                                background-size: cover;">
     <div class="container">
         <div class="page-title text-white col-lg-6 col-m-4" >
             {% if pub.name %}
@@ -52,6 +53,7 @@
                     <!-- Post item-->
                     <div class="post-item ">
                         <div class="row">
+                
                         {% for a in publications %}
                         <div class="post-item-wrap col-lg-4">
                             <div class="post-image">
@@ -68,6 +70,7 @@
                             <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                         </div>
                         {% endfor %}
+                   
                     </div>
                     </div>
                     <!-- end: Post item-->
