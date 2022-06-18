@@ -108,14 +108,14 @@ admin.site.register(News, news_admin)
 
 
 class foundation_admin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('Title','member','date_created','publish')
+    list_display = ('Title','members','date_created','publish')
     search_fields = ['title']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
     autocomplete_fields = ['member', ]
     actions = [make_published]
 
-    def member(self, obj):
+    def members(self, obj):
         return "\n, ".join([p.name for p in obj.member.all()])
     
 admin.site.register(Foundation, foundation_admin)
