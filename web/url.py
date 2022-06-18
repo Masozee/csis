@@ -21,5 +21,6 @@ urlpatterns = [
     path('privacy-policy/', TemplateView.as_view(template_name='web/home-grid.html'), name='privacy-policy'),
     path('about-us/', TemplateView.as_view(template_name='web/about.html'), name='about'),
     path('internship-and-fellowship/', TemplateView.as_view(template_name='web/home-grid.html'), name='intern'),
+    path('institutional-partnership/', TemplateView.as_view(template_name='web/home-grid.html'), name='partner'),
     re_path('department/(?P<Department_slug>[\w-]+)/$', webviews.DepartmentDetail, name='dept-detail'),
 ]   

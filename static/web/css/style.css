@@ -1747,7 +1747,7 @@ Portfolio
 -----------------------------------------------------------------*/
 .post-item { float: left; width: 100%; height: auto; padding: 0 0 20px 0; /*Styles*/ /*Types*/ }
 
-.post-item .post-item-wrap { background-color: #fff; position: relative; }
+.post-item .post-item-wrap {position: relative; }
 
 .post-item img { width: 100%; height: auto; }
 

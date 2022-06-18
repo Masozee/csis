@@ -3,6 +3,7 @@ from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+
 def page_not_found_view(request, exception):
     return render(request, 'web/404.html', status=404)
 
@@ -196,18 +197,18 @@ def topic(request):
 
 def topicDetail(request, Topic_slug):
     news = Topic.objects.get(slug=Topic_slug)
-    expert_related = Person.onjects.filter(expertise=news).order_by('date_created')
-    article_related = Publication.objects.filter(topic=news).order_by('date_created')
+    expert_related = news.person_set.all()
+    article_related = news.publication_set.all()
     event_related = Event.objects.filter(topic=news).order_by('date_created')
     
     context = {
         "newslist": news,
         "expert_related": expert_related,
-        "article_related": article_related,
+        "publications": article_related,
         "event_related": event_related,
         
     }
-    return render(request, "web/news-detail.html", context)
+    return render(request, "web/research-category.html", context)
 
 
 def handler_404(request):
