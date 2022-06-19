@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-        <section id="page-title" style="background-color:#005354; width: 100%">
+        <section id="page-title" style="background-image: linear-gradient(90deg, rgba(3,1,2,1) 10%, rgba(34,23,17,0.24693627450980393) 72%), url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/1.jpeg'); width: 100%; background-size: cover;">
             <div class="container">
                 <div class="page-title text-white text-center" >
                     <h4>About Centre for Strategic and International Studies</h4>
@@ -11,7 +11,7 @@
         </section>
         <!-- Page Content -->
 
-        <section id="page-content">
+        <section id="page-content" class="sidebar-right">
             <div class="container">
                 <div class="row">
                     <div class="content col-lg-12">
@@ -52,6 +52,8 @@
                                         Many CSIS staff members also share their knowledge and experience through participation in a range of civil society organizations, including on gender, pluralism, democracy, and governance, and by devoting some of their time to teaching at local universities.</p>
                                 </div>
                                 <div class="tab-pane fade text-justify" id="behindlogo" role="tabpanel" aria-labelledby="profile-tab">
+                                    <img src="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png" alt="" class="display: block;
+                                    margin: 0 auto;">
                                     <p>The original logo, in bronze, was designed by renowned Indonesian sculptor G. Sidharta. The main elements of the logo - the disc with an engraving of the globe, the youth with an open book on a cloth draped across his lap - combine to project the Centre's nature as an institution, where people think, learn, and share their knowledge. Humanity is their concern and the world their horizon. The youth's bared torso symbolises open-mindedness and the absence of prejudice in the attitude of the scholars who work at the Centre.</p>
 
                                         <p>The Javanese inscription on the disc, "Nalar Ajar Terusan Budi", conveys the Centre's belief that "to think and share knowledge are the natural consequences of an enlightened mind". It is surya sengkala that is chandra sengkala – a Javanese traditional way to symbolise a comemmorable year in the lunar calendar, adapted to the solar calendar system. These words express the perceived meaning of the commemorated year of CSIS establishment (1971), with each word having a numerical value.</p>
@@ -76,49 +78,9 @@
                                                                         
                                 </div>
                             </div>
-                        </div>
-                        
                     </div>
-                    <!-- Sidebar-->
-                    
                 </div>
             </div>
         </section>
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h4>INSTITUTIONAL PARTNERSHIP</h4>
-                    </div>
-                </div>
-                <ul class="grid grid-3-columns">
-                    <li>
-                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/about/pecc.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/about/caec.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/about/cscap.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/about/aef.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/about/centro.jpg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/images/about/aseanisis.jpg" alt="">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <!-- end: Page Content -->
-        <!-- Footer -->
+       
  {% endblock %}
