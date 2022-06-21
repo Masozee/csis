@@ -18,6 +18,7 @@ class Department (models.Model):
     slug = models.SlugField(default='', editable=False, max_length=320)
     description = RichTextField(blank=True)
     image = models.ImageField(upload_to = 'dept/', blank=True)
+    image_credit = models.TextField(blank=True, null=True)
     keterangan = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -41,6 +42,7 @@ class Topic(models.Model):
     description = RichTextField(blank=True)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(upload_to = 'Topic/', blank=True)
+    image_credit = models.TextField(blank=True, null=True)
     keterangan = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -170,6 +172,7 @@ class Publication(models.Model):
     topic = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
     image = models.ImageField(upload_to = 'publication/')
+    image_credit = models.TextField(blank=True, null=True)
     file = models.FileField(upload_to='doc/', blank=True)
     description = RichTextField()
     date_created = models.DateTimeField(auto_now_add=True)
@@ -193,6 +196,9 @@ class Publication(models.Model):
     @property
     def tgl(self):
         return self.date_created.strftime('%d %B %Y')
+    
+    def credit(self):
+        return "Credit image : "+" "+self.image_credit
 
 class TaggedEvent(TaggedItemBase):
     content_object = models.ForeignKey('Event', on_delete=models.CASCADE)
@@ -201,7 +207,7 @@ class Event(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=320)
     date_start = models.DateTimeField()
-    date_end = models.DateTimeField(default=now)
+    date_end = models.DateTimeField(blank=True, null=True)
     speaker = models.ManyToManyField(Person, blank=True)
     project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
     department = models.ManyToManyField(Department, blank=True)
@@ -231,19 +237,22 @@ class Event(models.Model):
     
     @property
     def tgl(self):
-        return self.date_start.strftime('%d')
+        return self.date_start.strftime('%d')+'-'+self.date_end.strftime('%d %B, %Y')
 
-    def bln(self):
-        return self.date_start.strftime('%B')
+    def tgl_one_day(self):
+        return self.date_start.strftime('%d %B, %Y')
 
-    @property
-    def tglmulai(self):
+    def tglselesai(self):
         return self.date_end.strftime('%d %B %Y')
-    
-    @property
+
     def is_past_due(self):
         return date.today() > self.date
 
+    def waktu_mulai(self):
+        return self.date_start.strftime('%H:%M')
+
+    def waktu_selesai(self):
+        return self.date_end.strftime('%H:%M')
 
 class TaggedNews(TaggedItemBase):
     content_object = models.ForeignKey('News', on_delete=models.CASCADE)
@@ -254,6 +263,7 @@ class News(models.Model):
     date_release = models.DateField(default=now, blank=True, null=True)
     description = RichTextField()
     image = models.ImageField(upload_to = 'project/')
+    image_credit = models.TextField(blank=True, null=True)
     publish = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
