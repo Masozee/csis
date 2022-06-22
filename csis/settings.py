@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/jakarta'
 
 USE_I18N = True
 
@@ -144,25 +144,26 @@ AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-#AWS_LOCATION = 'static'
-#STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
-#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+'''
+AWS_LOCATION = 'static'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+'''
 
 
 
-#local static config
 STATIC_URL          = '/static/'
 STATICFILES_DIRS    = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
 #STATIC_ROOT         = os.path.join(BASE_DIR, 'static')
-#MEDIA_URL           = '/media/'
-#MEDIA_ROOT          = os.path.join(BASE_DIR, 'media')
+MEDIA_URL           = '/media/'
+MEDIA_ROOT          = os.path.join(BASE_DIR, 'media')
 
 #setting tanggal---------------------------
 DATE_INPUT_FORMATS = ['%d-%m-%Y']

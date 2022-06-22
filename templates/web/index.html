@@ -40,10 +40,10 @@
                 <div class="row">
                     <div class=" col-lg-9">
                             <div class="heading-text heading-section">
-                                <h2 style="font-size: 20px;">Publications</h2>
+                                <h2 style="font-size: 20px;"><strong>Publications</strong></h2>
                             </div> 
                     <!-- Portfolio -->
-                        <div id="portfolio" class="grid-layout col-lg-12" data-margin="20">
+                        <div id="portfolio" class="grid-layout col-lg-12 hide-menu-mobile" data-margin="20">
                             {% for a in print %}
                             <!-- portfolio item -->
                             <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
@@ -72,7 +72,7 @@
                                 <div class="post-item-wrap col-lg-4">
                                     <div class="post-image">
                                         <a href="/publication/{{a.title | slugify}}">
-                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.image}}" style="max-height: 130px;">
+                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.image}}">
                                         </a>
                                         
                                     </div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="heading-text heading-section">
-                            <h2 style="font-size: 20px;">Events</h2>
+                            <h2 style="font-size: 20px;"><strong>Events</strong></h2>
                         </div>
                         <div class="row">
                             {% for c in Acara %}

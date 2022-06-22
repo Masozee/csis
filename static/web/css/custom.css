@@ -111,4 +111,8 @@
 .p-s-10 {
     padding-top: 50px;
 }
+
+.hide-menu-mobile {
+    display: none;
+}
 }

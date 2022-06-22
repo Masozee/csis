@@ -18,19 +18,19 @@
     {% block OG %}
     {% endblock %}
 
-   
+    <!--local Stylesheets & Fonts >
     <link href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/css/plugins.css" rel="stylesheet">
     <link href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/css/style.css" rel="stylesheet">
     <link href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/css/custom.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"-->
-     <!--local Stylesheets & Fonts >
+    <!--local Stylesheets & Fonts -->
+
     <link href="{% static 'web/css/plugins.css' %}" rel="stylesheet">
     <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'web/css/custom.css' %}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"-->
     {% block css %}
     {% endblock css %}
-    <!--local Stylesheets & Fonts -->
 
 
   
@@ -96,14 +96,14 @@
                                         <ul class="dropdown-menu">
                                             <li class="mega-menu-content">
                                                 <div class="row">
-                                                    <div class="col-lg-2-5 p-l-0 pb">
+                                                    <div class="col-lg-2-5 p-l-0 pb hide-menu-mobile">
                                                         {% for f in recent_pub %}
                                                         <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{f.image}}" class="text-theme" style="width: 200px; padding-bottom: 10px; ">
                                                         <h4 style="color: black !important; line-height: 1.2;">{{f.title}}</h3>
                                                         <p class="m-b-0">{{f.description | safe | truncatewords_html:8}}</p>
                                                         {% endfor %}
                                                     </div>  
-                                                    <div class="col-lg-2-5">
+                                                    <div class="col-lg-2-5 hide-menu-mobile">
                                                         <ul>
                                                             <li class="mega-menu-title">Recent Publications</li>
                                                             {% for e in menu_pub %}
@@ -111,7 +111,7 @@
                                                             {% endfor %}
                                                         </ul>
                                                     </div>
-                                                    <div class="col-lg-2-5">
+                                                    <div class="col-lg-2-5 hide-menu-mobile">
                                                         <ul>
                                                             <li class="mega-menu-title">Commentaries</li>
                                                             {% for d in menu_commentaries %}
@@ -124,7 +124,7 @@
                                                             {% endfor %}
                                                         </ul>
                                                     </div>
-                                                    <div class="col-lg-2-5">
+                                                    <div class="col-lg-2-5 hide-menu-mobile">
                                                         <ul>
                                                             <li class="mega-menu-title">Policy Briefs</li>
                                                             {% for d in menu_policy_brief %}
@@ -149,7 +149,7 @@
                                         <ul class="dropdown-menu">
                                             <li class="mega-menu-content">
                                                 <div class="column">
-                                                    <div class="col-lg-2-5 p-l-0 pb">
+                                                    <div class="col-lg-2-5 p-l-0 pb hide-menu-mobile">
                                                         <div class="mega-menu-title bd-btm">Find our Experts</div>
                                                         {% for f in people_experts %}
                                                         <img src="https://s3-csis-web.s3.amazonaws.com/static/{{f.photo}}" class="text-theme" style="width: 100px; padding-bottom: 10px; ">
@@ -227,7 +227,7 @@
                             <p class="mb-5 text-white">+62 21 386 5532 <br>csis@csis.or.id</p>
                         </div>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-7 hide-menu-mobile">
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="widget">
@@ -241,7 +241,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 hide-menu-mobile">
                                 <div class="widget">
                                     <div class="widget-title">Features</div>
                                     <ul class="list">
@@ -252,7 +252,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 hide-menu-mobile">
                                 <div class="widget">
                                     <div class="widget-title">Pages</div>
                                     <ul class="list">
@@ -263,7 +263,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 hide-menu-mobile">
                                 <div class="widget">
                                     <div class="widget-title">Departments</div>
                                     <ul class="list">
