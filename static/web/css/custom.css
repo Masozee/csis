@@ -9,6 +9,12 @@
     max-width: 300px;
 }
 
+.side-img {
+    max-width: 100%;
+    height: auto;
+
+}
+
 .text-justify {
     text-align: justify;
     text-justify: inter-word;
@@ -114,5 +120,11 @@
 
 .hide-menu-mobile {
     display: none;
+}
+
+.side-img {
+    max-width: 100%;
+    height: auto;
+
 }
 }

@@ -3,6 +3,7 @@ from tokenize import blank_re
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
+from requests import request
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
 from django.utils.timezone import now
@@ -10,6 +11,7 @@ from embed_video.fields  import  EmbedVideoField
 from datetime import date
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
+from django.conf import settings
 
 
 # Create your models here.
@@ -169,6 +171,8 @@ class Publication(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
     authors = models.ManyToManyField(Person)
     category = models.ForeignKey(Publication_category, on_delete=models.CASCADE)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+        null=True, blank=True, on_delete=models.SET_NULL)
     topic = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
     image = models.ImageField(upload_to = 'publication/')
@@ -206,11 +210,18 @@ class TaggedEvent(TaggedItemBase):
 class Event(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=320)
-    date_start = models.DateTimeField()
-    date_end = models.DateTimeField(blank=True, null=True)
+    date_start = models.DateField()
+    date_end = models.DateField(blank=True, null=True)
+    time_start = models.TimeField(blank=True)
+    time_end = models.TimeField(blank=True)
+    Person_In_Charge = models.EmailField(blank=True, null=True)
+    opening_speech = models.ManyToManyField(Person, related_name='OpeningSpeaker', blank=True)
+    Moderator = models.ForeignKey(Person,on_delete=models.CASCADE, blank=True, null=True, related_name='Moderator')
+    closing_remarks = models.ManyToManyField(Person, related_name='ClosingSpeaker', blank=True)
     speaker = models.ManyToManyField(Person, blank=True)
     project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
     department = models.ManyToManyField(Department, blank=True)
+    location = models.CharField(max_length=150, blank=True, null=True)
     topic = models.ManyToManyField(Topic, blank=True)
     image = models.ImageField(upload_to='event/img/')
     file = models.FileField(upload_to='event/file/', blank=True, null=True)
@@ -221,7 +232,7 @@ class Event(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
     tags = TaggableManager(through=TaggedEvent)
     publish = models.BooleanField(default=False)
-
+    
 
     def __str__(self):
         return self.title
@@ -234,7 +245,7 @@ class Event(models.Model):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
-    
+        
     @property
     def tgl(self):
         return self.date_start.strftime('%d')+'-'+self.date_end.strftime('%d %B, %Y')
@@ -253,6 +264,9 @@ class Event(models.Model):
 
     def waktu_selesai(self):
         return self.date_end.strftime('%H:%M')
+    
+    def waktu(self):
+        return self.waktu_mulai.strftime('%H:%M') +" - "+ self.waktu_selesai.strftime('%H:%M')
 
 class TaggedNews(TaggedItemBase):
     content_object = models.ForeignKey('News', on_delete=models.CASCADE)

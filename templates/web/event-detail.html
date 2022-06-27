@@ -26,10 +26,10 @@
                 <div class="page-title text-white text-left" >
                     <h2>{{acara.title}}</h2>
                     <h4 class="post-meta-date">{% if acara.date_end %}
-                                                    {{acara.tgl}}
+                        <i class="icon-calendar"></i> {{acara.tgl}}
                                                 {% else %}
-                                                    {{acara.tgl_one_day}}
-                                                {% endif %}</h4>
+                        <i class="icon-calendar"></i> {{acara.tgl_one_day}}
+                                                {% endif %} <br><i class="icon-clock"></i> {{acara.time_start |time:'H:i'}} - {{acara.time_end |time:'H:i'}} (GMT+7)</h4>
 
                 </div>
             </div>
@@ -50,9 +50,7 @@
                                     </div>
                                     <div class="post-item-description">
                                         <div class="post-meta">
-                                            
                                             <div class="post-meta-share">
-                                            
                                                 <a class="btn btn-xs btn-slide btn-facebook" href="#">
                                                     <i class="fab fa-facebook-f"></i>
                                                     <span>Facebook</span>
@@ -70,8 +68,38 @@
                                                     <span>Mail</span>
                                                 </a>
                                             </div>
-                                        </div>  
+                                        </div>
+                                        <h4>Descriptions</h4>  
                                         <div class="text-justify">{{acara.description | safe}}</div>
+                                        
+                                        {% if acara.Person_In_Charge %}
+                                        <h4>For more questions</h4>
+                                        <p>please contact <a href="mailto:{{acara.Person_In_Charge}}">{{acara.Person_In_Charge}}</a> for more details.</a></p>
+                                        {% endif %}
+
+                                        <hr>
+                                        <div id="blog" class="grid-layout col-lg-12 pt-5 " data-item="post-item">
+                                            <!-- Post item-->
+                                            <div class="post-item ">
+                                                <div class="row">
+                                                    {% for a in acara.speaker.all %}
+                                                    <div class="post-item-wrap col-lg-3">
+                                                        <div class="post-image">
+                                                            <a href="/scholar/{{a.name | slugify}}">
+                                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.photo}}" >
+                                                            </a>
+                                                            
+                                                        </div>
+                                                        <div class="post-item-description-2">
+                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{a.name}}</a></h2>
+                                                            <p class="pb-4" style="font-size: smaller;">{{a.position}}</p>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    {% endfor %}
+                                            </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div>
                                        
@@ -89,12 +117,11 @@
                         
                         <!--end: widget newsletter-->
                         <div class="side-video">
-                            <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.image}}" class="side-video" alt="">
+                            <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.image}}" class="side-img" alt="">
                         </div>
+
                         <div class="btn-csis">
-                            
                             <a href="{{acara.link}}"><button  type="button" class="btn btn-primary btn-block side-video">Register</button></a>
-                            
                         </div>
                         <!--Tabs with Posts-->
                         <div class="widget">

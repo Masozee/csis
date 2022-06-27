@@ -49,7 +49,7 @@ class eventadmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['title',]
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['project', 'speaker', 'department', 'topic']
+    autocomplete_fields = ['project', 'speaker', 'department', 'topic', 'opening_speech', 'Moderator', 'closing_remarks']
     actions = [make_published]
         
     def dept(self, obj):
@@ -80,6 +80,15 @@ class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     def author(self, obj):
         return "\n, ".join([p.name for p in obj.authors.all()])
+
+    def save_model(self, request, obj, form, change):
+        if obj.id == None:
+           obj.added_by = request.user
+           super().save_model(request, obj, form, change)
+
+        else:
+
+           super().save_model(request, obj, form, change)
 
 admin.site.register(Publication, publicationadmin)
 
