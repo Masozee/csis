@@ -1,0 +1,113 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    #mainMenu {
+    padding: 0;
+    border-bottom: 1px solid #4f4f4f !important;
+    }
+    
+    .dark #mainMenu nav > ul > li > a, #mainMenu.dark nav > ul > li > a {
+    color: #4d4949;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+    
+    .dark .header-extras .p-dropdown a > span, .dark .header-extras a > i {
+    color: #222020;
+    }
+
+    #images-pub {
+        padding: 0px 0;
+    }
+
+    .center-cropped {
+        object-fit: none; /* Do not scale the image */
+        object-position: center; /* Center the image within the element */
+        height: 500px;
+        width: 100%;
+        }
+</style>
+{% endblock %}
+
+
+{% block content %}
+        <!-- end: Header -->
+        <!-- Content -->
+        <section id="page-content" class="sidebar-right">
+            <div class="container">
+                <div class="row">
+                    <!-- post content -->
+                    <div class="content col-lg-12">
+                        <!-- Page title -->
+                        <div class="page-title">
+                            {% if q %}
+                                <h1>Posts containing "{{ q }}"
+                                    {% if c %}
+                                    In category "{{ c }}"
+                                    {% endif %}
+                                </h1>
+                            <p>{% with results.count as total_results %}
+                                Found {{ total_results }} result{{ total_results|pluralize }}
+                                {% endwith %}</p>
+                            <hr>
+                        </div>
+                        <!-- end: Page title -->
+                        <!-- Blog -->
+                        <div id="blog" class="post-thumbnails">
+                            <!-- Post item-->
+                            {% for post in results %}
+                            <div class="post-item">
+                                <div class="post-item-wrap">
+                                    <div class="post-image">
+                                        <a href="#">
+                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{post.image}}" style="max-width: 400px;">
+                                        </a>
+                                        <span class="post-meta-category"><a href="">{{post.category}}</a></span>
+                                    </div>
+                                    <div class="post-item-description">
+                                        <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{post.date_publish}}</span>
+                                        <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>{% for a in post.authors.all %}{% if forloop.first %}{% else %}{% if forloop.last %} and {% else %}, {% endif %}{% endif %}{{a.name}}{% endfor %}</a></span>
+                                        <h2><a href="/publication/{{post.title | slugify}}">{{post.title}}
+                                            </a></h2>
+                                       {{post.description | safe |truncatechars_html:200 }}
+                                        <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end: Post item-->
+                            {% empty %}
+                            <p>There are no results for your query.</p>
+                            {% endfor %}
+                           
+                            {% else %}
+                            <h1>Search for posts</h1>
+                            <form method="get">
+                                {{ form.as_p }}
+                                <input class="btn btn-primary my-1" type="submit" value="Search">
+                            </form>
+                            {% endif %}
+                        </div>
+                        <!-- end: Blog -->
+                        <!-- Pagination -->
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                        <!-- end: Pagination -->
+                    </div>
+                    <!-- end: post content -->
+                </div>
+            </div>
+        </section>
+        <!-- end: Content -->
+        <!-- Footer -->
+{% endblock %}

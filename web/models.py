@@ -12,6 +12,7 @@ from datetime import date
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
 from django.conf import settings
+from django.db.models import Q
 
 
 # Create your models here.
@@ -70,6 +71,7 @@ class Topic(models.Model):
     def sub_topic(self):
         return self.topic_set.select_related('parent')
 
+
 class Person (models.Model):
     KATEGORI_CHOICES = (
         ('Scholar', 'Scholar'),
@@ -98,6 +100,7 @@ class Person (models.Model):
     facebook = models.URLField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+
 
     def __str__(self):
         return self.name

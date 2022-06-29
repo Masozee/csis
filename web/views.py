@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
-
+from .forms import *
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.db.models import Q
+from django.views.generic import ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def page_not_found_view(request, exception):
     return render(request, 'web/404.html', status=404)
-
 
 # Create your views here.
 def home(request):
@@ -72,11 +74,10 @@ def AcaraDetail(request, Event_slug):
     }
     return render(request, "web/event-detail.html", context)
 
-
 def DepartmentDetail(request, Department_slug):
     dept = Department.objects.get(slug=Department_slug)
     publication = Publication.objects.filter( department = dept.id)
-    scholars = Person.objects.filter( department = dept.id)
+    scholars = Person.objects.filter( department = dept.id, is_active=True)
     acara = Event.objects.filter( department = dept.id)
 
     context = {
@@ -86,7 +87,6 @@ def DepartmentDetail(request, Department_slug):
         "acara": acara,
     }
     return render(request, "web/department.html", context)
-
 
 def Publications(request):
     publication = Publication.objects.filter(publish=True).order_by('date_created').distinct()
@@ -180,7 +180,6 @@ def newsDetail(request, News_slug):
     }
     return render(request, "web/news-detail.html", context)
 
-
 def topic(request):
     tplist = Topic.objects.filter(publish=True).order_by('date_created').distinct()
     paginator = Paginator(tplist, 12)  # Show 25 contacts per page
@@ -210,6 +209,29 @@ def topicDetail(request, Topic_slug):
     }
     return render(request, "web/research-category.html", context)
 
-
 def handler_404(request):
     return render(request, "web/404.html")
+
+
+def post_search(request):
+    form = PostSearchForm()
+    q = ''
+    results = []
+
+    if 'q' in request.GET:
+        form = PostSearchForm(request.GET)
+        if form.is_valid():
+            q = form.cleaned_data['q']
+
+            vector = SearchVector('title', weight='A') + \
+                SearchVector('authors__name', weight='C') + \
+                SearchVector('tags', weight='B')
+            query = SearchQuery(q)
+
+            results = Publication.objects.annotate(
+                rank=SearchRank(vector, query, cover_density=True)).order_by('-rank')
+
+    return render(request, 'web/search.html',
+                  {'form': form,
+                   'q': q,
+                   'results': results})

@@ -47,7 +47,7 @@
                     <!--End: Logo-->
                     <!-- Search -->
                     <div id="search"><a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i class="icon-x"></i></a>
-                        <form class="search-form" action="search-results-page.html" method="get">
+                        <form class="search-form" action="/search" method="get">
                             <input class="form-control" name="q" type="text" placeholder="Type & Search..." />
                             <span class="text-muted">Start typing & press "Enter" or "ESC" to close</span>
                         </form>
@@ -73,8 +73,7 @@
                     <!--end: Header Extras-->
                     <!--Navigation Resposnive Trigger-->
                     <div id="mainMenu-trigger"> <a class="lines-button x"><span class="lines"></span></a> </div>
-                    <!--end: Navigation Resposnive Trigger-->
-                    <!--Navigation-->
+
                     <div id="mainMenu" class="menu-center">
                         <div class="container">
                             <nav>
@@ -118,8 +117,8 @@
                                                             <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
                                                             {% endfor %}
                                                           
-                                                            <li class="mega-menu-title">Covid-19 Commentaries</li>
-                                                            {% for d in menu_covid %}
+                                                            <li class="mega-menu-title">Research Reports</li>
+                                                            {% for d in menu_research_report %}
                                                             <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
                                                             {% endfor %}
                                                         </ul>
@@ -128,6 +127,11 @@
                                                         <ul>
                                                             <li class="mega-menu-title">Policy Briefs</li>
                                                             {% for d in menu_policy_brief %}
+                                                            <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
+                                                            {% endfor %}
+
+                                                            <li class="mega-menu-title">Working Paper</li>
+                                                            {% for d in menu_working_paper %}
                                                             <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
                                                             {% endfor %}
                                                         </ul>

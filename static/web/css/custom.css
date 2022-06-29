@@ -25,6 +25,16 @@
     padding-bottom: 30px;
 }
 
+.col-container {
+    display: flex;
+    width: 100%;
+  }
+
+.col {
+    flex: 1;
+    padding: 16px;
+}
+
 .title-event > h3 {
     font-size: 18px;
     letter-spacing: 0px;

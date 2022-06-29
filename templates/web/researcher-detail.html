@@ -40,18 +40,15 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <div id="blog" class="grid-layout post-3-columns m-b-40" data-item="post-item">
+                        <div id="blog" class="grid-layout post-3-columns m-b-40 col-container" data-item="post-item">
                             <!-- Post item-->
                             {% for c in publication %}
-                            <div class="post-item border">
+                            <div class="post-item border col">
                                 <div class="post-item-wrap">
-                                    
                                     <div class="post-item-description">
                                         <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{c.date_publish}}</span>
                                         <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>{{c.category}}</a></span>
-                                        <h2><a href="/publication/{{c.title | slugify}}">{{c.title}}
-                                            </a></h2>
-                                        
+                                        <h4 style="font-size: smaller;"><a href="/publication/{{c.title | slugify}}">{{c.title}}</a></h4>
                                         <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
                                     </div>
                                 </div>
