@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.postgres',
     'web',
     'api',
     'taggit',
@@ -53,8 +52,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
- #   'django.middleware.cache.UpdateCacheMiddleware',
- #   'django.middleware.cache.FetchFromCacheMiddleware',
+#    'django.middleware.cache.UpdateCacheMiddleware',
+#    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'csis.urls'

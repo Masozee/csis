@@ -161,7 +161,7 @@
                                                         <p style="font-size: smaller;">{% for list in f.expertise.all %} {{list}}, {% endfor %}</p>
                                                         <hr>
                                                         {% endfor %}
-                                                        <small>find more</small>
+                                                        <small><a href="{% url 'researcher' %}">find more</a></small>
                                                     </div>
                                                     <div class="col-lg-8-5 p-l-0 pb p-s-10">
                                                         <div class="mega-menu-title bd-btm">Research Topics</div>
@@ -200,7 +200,7 @@
                                     <li class="dropdown"><a href="#">About</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{% url 'about' %}">About CSIS</a></li>
-                                            <li><a href="{% url 'about' %}">Board of Excecutive Directors</a></li>
+                                            <li><a href="{% url 'bod' %}">Board of Excecutive Directors</a></li>
                                             <li><a href="{% url 'about' %}">CSIS Foundation</a></li>
                                         </ul>
                                     </li>

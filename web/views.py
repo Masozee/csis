@@ -209,6 +209,13 @@ def topicDetail(request, Topic_slug):
     }
     return render(request, "web/research-category.html", context)
 
+def bod(request):
+    bod = Foundation.objects.filter(id=1)
+    return render(request, "web/bod.html", {"scholar":bod})
+
+
+#business logic yang ruwet-ruwet ada di sini
+
 def handler_404(request):
     return render(request, "web/404.html")
 
@@ -223,13 +230,11 @@ def post_search(request):
         if form.is_valid():
             q = form.cleaned_data['q']
 
-            vector = SearchVector('title', weight='A') + \
-                SearchVector('authors__name', weight='C') + \
-                SearchVector('tags', weight='B')
+            vector = SearchVector('title', weight='A') + SearchVector('authors__name', weight='C') + SearchVector('tags', weight='B')
             query = SearchQuery(q)
 
             results = Publication.objects.annotate(
-                rank=SearchRank(vector, query, cover_density=True)).order_by('-rank')
+                rank=SearchRank(vector, query, cover_density=True)).order_by('-rank').distinct()
 
     return render(request, 'web/search.html',
                   {'form': form,
