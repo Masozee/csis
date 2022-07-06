@@ -7,7 +7,7 @@
         <section id="page-title" style="background-image: linear-gradient(90deg, rgba(3,1,2,1) 10%, rgba(34,23,17,0.24693627450980393) 72%), url('{% static 'web/bg/researcher.jpeg' %}'); width: 100%">
             <div class="container">
                 <div class="page-title text-white col-lg-6" >
-                    <h1>Scholars</h1>
+                    <h1>Board of Executive Directors</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dicta porro omnis, assumenda molestiae quibusdam fugiat illum id sapiente vero, consequatur, possimus atque! Neque facilis deleniti a pariatur sint quibusdam!</p>
                 </div>
                 
@@ -22,8 +22,9 @@
                     <span>Pellentesque ipsum erat, facilisis ut venenatis eu, sodales vel dolor. The most happiest time of the day!. Morbi sagittis, sem quis lacinia faucibus. </span>
                 </div-->
                 <div class="row team-members m-b-40">
-                    {% for a in scholar.member.all %}
-                    <div class="col-lg-3">
+                    {% for c in scholar %}
+                    {% for a in c.member.all %}
+                    <div class="col-lg-4">
                         <div class="team-member">
                             <div class="team-image">
                                 <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.photo}}" style=" border-radius: 50%;">
@@ -73,6 +74,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                     {% endfor %}
                     
                     

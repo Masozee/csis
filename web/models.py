@@ -303,7 +303,7 @@ class News(models.Model):
 class Foundation(models.Model):
     Title = models.CharField(max_length=100)
     slug = models.SlugField(default='', editable=False, max_length=160)
-    member = models.ManyToManyField(Person)
+    member = models.ManyToManyField(Person, blank=True)
     description = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to = 'project/', blank=True, null=True)
     publish = models.BooleanField(default=False)

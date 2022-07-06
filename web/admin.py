@@ -22,6 +22,8 @@ class topicAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
     autocomplete_fields = ['parent']
+    list_per_page=15
+
 admin.site.register(Topic, topicAdmin)
 
 class projectadmin(ImportExportModelAdmin, admin.ModelAdmin):
@@ -51,6 +53,7 @@ class eventadmin(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('date_created', 'date_modified')
     autocomplete_fields = ['project', 'speaker', 'department', 'topic', 'opening_speech', 'Moderator', 'closing_remarks']
     actions = [make_published]
+    list_per_page=15
         
     def dept(self, obj):
         return "\n, ".join([p.name for p in obj.department.all()])
@@ -74,6 +77,7 @@ class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('date_created', 'date_modified')
     autocomplete_fields = ['project', 'authors','department', 'category', 'topic']
     actions = [make_published]
+    list_per_page=15
         
     def dept(self, obj):
         return "\n, ".join([p.name for p in obj.department.all()])
@@ -100,6 +104,7 @@ class personadmin(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields = ('date_created', 'date_modified', )
     autocomplete_fields = ['department', 'expertise']
     actions = [make_published]
+    list_per_page=15
         
     def dept(self, obj):
         return "\n, ".join([p.name for p in obj.department.all()])

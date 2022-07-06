@@ -210,8 +210,24 @@ def topicDetail(request, Topic_slug):
     return render(request, "web/research-category.html", context)
 
 def bod(request):
-    bod = Foundation.objects.filter(id=1)
+    bod = Foundation.objects.filter(id=1).order_by("-member__order")[:1]
+
     return render(request, "web/bod.html", {"scholar":bod})
+
+def yayasan(request):
+    advisor = Foundation.objects.filter(id=2 ).order_by("-member__order")[:1]
+    BoT = Foundation.objects.filter( id=3 ).order_by("-member__order")[:1]
+    BoD = Foundation.objects.filter( id=4 ).order_by("-member__order")[:1]
+    BoS = Foundation.objects.filter( id=5 ).order_by("-member__order")[:1]
+
+    context = {
+        "advisor": advisor,
+        "BoT": BoT,
+        "BoD": BoD,
+        "BoS": BoS,
+    }
+
+    return render(request, "web/foundation.html", context)
 
 
 #business logic yang ruwet-ruwet ada di sini

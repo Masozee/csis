@@ -24,7 +24,6 @@ urlpatterns = [
     path('institutional-partnership/', TemplateView.as_view(template_name='web/home-grid.html'), name='partner'),
     re_path('department/(?P<Department_slug>[\w-]+)/$', webviews.DepartmentDetail, name='dept-detail'),
     path('boards-of-executive-directors/', webviews.bod, name='bod'),
-
-
+    path('csis-foundation/', webviews.yayasan, name='yayasan'),
     path('search/', webviews.post_search, name='post_search'),
 ]   
