@@ -75,7 +75,7 @@
                         {% for f in publications.authors.all %}
                         <a href="/scholar/{{f.name | slugify}}">
                             <ul style="list-style-type: none;">
-                                <li>{{f.name}}</li>
+                                <li>{{f.name}}<br><p>{{f.position}}<br><span>{{f.organization}}</span></p></li>
                             </ul>
                         </a>
                         {% endfor %}
