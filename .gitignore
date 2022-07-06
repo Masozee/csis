@@ -10,7 +10,7 @@ migrations
 .idea
 # Backup files # 
 *.bak 
-
+psqlcsis.session.sql
 # If you are using PyCharm # 
 # User-specific stuff
 .idea/**/workspace.xml
