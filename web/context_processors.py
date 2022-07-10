@@ -6,9 +6,9 @@ def menu(request):
     menu_publication = Publication.objects.filter(publish=True).order_by('-date_publish')[:5]
     menu_dept = Department.objects.filter(publish=True)
     menu_cat = Publication_category.objects.all().order_by('name')
-    menu_commentaries = Publication.objects.filter(category=3).order_by('-date_publish')[:4]
+    menu_commentaries = Publication.objects.filter(category=3).order_by('-date_publish')[:2]
     menu_research_report = Publication.objects.filter(category=11).order_by('-date_publish')[:3]
-    menu_policy_brief = Publication.objects.filter(category=2).order_by('-date_publish')[:7]
+    menu_policy_brief = Publication.objects.filter(category=2).order_by('-date_publish')[:3]
     menu_working_paper = Publication.objects.filter(category=12).order_by('-date_publish')[:2]
     menu_experts = Topic.objects.filter(publish=True).order_by('-name')
     people_experts = Person.objects.filter(highlight=True)[:2]

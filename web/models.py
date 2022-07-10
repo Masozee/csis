@@ -42,7 +42,7 @@ class Department (models.Model):
 class Topic(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(default='', editable=False, max_length=320)
-    description = RichTextField(blank=True)
+    description = RichTextField(blank=True, null=True)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
     image = models.ImageField(upload_to = 'Topic/', blank=True)
     image_credit = models.TextField(blank=True, null=True)

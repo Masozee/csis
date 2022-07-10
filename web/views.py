@@ -29,7 +29,7 @@ def home(request):
     return render(request, "web/index.html", context)
 
 def Scholars(request):
-    scholar = Person.objects.filter(is_active=True).order_by('name').distinct()
+    scholar = Person.objects.filter(is_active=True, category="Scholar").order_by('name').distinct()
     return render(request, "web/researcher.html", {"scholar":scholar})
 
 def ScholarDetail(request, Person_slug):
@@ -53,6 +53,7 @@ def ScholarDetail(request, Person_slug):
 
 def Acara(request):
     acara = Event.objects.filter(publish=True).order_by('date_start').distinct()
+    
     paginator = Paginator(acara, 5)  # Show 25 contacts per page
 
     page = request.GET.get('page')
@@ -62,14 +63,23 @@ def Acara(request):
         acara = paginator.page(1)
     except EmptyPage:
         acara = paginator.page(paginator.num_pages)
+
+    context = {
+        "acara": acara,
+        
+    }
     
-    return render(request, "web/events.html", {"acara":acara})
+    return render(request, "web/events.html", context)
 
 def AcaraDetail(request, Event_slug):
     acara = Event.objects.get(slug=Event_slug)
-    
+    post_related = acara.tags.similar_objects()[:5]
+    post_recent = Event.objects.all().order_by('date_created').distinct()[:5]
+
     context = {
         "acara": acara,
+        "post_related": post_related,
+        "post_recent": post_recent,
         
     }
     return render(request, "web/event-detail.html", context)
