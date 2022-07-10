@@ -6,6 +6,7 @@ from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import Q
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from config.models import *
 
 def page_not_found_view(request, exception):
     return render(request, 'web/404.html', status=404)
@@ -17,21 +18,21 @@ def home(request):
     small_pub = Publication.objects.filter(publish=True).order_by('-date_publish').distinct()[:3]
     acara = Event.objects.filter(publish=True).order_by('-date_created').distinct()[:5]
     project = Project.objects.filter(publish=True).order_by('-date_created').distinct()[:2]
+    slider = Slider.objects.filter(show=True).order_by((-date_created))
     
     context = {
         
         'print': print,
         'smallpub': small_pub,
         'Acara': acara,
-        'Project': project
-       
+        'Project': project,
+        'slider': slider,
     }
     return render(request, "web/index.html", context)
 
 def Scholars(request):
     scholar = Person.objects.filter(is_active=True, category="Scholar").order_by('name').distinct()
     return render(request, "web/researcher.html", {"scholar":scholar})
-
 def ScholarDetail(request, Person_slug):
     scholar = Person.objects.get(slug=Person_slug)
     publication = Publication.objects.filter( authors = scholar.id).order_by('-date_publish')[:6]
@@ -50,7 +51,6 @@ def ScholarDetail(request, Person_slug):
         "publication": publication,
     }
     return render(request, "web/researcher-detail.html", context)
-
 def Acara(request):
     acara = Event.objects.filter(publish=True).order_by('date_start').distinct()
     
@@ -70,7 +70,6 @@ def Acara(request):
     }
     
     return render(request, "web/events.html", context)
-
 def AcaraDetail(request, Event_slug):
     acara = Event.objects.get(slug=Event_slug)
     post_related = acara.tags.similar_objects()[:5]
@@ -83,7 +82,6 @@ def AcaraDetail(request, Event_slug):
         
     }
     return render(request, "web/event-detail.html", context)
-
 def DepartmentDetail(request, Department_slug):
     dept = Department.objects.get(slug=Department_slug)
     publication = Publication.objects.filter( department = dept.id)
@@ -97,7 +95,6 @@ def DepartmentDetail(request, Department_slug):
         "acara": acara,
     }
     return render(request, "web/department.html", context)
-
 def Publications(request):
     publication = Publication.objects.filter(publish=True).order_by('date_created').distinct()
     paginator = Paginator(publication, 12)  # Show 25 contacts per page
@@ -111,7 +108,6 @@ def Publications(request):
         publications = paginator.page(paginator.num_pages)
     
     return render(request, "web/publications.html", {"publications":publications})
-
 def PublicationDetail(request, Publication_slug):
     publication = Publication.objects.get(slug=Publication_slug)
     post_related = publication.tags.similar_objects()[:5]
@@ -124,7 +120,6 @@ def PublicationDetail(request, Publication_slug):
         
     }
     return render(request, "web/publication-detail.html", context)
-
 def PublicationCategoryDetail(request, Publication_category_slug):
     pub = Publication_category.objects.get(slug=Publication_category_slug)
     publications_category = Publication.objects.filter(category=pub)
@@ -134,7 +129,6 @@ def PublicationCategoryDetail(request, Publication_category_slug):
        "pub": pub,
     }
     return render(request, "web/publications.html", context)
-
 def Projects(request):
     projects = Project.objects.filter(publish=True).order_by('date_created').distinct()
     paginator = Paginator(projects, 12)  # Show 25 contacts per page
@@ -148,7 +142,6 @@ def Projects(request):
         projects = paginator.page(paginator.num_pages)
     
     return render(request, "web/project.html", {"projects":projects})
-
 def ProjectDetail(request, Project_slug):
     projects = Project.objects.get(slug=Project_slug)
     publication = Publication.objects.filter( project = projects.id)
@@ -162,7 +155,6 @@ def ProjectDetail(request, Project_slug):
         
     }
     return render(request, "web/project-detail.html", context)
-
 def news(request):
     newslist = News.objects.filter(publish=True).order_by('date_created').distinct()
     paginator = Paginator(newslist, 12)  # Show 25 contacts per page
@@ -176,7 +168,6 @@ def news(request):
         newslist = paginator.page(paginator.num_pages)
     
     return render(request, "web/news.html", {"newslist":newslist})
-
 def newsDetail(request, News_slug):
     news = News.objects.get(slug=News_slug)
     post_related = news.tags.similar_objects()[:5]
@@ -189,7 +180,6 @@ def newsDetail(request, News_slug):
         
     }
     return render(request, "web/news-detail.html", context)
-
 def topic(request):
     tplist = Topic.objects.filter(publish=True).order_by('date_created').distinct()
     paginator = Paginator(tplist, 12)  # Show 25 contacts per page
@@ -203,7 +193,6 @@ def topic(request):
        tplist = paginator.page(paginator.num_pages)
     
     return render(request, "web/news.html", {"list":tplist})
-
 def topicDetail(request, Topic_slug):
     news = Topic.objects.get(slug=Topic_slug)
     expert_related = news.person_set.all()
@@ -218,12 +207,10 @@ def topicDetail(request, Topic_slug):
         
     }
     return render(request, "web/research-category.html", context)
-
 def bod(request):
     bod = Foundation.objects.filter(id=1).order_by("-member__order")[:1]
 
     return render(request, "web/bod.html", {"scholar":bod})
-
 def yayasan(request):
     advisor = Foundation.objects.filter(id=2 ).order_by("-member__order")[:1]
     BoT = Foundation.objects.filter( id=3 ).order_by("-member__order")[:1]
@@ -244,8 +231,6 @@ def yayasan(request):
 
 def handler_404(request):
     return render(request, "web/404.html")
-
-
 def post_search(request):
     form = PostSearchForm()
     q = ''

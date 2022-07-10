@@ -1,11 +1,10 @@
 from django.db import models
-from django.forms import URLField
 
 # Create your models here.
 class Slider(models.Model):
     title = models.CharField(max_length=100)
     Description = models.CharField(max_length=500)
-    link = URLField()
+    url = models.URLField(blank=True, null=True)
     image = models.ImageField(upload_to= 'media/slider')
     show = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)

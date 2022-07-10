@@ -3,35 +3,24 @@
 
 {% block content %}
         <div id="slider" class="inspiro-slider dots-creative" data-height-xs="360">
+            {% for object in  slide %}
             <!-- Slide 1 -->
-            <div class="slide" style="background-image:linear-gradient(90deg, rgba(3,1,2,1) 0%, rgba(34,23,17,0.24693627450980393) 57%), url('{% static 'web/bg/hatespeech.jpeg' %}');">
+            <div class="slide" style="background-image:linear-gradient(90deg, rgba(3,1,2,1) 0%, rgba(34,23,17,0.24693627450980393) 57%), url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{object.image}}');">
                 <div class="bg-overlay"></div>
                 <div class="container">
                     <div class="slide-captions text-left text-light col-lg-6">
                         <!-- Captions -->
-                        <h3>CSIS HATE SPEECH DASHBOARD</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
-                       <p>read more</p>
+                        <h3>{{object.title}}</h3>
+                        <p>{{object.Description}}</p>
+                       <a href="{{object.url}}"><p>read more</p></a>
                         <!-- end: Captions -->
                     </div>
                 </div>
             </div>
             <!-- end: Slide 1 -->
+            {% endfor %}
             <!-- Slide 2 -->
-            <div class="slide" style="background-image:linear-gradient(90deg, rgba(3,1,2,1) 0%, rgba(34,23,17,0.24693627450980393) 57%), url('{% static 'web/bg/covid.jpeg' %}');">
-                <div class="bg-overlay"></div>
-                <div class="container">
-                    <div class="slide-captions text-left text-light col-lg-6">
-                        <!-- Captions -->
-                        <h3>COVID-19 DASHBOARD</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero enim libero dolor in voluptates architecto rerum accusamus alias omnis ipsum reiciendis officia eaque.</p>
-                       <p>read more</p>
-                        <!-- end: Captions -->
-                        <!-- end: Captions -->
-                    </div>
-                </div>
-            </div>
-            <!-- end: Slide 2 -->
+           
         </div>
         <!--end: Inspiro Slider -->
         <!-- SECTION BOXED GRID -->
