@@ -5,5 +5,5 @@ from import_export.admin import ImportExportModelAdmin
 from .models import Slider
 
 class SliderAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    search_fields = ['title', 'url', 'image', 'show', 'date_created']
+    list_display = ('title', 'url', 'image', 'show', 'date_created')
 admin.site.register(Slider, SliderAdmin)
