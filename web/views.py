@@ -33,6 +33,7 @@ def home(request):
 def Scholars(request):
     scholar = Person.objects.filter(is_active=True, category="Scholar").order_by('name').distinct()
     return render(request, "web/researcher.html", {"scholar":scholar})
+
 def ScholarDetail(request, Person_slug):
     scholar = Person.objects.get(slug=Person_slug)
     publication = Publication.objects.filter( authors = scholar.id).order_by('-date_publish')[:6]
@@ -101,13 +102,14 @@ def Publications(request):
 
     page = request.GET.get('page')
     try:
-        publications = paginator.page(page)
+        publication = paginator.page(page)
     except PageNotAnInteger:
-        publications = paginator.page(1)
+        publication = paginator.page(1)
     except EmptyPage:
-        publications = paginator.page(paginator.num_pages)
+        publication = paginator.page(paginator.num_pages)
     
-    return render(request, "web/publications.html", {"publications":publications})
+    return render(request, "web/publications.html", {"publications":publication})
+
 def PublicationDetail(request, Publication_slug):
     publication = Publication.objects.get(slug=Publication_slug)
     post_related = publication.tags.similar_objects()[:5]
