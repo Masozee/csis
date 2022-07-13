@@ -29,7 +29,6 @@ def home(request):
         'slider': slider,
     }
     return render(request, "web/index.html", context)
-
 def Scholars(request):
     scholar = Person.objects.filter(is_active=True, category="Scholar").order_by('name').distinct()
     return render(request, "web/researcher.html", {"scholar":scholar})
@@ -52,7 +51,7 @@ def ScholarDetail(request, Person_slug):
     }
     return render(request, "web/researcher-detail.html", context)
 def Acara(request):
-    acara = Event.objects.filter(publish=True).order_by('date_start').distinct()
+    acara = Event.objects.filter(publish=True).order_by('-date_start').distinct()
     
     paginator = Paginator(acara, 5)  # Show 25 contacts per page
 

@@ -29,7 +29,7 @@
                         <i class="icon-calendar"></i> {{acara.tgl}}
                                                 {% else %}
                         <i class="icon-calendar"></i> {{acara.tgl_one_day}}
-                                                {% endif %} <br><i class="icon-clock"></i> {{acara.time_start |time:'H:i'}} - {{acara.time_end |time:'H:i'}} (GMT+7)</h4>
+                                                {% endif %} <br><i class="icon-clock"></i> {{acara.time_start |time:'H:i'}} - {{acara.time_end |time:'H:i'}} (UTC+7)</h4>
 
                 </div>
             </div>
@@ -79,9 +79,69 @@
 
                                         <hr>
                                         <div id="blog" class="grid-layout col-lg-12 pt-5 " data-item="post-item">
+
+                                            <div class="post-item ">
+                                                <div class="row">
+                                                    {% if acara.opening_speech.all %}
+                                                    
+                                                    {% for a in acara.opening_speech.all %}
+                                                    <div class="post-item-wrap col-lg-3">
+                                                       <p><b>Welcoming Remark</b></p>
+                                                        <div class="post-image">
+                                                            <a href="/scholar/{{a.name | slugify}}">
+                                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.photo}}" >
+                                                            </a>
+                                                            
+                                                        </div>
+                                                        <div class="post-item-description-2">
+                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{a.name}}</a></h2>
+                                                            <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                    {% if acara.closing_remarks.all %}
+                                                    
+                                                    {% for a in acara.closing_remarks.all %}
+                                                    <div class="post-item-wrap col-lg-3">
+                                                        <p><b>Closing Remark</b></p>
+                                                        <div class="post-image">
+                                                            <a href="/scholar/{{a.name | slugify}}">
+                                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.photo}}" >
+                                                            </a>
+                                                            
+                                                        </div>
+                                                        <div class="post-item-description-2">
+                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{a.name}}</a></h2>
+                                                            <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                    {% if acara.Moderator %}
+                                                    <div class="post-item-wrap col-lg-3">
+                                                        <p><b>Moderator</b></p>
+                                                        <div class="post-image">
+                                                            <a href="/scholar/{{acara.Moderator.name | slugify}}">
+                                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.Moderator.photo}}" >
+                                                            </a>
+                                                            
+                                                        </div>
+                                                        <div class="post-item-description-2">
+                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{acara.Moderator.name}}</a></h2>
+                                                            <p class="pb-4" style="font-size: smaller;">{{acara.Moderator.position}} <br> {{acara.Moderator.organization}}</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
                                             <!-- Post item-->
                                             <div class="post-item ">
                                                 <div class="row">
+                                                    {% if acara.speaker.all %}
+                                                    <h4>Speakers</h4>
                                                     {% for a in acara.speaker.all %}
                                                     <div class="post-item-wrap col-lg-3">
                                                         <div class="post-image">
@@ -92,11 +152,12 @@
                                                         </div>
                                                         <div class="post-item-description-2">
                                                             <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{a.name}}</a></h2>
-                                                            <p class="pb-4" style="font-size: smaller;">{{a.position}}</p>
+                                                            <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
                                                         </div>
                                                        
                                                     </div>
                                                     {% endfor %}
+                                                    {% endif %}
                                             </div>
                                             </div>
                                         </div>

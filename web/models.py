@@ -228,7 +228,7 @@ class Event(models.Model):
     topic = models.ManyToManyField(Topic, blank=True)
     image = models.ImageField(upload_to='event/img/')
     file = models.FileField(upload_to='event/file/', blank=True, null=True)
-    link = models.URLField(blank=True)
+    link = models.URLField(blank=True, null=True)
     youtube = EmbedVideoField()
     description = RichTextField()
     date_created = models.DateTimeField(auto_now_add=True)
@@ -270,6 +270,8 @@ class Event(models.Model):
     
     def waktu(self):
         return self.waktu_mulai.strftime('%H:%M') +" - "+ self.waktu_selesai.strftime('%H:%M')
+
+    
 
 class TaggedNews(TaggedItemBase):
     content_object = models.ForeignKey('News', on_delete=models.CASCADE)

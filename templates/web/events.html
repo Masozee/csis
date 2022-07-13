@@ -44,13 +44,19 @@
                             <div class="row">
                                 <div class="col-lg-2 col-md-2">
                                     <h4>{{a.date_start |date:"d b Y"}}</h4>
+                                    <small>{{a.time_start |time:'H:i'}} - {{a.time_end |time:'H:i'}} (UTC+7)</small>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     
                                         <h4><a href="/event/{{a.title | slugify }}">{{a.title}}</a></h4>
                                         <p>{{a.description | safe | truncatewords_html:30 }}</p>
                                         <a href="/event/{{a.title| slugify }}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
-                                    
+                                        <hr>
+                                        {% if a.speaker.all %}
+                                        <h5><b>Speakers</b></h5>
+                                        <p>{% for b in a.speaker.all %} {% if forloop.first %}{% else %}{% if forloop.last %} and {% else %}, {% endif %}{% endif %}{{b.name}} {% endfor %}</p>
+                                        {% endif %}
+
                                 </div>
                                 <div class="col-lg-4 col-md-4">
                                         <a href="#">

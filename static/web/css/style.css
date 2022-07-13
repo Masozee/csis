@@ -13,7 +13,7 @@ Copyright 2021
 
 @font-face {
   font-family: 'AdobeClean';
-  src: url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/webfonts/AdobeClean-Regular.ttf') format('truetype');
+  src: url('../webfonts/AdobeClean-Regular.ttf') format('truetype');
 }
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,400,500,600,700,800|Nunito:300,400,600,700,800");
@@ -2410,7 +2410,7 @@ body.breakpoint-sm .col-3 .flickr-widget img .widget-instagram img { width: 16.6
 
 .widget .post-thumbnail-content a { font-size: 13px; line-height: 20px; display: block; }
 
-.sidebar .widget .post-thumbnail-list .post-thumbnail-entry > img { height: 48px; margin-right: 10px; width: 64px; }
+.sidebar .widget .post-thumbnail-list .post-thumbnail-entry > img { margin-right: 10px; width: 64px; }
 
 .sidebar .widget .post-thumbnail-list .post-thumbnail-entry img + .post-thumbnail-content { padding-left: 72px; }
 
