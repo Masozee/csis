@@ -12,6 +12,7 @@
                         <h2>{{scholar.name}}</h2>
                         <h3>{{scholar.position}}</h3>
                     </div>
+               
                 </div>
             </div>
         </section>
@@ -39,16 +40,16 @@
                             <h4 class="text-end">Publications</h4>
                         </div>
                     </div>
-                    <div class="col-lg-9">
-                        <div id="blog" class="grid-layout post-3-columns m-b-40 col-container" data-item="post-item">
+                    <div class="col-lg-9 ">
+                        <div id="blog" class="post-3-columns m-b-40 col-container" data-item="post-item">
                             <!-- Post item-->
                             {% for c in publication %}
-                            <div class="post-item border col">
+                            <div class="post-item col" style="height: 100%;">
                                 <div class="post-item-wrap">
                                     <div class="post-item-description">
                                         <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{c.date_publish}}</span>
                                         <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>{{c.category}}</a></span>
-                                        <h4 style="font-size: smaller;"><a href="/publication/{{c.title | slugify}}">{{c.title}}</a></h4>
+                                        <h3 style="font-size: 1rem;"><a href="/publication/{{c.title | slugify}}">{{c.title}}</a></h4>
                                         <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
                                     </div>
                                 </div>
