@@ -71,7 +71,6 @@ class Topic(models.Model):
     def sub_topic(self):
         return self.topic_set.select_related('parent')
 
-
 class Person (models.Model):
     KATEGORI_CHOICES = (
         ('Scholar', 'Scholar'),
@@ -271,8 +270,6 @@ class Event(models.Model):
     def waktu(self):
         return self.waktu_mulai.strftime('%H:%M') +" - "+ self.waktu_selesai.strftime('%H:%M')
 
-    
-
 class TaggedNews(TaggedItemBase):
     content_object = models.ForeignKey('News', on_delete=models.CASCADE)
 
@@ -300,7 +297,6 @@ class News(models.Model):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
-
 
 class Foundation(models.Model):
     Title = models.CharField(max_length=100)
