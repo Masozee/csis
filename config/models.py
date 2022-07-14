@@ -16,3 +16,14 @@ class Slider(models.Model):
     class Meta:
         verbose_name = ("Web Slider")
         verbose_name_plural = ("Web Slider")
+
+class CodebookOrder(models.Model):
+    cdid = models.PositiveIntegerField()
+    ket = models.TextField()
+
+    def __str__(self):
+        return str(self.cdid)
+        
+    class Meta:
+        verbose_name = ("Researcher Order")
+        verbose_name_plural = ("Researcher Order")
