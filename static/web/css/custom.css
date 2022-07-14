@@ -105,6 +105,13 @@
     text-align: end;
 }
 
+.border-bawah { 
+    border-bottom: 1px solid #E8A117 !important;
+    width: 100px;
+    
+}
+
+
 
 @media (max-width: 991.98px) { /*	Grid post*/
 .side-video {

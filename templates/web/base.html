@@ -18,13 +18,13 @@
     {% block OG %}
     {% endblock %}
 
-    <!--local Stylesheets & Fonts>
+    <!--local Stylesheets & Fonts
     <link href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/css/plugins.css" rel="stylesheet">
     <link href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/css/style.css" rel="stylesheet">
     <link href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/css/custom.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"-->
-    
     <!--local Stylesheets & Fonts -->
+     >
     <link href="{% static 'web/css/plugins.css' %}" rel="stylesheet">
     <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'web/css/custom.css' %}" rel="stylesheet">
@@ -80,9 +80,9 @@
                                 <ul>
                                     <li class="dropdown"><a href="#">Research</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{% url 'project' %}">Projects</a></li>
-                                            <li><a href="{% url 'researcher' %}">Scholars</a></li>
-                                            <li class="dropdown-submenu"><span class="dropdown-menu-title-only">Departments</span>
+                                            <li class="mega-menu-title"><a href="{% url 'project' %}">Projects</a></li>
+                                            <li class="mega-menu-title"><a href="{% url 'researcher' %}">Scholars</a></li>
+                                            <li class="dropdown-submenu mega-menu-title"><span class="dropdown-menu-title-only">Departments</span>
                                                 <ul class="dropdown-menu">
                                                     {% for c in menu_dep %}
                                                     <li><a href="/department/{{c.name|slugify}}">{{c.name}}</a></li>
@@ -105,7 +105,7 @@
                                                     </div>  
                                                     <div class="col-lg-2-5 hide-menu-mobile">
                                                         <ul>
-                                                            <li class="mega-menu-title">Recent Publications</li>
+                                                            <li class="mega-menu-title border-bawah">Recent Publications</li>
                                                             {% for e in menu_pub %}
                                                             <li><a href="/publication/{{e.title | slugify}}">{{ e.title }}</a></li>
                                                             {% endfor %}
@@ -113,12 +113,12 @@
                                                     </div>
                                                     <div class="col-lg-2-5 hide-menu-mobile">
                                                         <ul>
-                                                            <li class="mega-menu-title">Commentaries</li>
+                                                            <li class="mega-menu-title border-bawah">Commentaries</li>
                                                             {% for d in menu_commentaries %}
                                                             <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
                                                             {% endfor %}
                                                           
-                                                            <li class="mega-menu-title">Research Reports</li>
+                                                            <li class="mega-menu-title border-bawah">Research Reports</li>
                                                             {% for d in menu_research_report %}
                                                             <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
                                                             {% endfor %}
@@ -126,12 +126,12 @@
                                                     </div>
                                                     <div class="col-lg-2-5 hide-menu-mobile">
                                                         <ul>
-                                                            <li class="mega-menu-title">Policy Briefs</li>
+                                                            <li class="mega-menu-title border-bawah">Policy Briefs</li>
                                                             {% for d in menu_policy_brief %}
                                                             <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
                                                             {% endfor %}
 
-                                                            <li class="mega-menu-title">Working Paper</li>
+                                                            <li class="mega-menu-title border-bawah">Working Paper</li>
                                                             {% for d in menu_working_paper %}
                                                             <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
                                                             {% endfor %}
@@ -170,15 +170,15 @@
                                                             <ul class="split-menu">
                                                                 {% for e in menu_experts %}
                                                                     {% if e.parent == empty %}
-                                                                    <a href="/research-topic/{{e.name | slugify}}"><li class="mega-menu-title">{{ e.name }}</li></a>
+                                                                    <a href="/research-topic/{{e.name | slugify}}"><li class="mega-menu-title border-bawah">{{ e.name }}</li></a>
                                                                         <li>
-                                                                            <ul>
+                                                                            <ul style="padding-bottom: 5px;">
                                                                                 {% for a in e.sub_topic %}
-                                                                                <li style="font-size: small; padding-bottom: 10px;">
-                                                                                    {{a.name}}
+                                                                                <li>
+                                                                                    <a href="/research-topic/{{a.name | slugify}}" style="color: black;">{{a.name}}</a>
                                                                                 </li>
                                                                                 {% endfor %}
-                                                                            </ul>
+                                                                            </ul>   
                                                                         </li>
                                                                     {% endif %}  
                                                                 {% endfor %}
