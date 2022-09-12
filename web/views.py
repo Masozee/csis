@@ -37,7 +37,7 @@ def Scholars(request):
 def ScholarDetail(request, Person_slug):
     scholar = Person.objects.get(slug=Person_slug)
     publication = Publication.objects.filter( authors = scholar.id).order_by('-date_publish')[:6]
-    paginator = Paginator(publication, 5)
+    paginator = Paginator(publication, 9)
 
     page = request.GET.get('page')
     try:
@@ -248,6 +248,7 @@ def yayasan(request):
 
 def handler_404(request):
     return render(request, "web/404.html")
+
 def post_search(request):
     form = PostSearchForm()
     q = ''
