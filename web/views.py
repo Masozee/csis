@@ -103,7 +103,7 @@ def DepartmentDetail(request, Department_slug):
     return render(request, "web/department.html", context)
 
 def Publications(request):
-    publication = Publication.objects.filter(publish=True).order_by('date_created').distinct()
+    publication = Publication.objects.filter(publish=True).order_by('-date_publish').distinct()
     paginator = Paginator(publication, 12)  # Show 25 contacts per page
 
     page = request.GET.get('page')

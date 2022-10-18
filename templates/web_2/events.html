@@ -1,0 +1,99 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block OG %}    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.get_full_path }}">
+    <meta property="og:title" content="Centre for Strategic and International Studies">
+    <meta property="og:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
+    <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="CSIS Events">
+    <meta property="twitter:url" content="{{ request.get_full_path }}">
+    <meta property="twitter:title" content="Centre for Strategic and International Studies">
+    <meta property="twitter:description" content="lorem ipsum dolor sir amet ">
+    <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+        <!-- Document title -->
+{% endblock OG%}
+
+    {% block content %}
+        <section id="page-title" style="background-image: linear-gradient(90deg, rgba(3,1,2,1) 10%, rgba(34,23,17,0.24693627450980393) 72%), url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/IMG_3881.jpeg');">
+            <div class="container">
+                <div class="page-title text-white text-center" >
+                    <h2>EVENTS</h2>
+                </div>
+                
+            </div>
+        </section>
+        <section id="page-content">
+            <div class="container">
+                <!-- Portfolio Filter -->
+                <nav class="grid-filter gf-outline" data-layout="#blog">
+                    <ul>
+                        <li class="active"><a href="#" data-category="*">Show All</a></li>
+                        <li><a href="#" data-category=".bc-previous">Previous Events</a></li>
+                    </ul>
+                    <div class="grid-active-title">Show All</div>
+                </nav>
+                <!-- end: Portfolio Filter -->
+                <!-- Blog -->
+                <div id="blog" class="grid-layout post-thumbnails m-b-30" data-item="post-item">
+                    {% for a in acara %}<!-- Post item-->
+                    <div class="post-item border">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-2">
+                                    <h4>{{a.date_start |date:"d b Y"}}</h4>
+                                    <small>{{a.time_start |time:'H:i'}} - {{a.time_end |time:'H:i'}} (UTC+7)</small>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    
+                                        <h4><a href="/event/{{a.title | slugify }}">{{a.title}}</a></h4>
+                                        <p>{{a.description | safe | truncatewords_html:30 }}</p>
+                                        <a href="/event/{{a.title| slugify }}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                                        <hr>
+                                        {% if a.speaker.all %}
+                                        <h5><b>Speakers</b></h5>
+                                        <p>{% for b in a.speaker.all %} {% if forloop.first %}{% else %}{% if forloop.last %} and {% else %}, {% endif %}{% endif %}{{b.name}} {% endfor %}</p>
+                                        {% endif %}
+
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                        <a href="#">
+                                            <img alt="" style="max-width: 75%;" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{a.image}}">
+                                        </a>
+                                </div>
+                                <div class="hs"></div>
+                            </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                    <!-- end: Post item-->
+                    
+                    <!-- Post item-->
+                    
+            
+            
+                <!-- end: Blog -->
+                <!-- Pagination -->
+                <ul class="pagination">
+                    {% if acara.has_previous  %}
+                    <li class="page-item"><a class="page-link" href="?page=1"><i class="fa fa-angle-left"></i></a></li>
+                    {% endif %}
+                    {% for n in acara.paginator.page_range %}
+                        {% if acara.number == n %}
+                        <li class="page-item"><a class="page-link" href="#">{{ n }}</a></li>
+                        {% elif n > acara.number|add:'-2' and n < acara.number|add:'2' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if berita.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ acara.paginator.num_pages }}"><i class="fa fa-angle-right"></i></a></li>
+                    {% endif %}
+                </ul>
+                <!-- end: Pagination -->
+            </div>
+        </section>
+{% endblock %}

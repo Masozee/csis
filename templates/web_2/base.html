@@ -1,0 +1,333 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Centre for Strategic and International Studies" />
+    <meta name="description" content="Centre for Strategic and International Studies">
+    <link rel="icon" type="image/png" href="https://s3-csis-web.s3.amazonaws.com/static/web/images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Primary Meta Tags -->
+    <title>Centre for Strategic and International Studies</title>
+    <meta name="title" content="Centre for Strategic and International Studies">
+    <meta name="description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
+
+    {% block OG %}
+    {% endblock %}
+
+    <!--local Stylesheets & Fonts
+    <link href="{% static '/web/css/plugins.css" rel="stylesheet">
+    <link href="{% static '/web/css/style.css" rel="stylesheet">
+    <link href="{% static '/web/css/custom.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"-->
+    <!--local Stylesheets & Fonts -->
+    
+    <link href="{% static 'web/css/plugins.css' %}" rel="stylesheet">
+    <link href="{% static 'web/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'web/css/custom.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"-->
+    {% block css %}
+    {% endblock css %}
+
+
+  
+</head>
+
+<body>
+
+    <div class="body-inner">
+        <header id="header" data-transparent="true" data-fullwidth="true" class="dark submenu-light">
+            <div class="header-inner">
+                <div class="container">
+                    <!--Logo-->
+                    <div id="logo"> <a href="{% url 'home' %}"> <span class="logo-default"><img src="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png" style="height: 60px;"></span><span class="logo-dark"><img src="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png" style="height: 60px;"></span></a> </div>
+                    <!--End: Logo-->
+                    <!-- Search -->
+                    <div id="search"><a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i class="icon-x"></i></a>
+                        <form class="search-form" action="/search" method="get">
+                            <input class="form-control" name="q" type="text" placeholder="Type & Search..." />
+                            <span class="text-muted">Start typing & press "Enter" or "ESC" to close</span>
+                        </form>
+                    </div>
+                    <!-- end: search -->
+                    <!--Header Extras-->
+                    <div class="header-extras">
+                        <ul>
+                            <li>
+                                <a id="btn-search" href="#"> <i class="icon-search"></i></a>
+                            </li>
+                            <!--li>
+                                <div class="p-dropdown"> <a href="#"><i class="icon-globe"></i><span>EN</span></a>
+                                    <ul class="p-dropdown-content">
+                                        <li><a href="#">Indonesia</a></li>
+                                        <li><a href="#">English</a></li>
+                                    </ul>
+                                </div>
+                            </li-->
+                            
+                        </ul>
+                    </div>
+                    <!--end: Header Extras-->
+                    <!--Navigation Resposnive Trigger-->
+                    <div id="mainMenu-trigger"> <a class="lines-button x"><span class="lines"></span></a> </div>
+
+                    <div id="mainMenu" class="menu-center">
+                        <div class="container">
+                            <nav>
+                                <ul>
+                                    <li class="dropdown"><a href="#">Research</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="mega-menu-title"><a href="{% url 'project' %}">Projects</a></li>
+                                            <li class="mega-menu-title"><a href="{% url 'researcher' %}">Scholars</a></li>
+                                            <li class="dropdown-submenu mega-menu-title"><span class="dropdown-menu-title-only">Departments</span>
+                                                <ul class="dropdown-menu">
+                                                    {% for c in menu_dep %}
+                                                    <li><a href="/department/{{c.name|slugify}}">{{c.name}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown mega-menu-item"><a href="#">Publications</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="mega-menu-content">
+                                                <div class="row">
+                                                    <div class="col-lg-2-5 p-l-0 pb hide-menu-mobile">
+                                                        {% for f in recent_pub %}
+                                                        <img src="media/{{f.image}}" class="text-theme" style="width: 200px; padding-bottom: 10px; ">
+                                                        <a href="/publication/{{f.title | slugify}}"><h4 style="color: black !important; line-height: 1.2rem;">{{f.title}}</h3></a>
+                                                            <br>
+                                                        <p class="m-b-0">{{f.description | safe | truncatewords_html:15}}</p>
+                                                        {% endfor %}
+                                                    </div>  
+                                                    <div class="col-lg-2-5 hide-menu-mobile">
+                                                        <ul>
+                                                            <li class="mega-menu-title border-bawah">Recent Publications</li>
+                                                            {% for e in menu_pub %}
+                                                            <li><a href="/publication/{{e.title | slugify}}">{{ e.title }}</a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-2-5 hide-menu-mobile">
+                                                        <ul>
+                                                            <li class="mega-menu-title border-bawah">Commentaries</li>
+                                                            {% for d in menu_commentaries %}
+                                                            <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
+                                                            {% endfor %}
+                                                          
+                                                            <li class="mega-menu-title border-bawah">Research Reports</li>
+                                                            {% for d in menu_research_report %}
+                                                            <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-2-5 hide-menu-mobile">
+                                                        <ul>
+                                                            <li class="mega-menu-title border-bawah">Policy Briefs</li>
+                                                            {% for d in menu_policy_brief %}
+                                                            <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
+                                                            {% endfor %}
+
+                                                            <li class="mega-menu-title border-bawah">Working Paper</li>
+                                                            {% for d in menu_working_paper %}
+                                                            <li><a href="/publication/{{d.title|slugify}}">{{d.title}}</a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-2-5">
+                                                        <ul>
+                                                            <a href="{% url 'publication' %}"><li class="mega-menu-title">All Publications</li></a>
+                                                            {% for d in cat %}
+                                                            <a href="/publications/{{d.name | slugify}}"><li class="mega-menu-title">{{d.name}}</li></a>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown mega-menu-item"><a href="#">Experts</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="mega-menu-content">
+                                                <div class="column">
+                                                    <div class="col-lg-2-5 p-l-0 pb hide-menu-mobile">
+                                                        <div class="mega-menu-title bd-btm">Find our Experts</div>
+                                                        {% for f in people_experts %}
+                                                        <img src="https://s3-csis-web.s3.amazonaws.com/static/{{f.photo}}" class="text-theme" style="width: 100px; padding-bottom: 10px; ">
+                                                        <a href="/scholar/{{f.name | slugify}}"><h4 style="color: black !important; line-height: 1.2; font-size: small;">{{f.name}}</h4></a>
+                                                        <p style="font-size: smaller;">{% for list in f.expertise.all %} {{list}}, {% endfor %}</p>
+                                                        <hr>
+                                                        {% endfor %}
+                                                        <small><a href="{% url 'researcher' %}">find more</a></small>
+                                                    </div>
+                                                    <div class="col-lg-8-5 p-l-0 pb p-s-10">
+                                                        <div class="mega-menu-title bd-btm">Research Topics</div>
+                                                        <div class="row">
+                                                            <ul class="split-menu">
+                                                                {% for e in menu_experts %}
+                                                                    {% if e.parent == empty %}
+                                                                    <a href="/research-topic/{{e.name | slugify}}"><li class="mega-menu-title border-bawah">{{ e.name }}</li></a>
+                                                                        <li>
+                                                                            <ul style="padding-bottom: 5px;">
+                                                                                {% for a in e.sub_topic %}
+                                                                                <li>
+                                                                                    <a href="/research-topic/{{a.name | slugify}}" style="color: black;">{{a.name}}</a>
+                                                                                </li>
+                                                                                {% endfor %}
+                                                                            </ul>   
+                                                                        </li>
+                                                                    {% endif %}  
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'event' %}">Events</a></li>
+                                    <li><a href="{% url 'news' %}">News</a></li>
+                                    <li class="dropdown"><a href="#">Dashboard</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="https://covid19.csis.or.id/">COVID-19 Dashboard</a></li>
+                                            <li><a href="https://dashboard.csis.or.id/hatespeech/">Hatespeech Dashboard</a></li>
+                                            <li><a href="https://violence.csis.or.id/">Collective Violence Early Warning Dataset</a></li>
+                                        </ul>    
+                                    <li class="dropdown"><a href="#">About</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{% url 'about' %}">About CSIS</a></li>
+                                            <li><a href="{% url 'bod' %}">Board of Excecutive Directors</a></li>
+                                            <li><a href="{% url 'yayasan' %}">CSIS Foundation</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!--end: Navigation-->
+                </div>
+            </div>
+        </header>
+        <!-- end: Header -->
+
+
+
+    {% block content %}
+    {% endblock %}
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="widget">
+
+                            <div class="widget-title">Centre for strategic and international Studies</div>
+                            <p class="mb-5 text-white">Pakarti Centre Building, Jl. Tanah Abang 3 No. 23-27, Jakarta 10160, Indonesia</p>
+                            <p class="mb-5 text-white">+62 21 386 5532 <br>csis@csis.or.id</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 hide-menu-mobile">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="widget">
+                                    <div class="widget-title">Publications</div>
+                                    <ul class="list">
+                                        <a href="{% url 'publication' %}"><li class="mega-menu-title">All Publications</li></a>
+                                        {% for d in cat %}
+                                        <a href="/publications/{{d.name | slugify}}"><li class="mega-menu-title">{{d.name}}</li></a>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 hide-menu-mobile">
+                                <div class="widget">
+                                    <div class="widget-title">Features</div>
+                                    <ul class="list">
+                                        <li><a href="https://covid19.csis.or.id/">COVID-19 Dashboard</a></li>
+                                        <li><a href="https://dashboard.csis.or.id/hatespeech/">Hatespeech Dashboard</a></li>
+                                        <li><a href="https://violence.csis.or.id/">Collective Violence Early Warning Dataset</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 hide-menu-mobile">
+                                <div class="widget">
+                                    <div class="widget-title">Pages</div>
+                                    <ul class="list">
+                                        <li><a href="#">Partnership</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                        <li><a href="https://www.tokopedia.com/csis">Shop</a></li>
+                                        <li><a href="https://journals.csis.or.id">CSIS Journals</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 hide-menu-mobile">
+                                <div class="widget">
+                                    <div class="widget-title">Departments</div>
+                                    <ul class="list">
+                                        {% for c in menu_dep %}
+                                        <li><a href="/department/{{c.name|slugify}}">{{c.name}}</a></li>
+                                        {% endfor %}
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright-content">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Social icons -->
+                            <div class="social-icons social-icons">
+                                <ul>
+                                    <li class="social-facebook"><a href="#"><i class="fab fa-facebook-f" style="color: black;"></i></a></li>
+                                    <li class="social-twitter"><a href="#"><i class="fab fa-twitter" style="color: black;"></i></a></li>
+                                    <li class="social-youtube"><a href="#"><i class="fab fa-youtube" style="color: black;"></i></a></li>
+                                    <li class="social-instagram"><a href="#"><i class="fab fa-instagram" style="color: black;"></i></a></li>
+                                    <li class="social-linkedin"><a href="#"><i class="fab fa-linkedin" style="color: black;"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- end: Social icons -->
+                        </div>
+
+                        <div class="col-lg-6 text-end">
+                            <div class="copyright-text">&copy; 2022 Centre for Strategic and International Studies. All Rights Reserved.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    <!-- end: Footer -->
+
+</div>
+<!-- end: Body Inner -->
+
+<!-- Scroll top -->
+<a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
+<!--Plugins-->
+<script src="{% static '/web/js/jquery.js' %}"></script>
+<script src="{% static '/web/js/plugins.js' %}"></script>
+
+
+
+<!--Template functions-->
+<script src="{% static '/web/js/functions.js' %}"></script>
+
+</body>
+
+</html>

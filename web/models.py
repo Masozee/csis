@@ -105,8 +105,8 @@ class Person (models.Model):
         return self.name
         
     class Meta:
-        verbose_name = ("People")
-        verbose_name_plural = ("Peoples")
+        verbose_name = ("People and Partner")
+        verbose_name_plural = ("People and Partners")
     
     def save(self, *args, **kwargs):
         value = self.name
