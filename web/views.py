@@ -7,9 +7,32 @@ from django.db.models import Q
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from config.models import *
+from .filters import publication_filter
 
 def page_not_found_view(request, exception):
     return render(request, 'web/404.html', status=404)
+
+def is_valid_query(param):
+    return param != '' and param is not None
+def filter(request):
+    qs = Publication.objects.filter(publish=True).order_by('-date_publish').distinct()
+    dept = Department.objects.filter(publish=True).order_by('-date_created').distinct()
+    staff = Person.objects.all().order_by('-name')
+
+    title_contains_query = request.GET.get('title_contains')
+    dept_contains_query = request.GET.get('dept_contains')
+    person_contains_query = request.GET.get('person_contains')
+
+    if is_valid_query(title_contains_query):
+        qs = qs.filter(title__icontains=title_contains_query)
+
+    if is_valid_query(dept_contains_query):
+        qs = qs.filter(department__name__icontains=dept_contains_query)
+
+    if is_valid_query(person_contains_query):
+        qs = qs.filter(authors__name__icontains=person_contains_query)
+
+    return qs
 
 # Create your views here.
 def home(request):
@@ -269,3 +292,12 @@ def post_search(request):
                   {'form': form,
                    'q': q,
                    'results': results})
+
+def Publications_query(request):
+    qs = filter(request)
+
+    context = {
+        'queryset': qs,
+    }
+
+    return render(request, "web/results.html", context)

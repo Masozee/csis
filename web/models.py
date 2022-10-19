@@ -172,7 +172,7 @@ class Publication(models.Model):
     date_publish = models.DateField(blank=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
     authors = models.ManyToManyField(Person)
-    category = models.ForeignKey(Publication_category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Publication_category, on_delete=models.CASCADE, blank=True, null=True)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
         null=True, blank=True, on_delete=models.SET_NULL)
     topic = models.ManyToManyField(Topic, blank=True)
@@ -185,7 +185,7 @@ class Publication(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
     publish = models.BooleanField(default=False)
     highlight = models.BooleanField(default=False)
-    tags = TaggableManager(through=TaggedPublication)
+    tags = TaggableManager(through=TaggedPublication, blank=True)
 
     def __str__(self):
         return self.title

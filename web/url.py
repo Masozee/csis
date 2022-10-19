@@ -7,6 +7,7 @@ urlpatterns = [
     path('scholars/', webviews.Scholars, name='researcher'),
     re_path('scholar/(?P<Person_slug>[\w-]+)/$', webviews.ScholarDetail, name='researcher-detail'),
     path('publications/', webviews.Publications, name='publication'),
+    path('query/', webviews.Publications_query, name='publication-filter'),
     re_path('publication/(?P<Publication_slug>[\w-]+)/$', webviews.PublicationDetail, name='publication-detail'),
     re_path('publications/(?P<Publication_category_slug>[\w-]+)/$', webviews.PublicationCategoryDetail, name='publicationcategory-detail'),
     path('events/', webviews.Acara, name='event'),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('boards-of-executive-directors/', webviews.bod, name='bod'),
     path('csis-foundation/', webviews.yayasan, name='yayasan'),
     path('search/', webviews.post_search, name='post_search'),
+
 ]   
