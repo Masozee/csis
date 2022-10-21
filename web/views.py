@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from config.models import *
-from .filters import publication_filter
+
 
 def page_not_found_view(request, exception):
     return render(request, 'web/404.html', status=404)
@@ -18,10 +18,14 @@ def filter(request):
     qs = Publication.objects.filter(publish=True).order_by('-date_publish').distinct()
     dept = Department.objects.filter(publish=True).order_by('-date_created').distinct()
     staff = Person.objects.all().order_by('-name')
+    category = Publication_category.objects.all()
+    topic = Topic.objects.all()
 
     title_contains_query = request.GET.get('title_contains')
     dept_contains_query = request.GET.get('dept_contains')
     person_contains_query = request.GET.get('person_contains')
+    category_contains_query = request.GET.get('category_contains')
+    topic_contains_query = request.GET.get('topic_contains')
 
     if is_valid_query(title_contains_query):
         qs = qs.filter(title__icontains=title_contains_query)
@@ -31,6 +35,13 @@ def filter(request):
 
     if is_valid_query(person_contains_query):
         qs = qs.filter(authors__name__icontains=person_contains_query)
+
+    if is_valid_query(category_contains_query):
+        qs = qs.filter(publication_category__name__icontains=category_contains_query)
+
+    if is_valid_query(topic_contains_query):
+        qs = qs.filter(topic__name__icontains=topic_contains_query)
+
 
     return qs
 
