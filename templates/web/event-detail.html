@@ -68,7 +68,11 @@
                         {% endif %}                         
                         <span style="padding-left: 25px;">{{acara.time_start |time:'H:i'}} - {{acara.time_end |time:'H:i'}} (UTC+7)</span>
                         <br>
+                        {% if acara.location %}
                         <i class="icon-map"></i> <small>Location</small><br>
+                        <p>{{ acara.location }}</p>
+                        {% endif %}
+
                     </h4>
                 </div>
             </div>
@@ -242,7 +246,7 @@
                                             <div class="post-thumbnail-entry">
                                                 <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}">
                                                 <div class="post-thumbnail-content">
-                                                    <a href="">{{a.title}}</a>
+                                                    <a href="/event/{{ a.title |slugify }}">{{a.title}}</a>
                                                     <span class="post-date"><i class="icon-clock"></i> {{a.date_created |date:"d b Y"}}</span>
                                                    
                                                 </div>
@@ -256,7 +260,7 @@
                                             <div class="post-thumbnail-entry">
                                                 <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{b.image}}">
                                                 <div class="post-thumbnail-content">
-                                                    <a href="">{{b.title}}</a>
+                                                    <a href="/event/{{ b.title |slugify }}">{{b.title}}</a>
                                                     <span class="post-date"><i class="icon-clock"></i> {{b.date_created |date:"d b Y"}}</span>
                                                 </div>
                                             </div>
