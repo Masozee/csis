@@ -179,6 +179,7 @@ class Publication(models.Model):
     department = models.ManyToManyField(Department, blank=True)
     image = models.ImageField(upload_to = 'publication/')
     image_credit = models.TextField(blank=True, null=True)
+    cover = models.ImageField(upload_to = 'publication/cover/', blank=True, null=True)
     file = models.FileField(upload_to='doc/', blank=True)
     description = RichTextField()
     date_created = models.DateTimeField(auto_now_add=True)
