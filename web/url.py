@@ -28,5 +28,5 @@ urlpatterns = [
     path('csis-foundation/', webviews.yayasan, name='yayasan'),
     path('search/', webviews.post_search, name='post_search'),
     path('careers/', webviews.career, name='career'),
-
+    re_path('careers/(?P<Career_slug>[\w-]+)/$', webviews.careerDetail, name='career-detail'),
 ]   

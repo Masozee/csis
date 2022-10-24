@@ -39,6 +39,10 @@ class Career(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
     publish = models.BooleanField(default=False)
 
+
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = ("Career tab")
         verbose_name_plural = ("Career tab")

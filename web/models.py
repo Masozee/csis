@@ -99,6 +99,7 @@ class Person (models.Model):
     facebook = models.URLField(blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    external_profile = models.URLField(default='#', blank=True, null=True)
 
 
     def __str__(self):
@@ -112,6 +113,13 @@ class Person (models.Model):
         value = self.name
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
+
+    @property
+    def profile_url(self):
+        if self.category == 'Scholar':
+            return f'/scholar/{self.slug}'
+        return self.external_profile
+
 
 class TaggedProject(TaggedItemBase):
     content_object = models.ForeignKey('Project', on_delete=models.CASCADE)

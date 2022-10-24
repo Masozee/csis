@@ -321,3 +321,15 @@ def career(request):
         'Karir':karir,
     }
     return render(request, "web/fellow.html", context)
+
+
+def careerDetail(request, Career_slug):
+    qs = Career.objects.get(slug=Career_slug)
+    karir = Career.objects.filter(publish=True).order_by("id")
+
+    context = {
+        "Karir": karir,
+        "qs": qs
+
+    }
+    return render(request, "web/fellow-detail.html", context)
