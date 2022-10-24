@@ -6,14 +6,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.get_full_path }}">
     <meta property="og:title" content="{{acara.title}}">
-    <meta property="og:description" content="{{acara.description | safe| truncatewords_html:20}}">
+    <meta property="og:description" content="{{acara.description | striptags  | truncatewords_html:20}}">
     <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{acara.image}}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="CSIS Events">
     <meta property="twitter:url" content="{{ request.get_full_path }}">
     <meta property="twitter:title" content="{{acara.title}}">
-    <meta property="twitter:description" content="{{acara.description | safe| truncatewords_html:50}} ">
+    <meta property="twitter:description" content="{{acara.description | striptags | truncatewords_html:50}} ">
     <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{acara.image}}">
         <!-- Document title -->
 {% endblock OG%}
@@ -94,17 +94,17 @@
                                     <div class="post-item-description">
                                         <div class="post-meta">
                                             <div class="post-meta-share">
-                                                <a class="btn btn-xs btn-slide btn-facebook" href="#">
+                                                <a class="btn btn-xs btn-slide btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://csis.or.id/event/{{ acara.title |slugify }}">
                                                     <i class="fab fa-facebook-f"></i>
                                                     <span>Facebook</span>
                                                 </a>
-                                                <a class="btn btn-xs btn-slide btn-twitter" href="#" data-width="100">
+                                                <a class="btn btn-xs btn-slide btn-twitter" href="https://twitter.com/share?text={{ acara.title }}&url=http://csis.or.id/event/{{ acara.title|slugify }}&via=csisindonesia" data-width="100">
                                                     <i class="fab fa-twitter"></i>
                                                     <span>Twitter</span>
                                                 </a>
-                                                <a class="btn btn-xs btn-slide btn-instagram" href="#" data-width="118">
-                                                    <i class="fab fa-instagram"></i>
-                                                    <span>Instagram</span>
+                                                <a class="btn btn-xs btn-slide btn-instagram" href="https://api.whatsapp.com/send?text={{ acara.title }} https://csis.or.id/event/{{ acara.title |slugify }}" data-width="118">
+                                                    <i class="fab fa-whatsapp"></i>
+                                                    <span>Whatsapp</span>
                                                 </a>
                                                 <a class="btn btn-xs btn-slide btn-googleplus" href="mailto:#" data-width="80">
                                                     <i class="icon-mail"></i>
