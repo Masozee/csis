@@ -315,7 +315,7 @@ def Publications_query(request):
     return render(request, "web/results.html", context)
 
 def career(request):
-    karir = Career.objects.all()
+    karir = Career.objects.all().order_by("id")
 
     context = {
         'Karir':karir,
