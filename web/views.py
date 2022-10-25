@@ -245,8 +245,8 @@ def topic(request):
 
 def topicDetail(request, Topic_slug):
     news = Topic.objects.get(slug=Topic_slug)
-    expert_related = news.person_set.all()
-    article_related = news.publication_set.all()
+    expert_related = news.person_set.filter(category = 'Scholar')
+    article_related = news.publication_set.filter(publish = True)
     event_related = Event.objects.filter(topic=news).order_by('date_created')
     
     context = {
