@@ -97,7 +97,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-2-5 p-l-0 pb hide-menu-mobile">
                                                         {% for f in recent_pub %}
-                                                        <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{f.image}}" class="text-theme" style="width: 200px; padding-bottom: 10px; ">
+                                                        <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{f.image}}" class="text-theme" style="width: 200px; padding-bottom: 10px; ">
                                                         <a href="/publication/{{f.title | slugify}}"><h4 style="color: black !important; line-height: 1.2rem;">{{f.title}}</h3></a>
                                                             <br>
                                                         <p class="m-b-0">{{f.description | safe | truncatewords_html:15}}</p>
@@ -157,7 +157,7 @@
                                                     <div class="col-lg-2-5 p-l-0 pb hide-menu-mobile">
                                                         <div class="mega-menu-title bd-btm">Find our Experts</div>
                                                         {% for f in people_experts %}
-                                                        <img src="https://s3-csis-web.s3.amazonaws.com/static/{{f.photo}}" class="text-theme" style="width: 100px; padding-bottom: 10px; ">
+                                                        <img src="https://s3-csis-web.s3.amazonaws.com/{{f.photo}}" class="text-theme" style="width: 100px; padding-bottom: 10px; ">
                                                         <a href="/scholar/{{f.name | slugify}}"><h4 style="color: black !important; line-height: 1.2; font-size: small;">{{f.name}}</h4></a>
                                                         <p style="font-size: smaller;">{% for list in f.expertise.all %} {{list}}, {% endfor %}</p>
                                                         <hr>

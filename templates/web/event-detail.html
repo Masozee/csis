@@ -155,7 +155,7 @@
                                                             
                                                         </div>
                                                         <div class="post-item-description-2">
-                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">{{a.name}}</a></h2>
+                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{a.name}}</a></h2>
                                                             <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
                                                         </div>
                                                     </div>
@@ -165,8 +165,7 @@
                                                     <div class="post-item-wrap col-lg-3">
                                                         <p><b>Moderator</b></p>
                                                         <div class="post-image">
-
-                                                            <a href="{% if acara.Moderator.profile_url %}{{ acara.Moderator.profile_url }}{% else %}{{ empty }}{% endif %}}">
+                                                            <a href="/scholar/{{acara.Moderator.name | slugify}}">
                                                                 <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.Moderator.photo}}" >
                                                             </a>
                                                             
