@@ -6,14 +6,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.get_full_path }}">
     <meta property="og:title" content="{{acara.title}}">
-    <meta property="og:description" content="{{acara.description | safe| truncatewords_html:20}}">
+    <meta property="og:description" content="{{acara.description | striptags  | truncatewords_html:20}}">
     <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{acara.image}}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="CSIS Events">
     <meta property="twitter:url" content="{{ request.get_full_path }}">
     <meta property="twitter:title" content="{{acara.title}}">
-    <meta property="twitter:description" content="{{acara.description | safe| truncatewords_html:50}} ">
+    <meta property="twitter:description" content="{{acara.description | striptags | truncatewords_html:50}} ">
     <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{acara.image}}">
         <!-- Document title -->
 {% endblock OG%}
@@ -68,7 +68,11 @@
                         {% endif %}                         
                         <span style="padding-left: 25px;">{{acara.time_start |time:'H:i'}} - {{acara.time_end |time:'H:i'}} (UTC+7)</span>
                         <br>
+                        {% if acara.location %}
                         <i class="icon-map"></i> <small>Location</small><br>
+                        <p>{{ acara.location }}</p>
+                        {% endif %}
+
                     </h4>
                 </div>
             </div>
@@ -90,19 +94,19 @@
                                     <div class="post-item-description">
                                         <div class="post-meta">
                                             <div class="post-meta-share">
-                                                <a class="btn btn-xs btn-slide btn-facebook" href="#">
+                                                <a class="btn btn-xs btn-slide btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://csis.or.id/event/{{ acara.title |slugify }}">
                                                     <i class="fab fa-facebook-f"></i>
                                                     <span>Facebook</span>
                                                 </a>
-                                                <a class="btn btn-xs btn-slide btn-twitter" href="#" data-width="100">
+                                                <a class="btn btn-xs btn-slide btn-twitter" href="https://twitter.com/share?text={{ acara.title }}&url=http://csis.or.id/event/{{ acara.title|slugify }}&via=csisindonesia" data-width="100">
                                                     <i class="fab fa-twitter"></i>
                                                     <span>Twitter</span>
                                                 </a>
-                                                <a class="btn btn-xs btn-slide btn-instagram" href="#" data-width="118">
-                                                    <i class="fab fa-instagram"></i>
-                                                    <span>Instagram</span>
+                                                <a class="btn btn-xs btn-slide btn-instagram" href="https://api.whatsapp.com/send?text={{ acara.title }} https://csis.or.id/event/{{ acara.title |slugify }}" data-width="118">
+                                                    <i class="fab fa-whatsapp"></i>
+                                                    <span>Whatsapp</span>
                                                 </a>
-                                                <a class="btn btn-xs btn-slide btn-googleplus" href="mailto:#" data-width="80">
+                                                <a class="btn btn-xs btn-slide btn-mail" href="mailto:?subject={{ acara.title }}&body={{ acara.title }} - https://csis.or.id/event/{{ acara.title |slugify }}" data-width="80">
                                                     <i class="icon-mail"></i>
                                                     <span>Mail</span>
                                                 </a>
@@ -127,13 +131,13 @@
                                                     <div class="post-item-wrap col-lg-3">
                                                        <p><b>Welcoming Remarks</b></p>
                                                         <div class="post-image">
-                                                            <a href="/scholar/{{a.name | slugify}}">
+                                                            <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
                                                                 <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" >
                                                             </a>
                                                             
                                                         </div>
                                                         <div class="post-item-description-2">
-                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{a.name}}</a></h2>
+                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">{{a.name}}</a></h2>
                                                             <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
                                                         </div>
                                                     </div>
@@ -145,7 +149,7 @@
                                                     <div class="post-item-wrap col-lg-3">
                                                         <p><b>Closing Remarks</b></p>
                                                         <div class="post-image">
-                                                            <a href="/scholar/{{a.name | slugify}}">
+                                                            <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
                                                                 <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" >
                                                             </a>
                                                             
@@ -245,7 +249,7 @@
                                             <div class="post-thumbnail-entry">
                                                 <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}">
                                                 <div class="post-thumbnail-content">
-                                                    <a href="">{{a.title}}</a>
+                                                    <a href="/event/{{ a.title |slugify }}">{{a.title}}</a>
                                                     <span class="post-date"><i class="icon-clock"></i> {{a.date_created |date:"d b Y"}}</span>
                                                    
                                                 </div>
@@ -259,7 +263,7 @@
                                             <div class="post-thumbnail-entry">
                                                 <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{b.image}}">
                                                 <div class="post-thumbnail-content">
-                                                    <a href="">{{b.title}}</a>
+                                                    <a href="/event/{{ b.title |slugify }}">{{b.title}}</a>
                                                     <span class="post-date"><i class="icon-clock"></i> {{b.date_created |date:"d b Y"}}</span>
                                                 </div>
                                             </div>

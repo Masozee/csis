@@ -9,6 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from config.models import *
 
 
+
 def page_not_found_view(request, exception):
     return render(request, 'web/404.html', status=404)
 
@@ -244,8 +245,8 @@ def topic(request):
 
 def topicDetail(request, Topic_slug):
     news = Topic.objects.get(slug=Topic_slug)
-    expert_related = news.person_set.all()
-    article_related = news.publication_set.all()
+    expert_related = news.person_set.filter(category = 'Scholar')
+    article_related = news.publication_set.filter(publish = True)
     event_related = Event.objects.filter(topic=news).order_by('date_created')
     
     context = {
@@ -312,3 +313,23 @@ def Publications_query(request):
     }
 
     return render(request, "web/results.html", context)
+
+def career(request):
+    karir = Career.objects.filter(publish=True).order_by("id")
+
+    context = {
+        'Karir':karir,
+    }
+    return render(request, "web/fellow.html", context)
+
+
+def careerDetail(request, Career_slug):
+    qs = Career.objects.get(slug=Career_slug)
+    karir = Career.objects.filter(publish=True).order_by("id")
+
+    context = {
+        "Karir": karir,
+        "qs": qs
+
+    }
+    return render(request, "web/fellow-detail.html", context)
