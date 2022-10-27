@@ -227,7 +227,7 @@
                         <div class="btn-csis">
                             <a href="{{acara.link}}"><button  type="button" class="btn btn-primary btn-block side-video">Register</button></a>
                             {% if acara.file %}
-                            <a href="/media/{{ acara.file }}"><button  type="button" class="btn btn-primary btn-block side-video">Download</button></a>
+                            <a href="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{ acara.file }}"><button  type="button" class="btn btn-primary btn-block side-video">Download</button></a>
                             {% endif %}
                         </div>
                         <!--Tabs with Posts-->
