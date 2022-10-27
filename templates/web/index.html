@@ -43,7 +43,7 @@
                                     <div class="portfolio-description">
                                         <a href="/publication/{{a.title | slugify}}">
                                             <h3>{{a.title}}</h3>
-                                            <span>{% for b in a.authors.all %}{{b.name}}{% endfor %} | {{a.category}}</span>
+                                            <span>{% for b in a.authors.all %}{% if forloop.first %}{% else %}{% if forloop.last %} and {% else %}, {% endif %}{% endif %}{{b.name}}{% endfor %} | {{a.category}}</span>
                                         </a>
                                     </div>
                                 </div>
@@ -88,7 +88,8 @@
                                 <div class="title-event">
                                     <p>{{c.date_start |date:"d b Y"}}</p>
                                     <h3> <a href="/event/{{c.title|slugify}}" style="text-decoration: none; color: #3c4043 ;">{{c.title}}</a></h3>
-                                    <p>{% for a in c.speaker.all %}{{a.name}}, {% endfor %}</p>
+
+                                    <p>{% for a in c.speaker.all %}{% if forloop.first %}{% else %}{% if forloop.last %} and {% else %}, {% endif %}{% endif %}{{a.name}}{% endfor %}</p>
                                 </div>
                                 <div class="line-10 text-justify"></div>
                             </div>
