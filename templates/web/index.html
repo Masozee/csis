@@ -1,6 +1,19 @@
 {% extends 'web/base.html' %}
 {% load static %}
 
+{% block OG %}
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Centre for Strategic and International Studies" />
+    <meta name="description" content="Centre for Strategic and International Studies">
+    <link rel="icon" type="image/png" href="https://s3-csis-web.s3.amazonaws.com/static/web/images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Primary Meta Tags -->
+    <title>Centre for Strategic and International Studies</title>
+    <meta name="title" content="Centre for Strategic and International Studies">
+    <meta name="description" content="The Centre for Strategic and International Studies (CSIS) in Jakarta is an independent, non-profit organisation focusing on policy-oriented studies on domestic and international issues. It was established in 1971.">
+{% endblock %}
+
 {% block content %}
         <div id="slider" class="inspiro-slider dots-creative" data-height-xs="400">
             {% for object in slider %}
