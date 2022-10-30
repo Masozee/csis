@@ -3,7 +3,7 @@
 
 {% block OG %} 
     <title>{{scholar.name}}</title>
-    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{scholar.image}}" />
+    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{scholar.photo}}" />
     <meta property="og:image:secure_url" content="{{ request.get_full_path }}" />
     <meta property="og:image:width" content="400" />
     <meta property="og:image:height" content="300" />
@@ -20,7 +20,7 @@
     <meta property="twitter:url" content="{{ request.get_full_path }}">
     <meta property="twitter:title" content="{{scholar.name}}">
     <meta property="twitter:description" content="{{scholar.description | safe| truncatewords_html:10}} ">
-    <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{scholar.image}}">
+    <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{scholar.photo}}">
         <!-- Document title -->
 {% endblock OG%}
 
