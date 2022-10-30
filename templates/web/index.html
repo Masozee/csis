@@ -59,7 +59,7 @@
                             <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
                                 <div class="portfolio-item-wrap">
                                     <div class="portfolio-image">
-                                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}" alt=""></a>
+                                        <a href="#"><img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}" alt="" loading="lazy"></a>
                                     </div>
                                     <div class="portfolio-description">
                                         <a href="/publication/{{a.title | slugify}}">
@@ -82,7 +82,7 @@
                                 <div class="post-item-wrap col-lg-4">
                                     <div class="post-image">
                                         <a href="/publication/{{a.title | slugify}}">
-                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}">
+                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}" loading="lazy">
                                         </a>
                                         
                                     </div>
@@ -121,31 +121,19 @@
                 </div>
             </div>
         </section>
-        <section style="background-color: #1B5354">
+        <section style="background-color: #1B5354" >
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 text-white">
+                    <div class="col-lg-7 text-white">
                         <div class="col-lg-12" data-animate="fadeIn">
                             <div class="heading-text heading-section">
                                 <h2 style="font-size: 30px; font-weight: 500;">Newsletter</h2>
                                 <p style="font-weight: 400;">Our newsletter covers our recent updates and upcoming programs. You will also find links to commentaries and/or working papers that we publish.</p>
-                            </div> 
+                                <a href="http://newsletter.csis.or.id"><button class="btn center btn-success" style=" bottom: 0;" >Subscribe</button></a>
+                            </div>
                         </div>
                     </div> 
-                    <div class="col-lg-5">
-                        <form class="widget-contact-form" novalidate action="#" role="form" method="post" style="padding-top: 100px;">
-                            <div class="row">
-                                
-                                <div class="form-group col-md-8 col-lg-8">
-                                    
-                                    <input type="email" aria-required="true" required name="widget-contact-form-email" class="form-control required email" placeholder="Enter your Email">
-                                </div>
-                                <div class="form-group col-md-4 col-lg-4" >
-                                    <button class="btn center btn-success" type="submit" id="form-submit" style=" bottom: 0;">Subscribe</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>                 
+
                 </div>
             </div>
 
@@ -170,10 +158,10 @@
                             <h3>CSIS Youtube</h3>
                             <p>If you have missed out on our events, check out our YouTube to watch the full recording of them.</p>
                             <a href="https://www.youtube.com/channel/UC32liYPlV2F9r5PVdW8434g" class="btn btn-dark">Explore more</a>
-  
+
                             
                         </div>
-                        
+
                         
                     </div>
                     <div class="col-lg-6">
