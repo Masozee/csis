@@ -1,6 +1,29 @@
 {% extends 'web/base.html' %}
 {% load static %}
 
+{% block OG %} 
+    <title>{{scholar.name}}</title>
+    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{scholar.image}}" />
+    <meta property="og:image:secure_url" content="{{ request.get_full_path }}" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="{{scholar.description | safe| truncatewords_html:10}}" />
+
+<!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.get_full_path }}">
+    <meta property="og:title" content="{{scholar.title}}">
+    <meta property="og:description" content="{{scholar.description | safe| truncatewords_html:10}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="{{ scholar.name }}">
+    <meta property="twitter:url" content="{{ request.get_full_path }}">
+    <meta property="twitter:title" content="{{scholar.name}}">
+    <meta property="twitter:description" content="{{scholar.description | safe| truncatewords_html:10}} ">
+    <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{scholar.image}}">
+        <!-- Document title -->
+{% endblock OG%}
+
 {% block content %}
         <section id="page-title" style="background-color:#005354; width: 100%">
             <div class="container text-center">
