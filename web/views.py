@@ -71,20 +71,22 @@ def Scholars(request):
 
 def ScholarDetail(request, Person_slug):
     scholar = Person.objects.get(slug=Person_slug)
-    publication = Publication.objects.filter( authors = scholar.id).order_by('-date_publish')[:6]
-    paginator = Paginator(publication, 9)
+    publication = Publication.objects.filter( authors = scholar.id).order_by('-date_publish')
+    publication_count = publication.count()
+    publication_truncate = publication[:6]
 
-    page = request.GET.get('page')
-    try:
-        publication = paginator.page(page)
-    except PageNotAnInteger:
-        publication = paginator.page(1)
-    except EmptyPage:
-        publication = paginator.page(paginator.num_pages)
+    ext_publication = ExternalPublications.objects.filter(author = scholar.id).order_by('-date')
+    ext_publication_count = ext_publication.count()
+    ext_publication_truncate = ext_publication[:6]
+
     
     context = {
         "scholar": scholar,
-        "publication": publication,
+        "publication": publication_truncate,
+        "count": publication_count,
+        "extpub": ext_publication_truncate,
+        "extpub_count":ext_publication_count,
+
     }
     return render(request, "web/researcher-detail.html", context)
 
@@ -333,3 +335,23 @@ def careerDetail(request, Career_slug):
 
     }
     return render(request, "web/fellow-detail.html", context)
+
+def extpub(request):
+    ext = ExternalPublications.objects.filter(publish= True).order_by('-date')
+
+    paginator = Paginator(ext, 16)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        ext = paginator.page(page)
+    except PageNotAnInteger:
+        ext = paginator.page(1)
+    except EmptyPage:
+        ext = paginator.page(paginator.num_pages)
+
+    context = {
+        "objects": ext,
+
+
+    }
+    return render(request, "web/external-publication.html", context)

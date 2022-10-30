@@ -328,3 +328,31 @@ class Foundation(models.Model):
         value = self.Title
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
+
+class ExternalPublications(models.Model):
+    N = '0'
+    P = '1'
+    D = '2'
+
+    KATEGORI_PAPER_CHOICES = (
+        (N, 'News'),
+        (P, 'Paper'),
+        (D, 'Book'),
+    )
+    title = models.CharField(max_length=350)
+    author = models.ForeignKey(Person, on_delete=models.CASCADE, limit_choices_to={'category': "Scholar"})
+    link = models.URLField(blank=True,null=True)
+    category = models.CharField(max_length=2, choices=KATEGORI_PAPER_CHOICES)
+    source = models.CharField(max_length=50, blank=True, null=True)
+    file = models.FileField(upload_to='externalpublications/', blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    publish = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = ("External Publications")
+        verbose_name_plural = ("External Publications")

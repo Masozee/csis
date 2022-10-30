@@ -21,12 +21,11 @@ urlpatterns = [
     path('faq/', TemplateView.as_view(template_name='web/faq.html'), name='faq'),
     path('privacy-policy/', TemplateView.as_view(template_name='web/home-grid.html'), name='privacy-policy'),
     path('about-us/', TemplateView.as_view(template_name='web/about.html'), name='about'),
-    path('internship-and-fellowship/', TemplateView.as_view(template_name='web/home-grid.html'), name='intern'),
-    path('institutional-partnership/', TemplateView.as_view(template_name='web/home-grid.html'), name='partner'),
     re_path('department/(?P<Department_slug>[\w-]+)/$', webviews.DepartmentDetail, name='dept-detail'),
     path('boards-of-executive-directors/', webviews.bod, name='bod'),
     path('csis-foundation/', webviews.yayasan, name='yayasan'),
     path('search/', webviews.post_search, name='post_search'),
     path('careers/', webviews.career, name='career'),
     re_path('careers/(?P<Career_slug>[\w-]+)/$', webviews.careerDetail, name='career-detail'),
+    path('external-publications/', webviews.extpub, name='external-publications'),
 ]   

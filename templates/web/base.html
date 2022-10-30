@@ -10,6 +10,8 @@
     <meta name="description" content="Centre for Strategic and International Studies">
     <link rel="icon" type="image/png" href="https://s3-csis-web.s3.amazonaws.com/static/web/images/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="title" content="Centre for Strategic and International Studies">
+    <meta name="description" content="The Centre for Strategic and International Studies (CSIS) in Jakarta is an independent, non-profit organisation focusing on policy-oriented studies on domestic and international issues. It was established in 1971.">
 
     {% block OG %}
     {% endblock %}
@@ -55,15 +57,6 @@
                             <li>
                                 <a id="btn-search" href="#"> <i class="icon-search"></i></a>
                             </li>
-                            <!--li>
-                                <div class="p-dropdown"> <a href="#"><i class="icon-globe"></i><span>EN</span></a>
-                                    <ul class="p-dropdown-content">
-                                        <li><a href="#">Indonesia</a></li>
-                                        <li><a href="#">English</a></li>
-                                    </ul>
-                                </div>
-                            </li-->
-                            
                         </ul>
                     </div>
                     <!--end: Header Extras-->
@@ -139,6 +132,7 @@
                                                             {% for d in cat %}
                                                             <a href="/publications/{{d.name | slugify}}"><li class="mega-menu-title">{{d.name}}</li></a>
                                                             {% endfor %}
+                                                            <a href="{% url 'external-publications' %}"><li class="mega-menu-title">External Publications</li></a>
                                                         </ul>
                                                     </div>
                                                     

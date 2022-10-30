@@ -135,4 +135,15 @@ class foundation_admin(ImportExportModelAdmin, admin.ModelAdmin):
 admin.site.register(Foundation, foundation_admin)
 
 
+class external_admin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('title', 'author','source','category', 'date', 'publish')
+    list_display_links = ('title', 'author')
+    list_filter = ('category', 'publish',)
+    search_fields = [('title', 'source')]
+    date_hierarchy = 'date'
+    readonly_fields = ('date_created', 'date_modified')
+    autocomplete_fields = ['author', ]
+    actions = [make_published]
+admin.site.register(ExternalPublications, external_admin)
+
 

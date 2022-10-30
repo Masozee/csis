@@ -8,9 +8,40 @@
                     <div class="profile col-lg-4" style="padding-right: 100px;">
                         <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{scholar.photo}}" style="max-height: 300px; border-radius: 50%;" alt="">
                     </div>
-                    <div class=" text-white text-left col-lg-8" >
+                    <div class="text-white text-right col-lg-8" >
                         <h2>{{scholar.name}}</h2>
                         <h3>{{scholar.position}}</h3>
+                        <h4>{{ count }} Publications {% if extpub_count %} , {{ extpub_count }} External Publications {% endif %}</h4>
+                        <div class="align-center p-t-5">
+                                    {% if scholar.facebook %}
+                                    <a class="btn btn-xs btn-slide btn-info" href="{{scholar.facebook}}">
+                                        <i class="fab fa-facebook-f"></i>
+                                        <span>Facebook</span>
+                                    </a>
+                                    {% endif %}
+
+                                    {% if scholar.twitter %}
+                                    <a class="btn btn-xs btn-slide btn-info" href="{{ scholar.twitter }}" data-width="100">
+                                        <i class="fab fa-twitter"></i>
+                                        <span>Twitter</span>
+                                    </a>
+                                    {% endif %}
+
+                                    {% if scholar.linkedin %}
+                                    <a class="btn btn-xs btn-slide btn-info" href="{{ scholar.linkedin }}" data-width="118">
+                                        <i class="fab fa-linkedin"></i>
+                                        <span>Linkedin</span>
+                                    </a>
+
+                                    {% endif %}
+
+                                    {% if scholar.email %}
+                                    <a class="btn btn-xs btn-slide btn-info" href="mailto:{{ scholar.email }}" data-width="80">
+                                        <i class="icon-mail"></i>
+                                        <span>Mail</span>
+                                    </a>
+                                    {% endif %}
+                                </div>
                     </div>
                 </div>
             </div>
@@ -31,12 +62,14 @@
                 </div>
             </div>
             </div>
-        
-            <div class="container">
+        </section>
+    {% if publication %}
+        <section class="bg-light">
+            <div class="container ">
                 <div class="row  m-b-50">
                     <div class="col-lg-3">
                         <div class="heading-text heading-section">
-                            <h4 class="text-end">Publications</h4>
+                            <h4 class="text-end">Latest <br>Publications</h4>
                         </div>
                     </div>
                     
@@ -46,11 +79,10 @@
                             <!-- Post item-->
                             <div class="post-item ">
                                 <div class="row">
-                        
                                 {% for a in publication %}
                                 <div class="post-item-wrap col-lg-4">
                                     
-                                    <div class="post-item-description-2">
+                                    <div class="post-item-description-2 pb-lg-3">
                                         <p>{{a.category}}</p>
                                         <h2><a href="/publication/{{a.title | slugify}}">{{a.title}}</a></h2>
                                         <p>{% for b in a.authors.all %}{% if forloop.first %}{% else %}{% if forloop.last %} and {% else %}, {% endif %}{% endif %}{{b.name}}{% endfor %}</p>
@@ -58,6 +90,8 @@
                                     <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                                 </div>
                                 {% endfor %}
+
+
                         
                             </div>
                             </div>
@@ -66,30 +100,59 @@
                         </div>
                         
                         <!-- end: Blog -->
-                        <!-- Pagination -->
-                        <ul class="pagination">
-                            {% if publications.has_previous  %}
-                            <li class="page-item"><a class="page-link" href="?page=1"><i class="fa fa-angle-left"></i></a></li>
-                            {% endif %}
-                            {% for n in publications.paginator.page_range %}
-                                {% if publications.number == n %}
-                                <li class="page-item"><a class="page-link" href="#">{{ n }}</a></li>
-                                {% elif n > publications.number|add:'-2' and n < publications.number|add:'2' %}
-                                <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
-                                {% endif %}
-                            {% endfor %}
 
-                            {% if berita.has_next %}
-                            <li class="page-item"><a class="page-link" href="?page={{ publications.paginator.num_pages }}"><i class="fa fa-angle-right"></i></a></li>
-                            {% endif %}
 
-                        </ul>
-                <!-- end: Pagination -->
                     </div>
                 </div>
                 
             </div>
         </section>
+    {% endif %}
+        {% if extpub %}
+        <section>
+            <div class="container ">
+                <div class="row  m-b-50">
+                    <div class="col-lg-3">
+                        <div class="heading-text heading-section">
+                            <h4 class="text-end">External <br>Publications</h4>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9">
+
+                        <div id="blog" class="grid-layout col-lg-12 pt-5" data-item="post-item">
+                            <!-- Post item-->
+                            <div class="post-item ">
+                                <div class="row">
+
+                                {% for a in extpub %}
+                                <div class="post-item-wrap col-lg-4">
+
+                                    <div class="post-item-description-2 pb-lg-3">
+                                        <p>{{a.get_category_display}}</p>
+                                        <h2><a href="{{ a.link }}">{{a.title}}</a></h2>
+                                        <p>{{ a.source }} | {{ a.date }}{% if a.file %}| <a href="{{ a.file }}">Download</a>{% endif %}</p>
+                                    </div>
+                                    <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            </div>
+                            <!-- end: Post item-->
+
+                        </div>
+
+                        <!-- end: Blog -->
+
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        {% endif %}
         <!-- end: SECTION FULLSCREEN -->
     </div>
    {% endblock %}

@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block OG %} 
-
+    <title>{{publications.title}}</title>
     <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{publications.image}}" />
     <meta property="og:image:secure_url" content="{{ request.get_full_path }}" />
     <meta property="og:image:width" content="400" />
@@ -46,7 +46,6 @@
     <meta property="og:url" content="{{ request.get_full_path }}">
     <meta property="og:title" content="{{publications.title}}">
     <meta property="og:description" content="{{publications.description | safe| truncatewords_html:10}}">
-    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{publications.image}}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="CSIS publications">
