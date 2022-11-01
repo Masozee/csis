@@ -1,6 +1,24 @@
 {% extends 'web/base.html' %}
 {% load static %}
 
+
+{% block OG %}    <!-- Open Graph / Facebook -->
+    <title>CSIS Scholars</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.get_full_path }}">
+    <meta property="og:title" content="Centre for Strategic and International Studies">
+    <meta property="og:description" content="The Centre for Strategic and International Studies (CSIS) in Jakarta is an independent, non-profit organisation focusing on policy-oriented studies on domestic and international issues. It was established in 1971.">
+    <meta property="og:image" content="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="CSIS Scholars">
+    <meta property="twitter:url" content="{{ request.get_full_path }}">
+    <meta property="twitter:title" content="Centre for Strategic and International Studies">
+    <meta property="twitter:description" content="The Centre for Strategic and International Studies (CSIS) in Jakarta is an independent, non-profit organisation focusing on policy-oriented studies on domestic and international issues. It was established in 1971.">
+    <meta property="twitter:image" content="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png">
+        <!-- Document title -->
+{% endblock OG%}
+
 {% block content %}
 
         <!-- Page title -->
