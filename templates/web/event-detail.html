@@ -181,7 +181,7 @@
                                                     <div class="post-item-wrap col-lg-3">
                                                         <p><b>Moderator</b></p>
                                                         <div class="post-image">
-                                                            <a href="/scholar/{{acara.Moderator.name | slugify}}">
+                                                            <a href={% if acara.Moderator.category == 'Scholar' %}"/scholar/{{acara.Moderator.name | slugify}}"{% elif acara.Moderator.category == 'Colleague' %} "{{ acara.Moderator.external_profile }}" {% else %} "#" {% endif %}>
                                                                 {% if acara.Moderator.photo %}
                                                                     <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.Moderator.photo}}" >
                                                                 {% else %}
@@ -192,7 +192,7 @@
                                                             
                                                         </div>
                                                         <div class="post-item-description-2">
-                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="/scholar/{{a.name | slugify}}">{{acara.Moderator.name}}</a></h4>
+                                                            <h4 class="pb-0" style="font-size: smaller;"><a href="{% if acara.Moderator.category == 'Scholar' %}"/scholar/{{acara.Moderator.name | slugify}}"{% elif acara.Moderator.category == 'Colleague' %} "{{ acara.Moderator.external_profile }}" {% else %} "#" {% endif %}">{{acara.Moderator.name}}</a></h4>
                                                             <p class="pb-4" style="font-size: smaller;">{{acara.Moderator.position}} <br> {{acara.Moderator.organization}}</p>
                                                         </div>
                                                     </div>
