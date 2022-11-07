@@ -139,7 +139,11 @@
                                                            <p><b>Welcoming Remarks</b></p>
                                                             <div class="post-image">
                                                                 <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
+                                                                    {% if a.photo %}
                                                                     <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" >
+                                                                    {% else %}
+                                                                    <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png">
+                                                                    {% endif %}
                                                                 </a>
 
                                                             </div>
@@ -157,7 +161,11 @@
                                                             <p><b>Closing Remarks</b></p>
                                                             <div class="post-image">
                                                                 <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
+                                                                    {% if a.photo %}
                                                                     <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" >
+                                                                    {% else %}
+                                                                    <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png">
+                                                                    {% endif %}
                                                                 </a>
 
                                                             </div>
@@ -174,7 +182,12 @@
                                                         <p><b>Moderator</b></p>
                                                         <div class="post-image">
                                                             <a href="/scholar/{{acara.Moderator.name | slugify}}">
-                                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.Moderator.photo}}" >
+                                                                {% if acara.Moderator.photo %}
+                                                                    <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/{{acara.Moderator.photo}}" >
+                                                                {% else %}
+                                                                    <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png">
+                                                                {% endif %}
+
                                                             </a>
                                                             
                                                         </div>
@@ -197,7 +210,11 @@
                                                         <div class="post-item-wrap col-lg-3">
                                                             <div class="post-image">
                                                                 <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
+                                                                {% if a.photo %}
                                                                     <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" >
+                                                                    {% else %}
+                                                                    <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png">
+                                                                    {% endif %}
                                                                 </a>
 
                                                             </div>

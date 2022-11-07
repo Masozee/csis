@@ -1,6 +1,29 @@
 {% extends 'web/base.html' %}
 {% load static %}
 
+{% block OG %}
+    <title>CSIS News</title>
+    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{publications.image}}" />
+    <meta property="og:image:secure_url" content="{{ request.get_full_path }}" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="{{publications.description | safe| truncatewords_html:10}}" />
+
+<!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.get_full_path }}">
+    <meta property="og:title" content="{{publications.title}}">
+    <meta property="og:description" content="{{publications.description | safe| truncatewords_html:10}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="CSIS publications">
+    <meta property="twitter:url" content="{{ request.get_full_path }}">
+    <meta property="twitter:title" content="{{publications.title}}">
+    <meta property="twitter:description" content="{{publications.description | safe| truncatewords_html:10}} ">
+    <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{publications.image}}">
+        <!-- Document title -->
+{% endblock OG%}
+
 {% block content %}
         <section id="page-title" style="background-image: linear-gradient(90deg, rgba(3,1,2,1) 10%, rgba(34,23,17,0.24693627450980393) 72%), url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/filip-mishevski-c5QdMcuFlgY-unsplash.jpeg');
                                     width: 100%; 
