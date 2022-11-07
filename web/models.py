@@ -120,6 +120,13 @@ class Person (models.Model):
             return f'/scholar/{self.slug}'
         return self.external_profile
 
+    @property
+    def profile_img(self):
+        if self.photo:
+            return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{self.photo}'
+        return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png'
+
+
 
 class TaggedProject(TaggedItemBase):
     content_object = models.ForeignKey('Project', on_delete=models.CASCADE)
