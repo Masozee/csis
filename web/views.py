@@ -355,3 +355,11 @@ def extpub(request):
 
     }
     return render(request, "web/external-publication.html", context)
+
+def faq(request):
+    a = FAQ.objects.filter(publish=True).order_by('-question')
+
+    context = {
+        "FAQobjects": a
+    }
+    return render(request, "web/faq.html", context)

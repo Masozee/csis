@@ -2,6 +2,7 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from web import views as webviews
 
+
 urlpatterns = [
     path('', webviews.home, name='home'),
     path('scholars/', webviews.Scholars, name='researcher'),
@@ -18,7 +19,7 @@ urlpatterns = [
     re_path('news/(?P<News_slug>[\w-]+)/$', webviews.newsDetail, name='news-detail'),
     path('research-topics/', webviews.topic, name='topic'),
     re_path('research-topic/(?P<Topic_slug>[\w-]+)/$', webviews.topicDetail, name='topic-detail'),
-    path('faq/', TemplateView.as_view(template_name='web/faq.html'), name='faq'),
+    path('faq/', webviews.faq, name='faq'),
     path('privacy-policy/', TemplateView.as_view(template_name='web/home-grid.html'), name='privacy-policy'),
     path('about-us/', TemplateView.as_view(template_name='web/about.html'), name='about'),
     re_path('department/(?P<Department_slug>[\w-]+)/$', webviews.DepartmentDetail, name='dept-detail'),
