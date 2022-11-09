@@ -79,20 +79,37 @@
                 <!-- end: Blog -->
                 <!-- Pagination -->
                 <ul class="pagination">
-                    {% if acara.has_previous  %}
-                    <li class="page-item"><a class="page-link" href="?page=1"><i class="fa fa-angle-left"></i></a></li>
-                    {% endif %}
-                    {% for n in acara.paginator.page_range %}
-                        {% if acara.number == n %}
-                        <li class="page-item"><a class="page-link" href="#">{{ n }}</a></li>
-                        {% elif n > acara.number|add:'-2' and n < acara.number|add:'2' %}
-                        <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
-                        {% endif %}
-                    {% endfor %}
+                     {% if acara.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ acara.previous_page_number }}">« Previous page</a></li>
 
-                    {% if acara.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ acara.paginator.num_pages }}"><i class="fa fa-angle-right"></i></a></li>
+                      {% if acara.number > 3 %}
+                          <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                        {% if acara.number > 4 %}
+                            <li class="page-item"><span class="page-link">...</span></li>
+                        {% endif %}
+                      {% endif %}
                     {% endif %}
+                    
+                    {% for num in acara.paginator.page_range %}
+                      {% if acara.number == num %}
+                          <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                      {% elif num > acara.number|add:'-2' and num < acara.number|add:'2' %}
+                          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    
+                    {% if acara.has_next %}
+                      {% if acara.number < acara.paginator.num_pages|add:'-3' %}
+                          <li class="page-item"><span class="page-link">...</span></li>
+                          <li class="page-item"><a class="page-link" href="?page={{ acara.paginator.num_pages }}">{{ acara.paginator.num_pages }}</a></li>
+                      {% elif acara.number < acara.paginator.num_pages|add:'-2' %}
+                          <li class="page-item"><a class="page-link" href="?page={{ acara.paginator.num_pages }}">{{ acara.paginator.num_pages }}</a></li>
+                      {% endif %}
+                    
+                        <li class="page-item"><a class="page-link" href="?page={{ acara.next_page_number }}">Next Page »</a></li>
+                    {% endif %}
+                
+
                 </ul>
                 <!-- end: Pagination -->
             </div>
