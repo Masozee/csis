@@ -9,8 +9,6 @@ from taggit.models import TaggedItemBase
 from django.utils.timezone import now
 from embed_video.fields  import  EmbedVideoField
 from datetime import date
-from taggit.managers import TaggableManager
-from taggit.models import TaggedItemBase
 from django.conf import settings
 from django.db.models import Q
 
@@ -126,6 +124,27 @@ class Person (models.Model):
             return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{self.photo}'
         return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png'
 
+class Donor(models.Model):
+    Nama = models.CharField(max_length=200)
+    slug = models.SlugField(default='', editable=False, max_length=160)
+    url = models.URLField(blank=True, null=True)
+    logo = models.ImageField(upload_to = 'donor/')
+    deskripsi = models.TextField(blank=True, null=True)
+    publish = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.Nama
+        
+    class Meta:
+        verbose_name = ("Donor")
+        verbose_name_plural = ("Donors")
+    
+    def save(self, *args, **kwargs):
+        value = self.Nama
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
 
 
 class TaggedProject(TaggedItemBase):
@@ -135,6 +154,7 @@ class Project(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=160)
     department = models.ManyToManyField(Department, blank=True)
+    donor = models.ManyToManyField(Donor, blank=True)
     project_member = models.ManyToManyField(Person)
     description = RichTextField()
     image = models.ImageField(upload_to = 'project/')
@@ -178,6 +198,7 @@ class Publication_category(models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
+
 class TaggedPublication(TaggedItemBase):
     content_object = models.ForeignKey('Publication', on_delete=models.CASCADE)
 
@@ -192,6 +213,7 @@ class Publication(models.Model):
         null=True, blank=True, on_delete=models.SET_NULL)
     topic = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
+    donor = models.ManyToManyField(Donor, blank=True)
     image = models.ImageField(upload_to = 'publication/')
     image_credit = models.TextField(blank=True, null=True)
     cover = models.ImageField(upload_to = 'publication/cover/', blank=True, null=True)
@@ -363,3 +385,6 @@ class ExternalPublications(models.Model):
     class Meta:
         verbose_name = ("External Publications")
         verbose_name_plural = ("External Publications")
+
+
+

@@ -11,6 +11,10 @@ from .models import *
 def make_published(modeladmin, request, queryset):
     queryset.update(publish=True)
 
+@admin.action(description='Unpublish')
+def make_unpublished(modeladmin, request, queryset):
+    queryset.update(publish=False)
+
 
 class deptAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['name']
@@ -146,4 +150,4 @@ class external_admin(ImportExportModelAdmin, admin.ModelAdmin):
     actions = [make_published]
 admin.site.register(ExternalPublications, external_admin)
 
-
+admin.site.register(Donor)

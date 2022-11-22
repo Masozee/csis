@@ -76,7 +76,7 @@ section.dark, .dark section { background-color: #1e2022; color: #2e2e2e; }
 /* ----------------------------------------------------------------------
     Page title
 -------------------------------------------------------------------------*/
-#page-title { clear: both; padding: 80px 0; background-color: #fbfbfb; position: relative; /* page header left*/ /* page header right*/ }
+#page-title { clear: both; padding: 80px 0; position: relative; /* page header left*/ /* page header right*/ }
 
 #page-title .page-title { text-align: left; padding: 0; }
 

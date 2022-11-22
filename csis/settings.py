@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'clearcache',
     'import_export',
+    'tools',
 ]
 
 MIDDLEWARE = [
