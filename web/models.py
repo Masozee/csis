@@ -124,6 +124,7 @@ class Person (models.Model):
             return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{self.photo}'
         return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png'
 
+
 class Donor(models.Model):
     Nama = models.CharField(max_length=200)
     slug = models.SlugField(default='', editable=False, max_length=160)
@@ -147,6 +148,13 @@ class Donor(models.Model):
         super().save(*args, **kwargs)
 
 
+    @property
+    def projectdonor(self):
+        return Project.objects.filter(donor = self)
+
+    @property
+    def publikasidonor(self):
+        return Publication.objects.filter(donor = self)
 class TaggedProject(TaggedItemBase):
     content_object = models.ForeignKey('Project', on_delete=models.CASCADE)
 

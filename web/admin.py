@@ -36,7 +36,7 @@ class projectadmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['title','department','project_member' ]
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['department', 'project_member']
+    autocomplete_fields = ['department', 'project_member', 'donor']
 
     def member(self, obj):
         return "\n, ".join([p.name for p in obj.project_member.all()])
@@ -72,14 +72,19 @@ class pubcatadmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['name',]
 admin.site.register(Publication_category, pubcatadmin)
 
-
-class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish')
-    list_filter = ('publish','department', 'category')
-    search_fields = ['title','authors__name']
+class DonorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('Nama', 'url', 'publish')
+    search_fields = ['Nama']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['project', 'authors','department', 'category', 'topic']
+admin.site.register(Donor, DonorAdmin)
+class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish', 'donors')
+    list_filter = ('publish','department', 'category')
+    search_fields = ['title','authors__name','donor__Nama']
+    date_hierarchy = 'date_created'
+    readonly_fields = ('date_created', 'date_modified')
+    autocomplete_fields = ['project', 'authors','department', 'category', 'topic', 'donor']
     actions = [make_published]
     list_per_page=15
         
@@ -89,6 +94,8 @@ class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
     def author(self, obj):
         return "\n, ".join([p.name for p in obj.authors.all()])
 
+    def donors(self, obj):
+        return "\n, ".join([p.Nama for p in obj.donor.all()])
     def save_model(self, request, obj, form, change):
         if obj.id == None:
            obj.added_by = request.user
@@ -150,4 +157,4 @@ class external_admin(ImportExportModelAdmin, admin.ModelAdmin):
     actions = [make_published]
 admin.site.register(ExternalPublications, external_admin)
 
-admin.site.register(Donor)
+

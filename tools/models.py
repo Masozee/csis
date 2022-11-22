@@ -2,14 +2,12 @@ from django.db import models
 
 # Create your models here.
 class Shorten(models.Model):
-    P = '0'
-    E = '1'
-    A = '2'
+
     
     STATUS_CHOICES =(
-        (P, 'Publications'),
-        (E, 'Events'),
-        (A, 'Article')
+        ('P', 'Publications'),
+        ('E', 'Events'),
+        ('A', 'Article')
     )
 
     Shorten = models.CharField(max_length=30, unique=True)
