@@ -30,6 +30,9 @@
                             <div class="tab-content" id="myTabContent2">
                                 <div class= "fade show text-justify" >
                                     {{ qs.content | safe }}
+                                    {% if qs.link %}
+                                   <a href = "{{qs.link}}"><button type="button" class="btn btn-primary btn-reveal">Apply</button></a>
+                                   {% endif %}
                                 </div>
 
                                 </div>
