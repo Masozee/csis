@@ -36,7 +36,7 @@
                                 <div class="tab-pane fade show {% if forloop.first %}active{% else %}{{ empty }} {% endif %} text-justify" id="{{ b.slug }}" role="tabpanel" aria-labelledby="{{ b.slug }}-tab">
                                    {{ b.content |safe }}
                                    {% if b.link %}
-                                   <button type="button" class="btn btn-primary btn-reveal">Apply</button>
+                                   <a href = "{{b.link}}"><button type="button" class="btn btn-primary btn-reveal">Apply</button></a>
                                    {% endif %}
                                 </div>
                                 {% endfor %}
