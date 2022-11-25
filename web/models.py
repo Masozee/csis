@@ -217,6 +217,7 @@ class Publication(models.Model):
     date_publish = models.DateField(blank=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
     authors = models.ManyToManyField(Person)
+    editor = models.ManyToManyField(Person, blank=True, related_name="publications_editor")
     category = models.ForeignKey(Publication_category, on_delete=models.CASCADE, blank=True, null=True)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
         null=True, blank=True, on_delete=models.SET_NULL)

@@ -48,8 +48,15 @@ class projectadmin(ImportExportModelAdmin, admin.ModelAdmin):
 admin.site.register(Project, projectadmin)
 
 
+class sessionAdmin(admin.TabularInline):
+    model = EventSession
+    autocomplete_fields = ['Speakers']
 
 class eventadmin(ImportExportModelAdmin, admin.ModelAdmin):
+    inlines = [
+        sessionAdmin,
+    ]
+
     list_display = ('title', 'dept','date_start','date_end','speakers', 'project', 'publish')
     list_filter = ('publish','department')
     search_fields = ['title',]
@@ -78,13 +85,14 @@ class DonorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
 admin.site.register(Donor, DonorAdmin)
+
 class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish', 'donors')
     list_filter = ('publish','department', 'category')
     search_fields = ['title','authors__name','donor__Nama']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['project', 'authors','department', 'category', 'topic', 'donor']
+    autocomplete_fields = ['project', 'editor', 'authors','department', 'category', 'topic', 'donor']
     actions = [make_published]
     list_per_page=15
         

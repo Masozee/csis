@@ -66,11 +66,30 @@
                         <h2>{{publications.title}}</h2>
 
                     </div>
+
+
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="page-title text-black text-left" >
+                    {% for b in publications.editor.all %}
+                        {% if b.name %}
+                        <h5>Editor : </h5>
+                        <div class="row">
+
+                        {% for f in publications.editor.all %}
+                            <div class="col-lg-6 col-md-6">
+                                <a href="{% if f.profile_url %}{{ f.profile_url }}{% else %}{{ empty }}{% endif %}">
+                                <h4>{{ f.name }}</h4>
+                                <h5 class="small">{{f.position}}<br><span>{{f.organization}}</span></h5>
+                                </a>
+                            </div>
+                        {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                         <h5>Authors : </h5>
                         <div class="row">
+
                         {% for f in publications.authors.all %}
                             <div class="col-lg-6 col-md-6">
                                 <a href="{% if f.profile_url %}{{ f.profile_url }}{% else %}{{ empty }}{% endif %}">
@@ -96,25 +115,7 @@
                 {% endif %}
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div id="blog" class="single-post">
-                            <!-- Post single item-->
-                            <div class="post-item">
-                                <div class="post-item-wrap">
-                                    <div class="post-image">
-                                        <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{publications.image}}" alt="">
-                                            {% if publications.image_credit %}
-                                                <div class="container">
-                                                    <p style="bottom: 0; font-size: 10px;">{{publications.credit|safe}}</p>
-                                                </div>
-                                            {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- content -->
+                                        <!-- content -->
                     <div class="content col-lg-8">
                         <!-- Blog -->
                         <div id="blog" class="single-post">
