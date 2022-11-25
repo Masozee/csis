@@ -164,6 +164,7 @@ class Project(models.Model):
     department = models.ManyToManyField(Department, blank=True)
     donor = models.ManyToManyField(Donor, blank=True)
     project_member = models.ManyToManyField(Person)
+    project_topic = models.ManyToManyField(Topic, blank=True)
     description = RichTextField()
     image = models.ImageField(upload_to = 'project/')
     periode_start = models.DateField(blank=True, null=True)

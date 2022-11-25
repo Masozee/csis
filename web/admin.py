@@ -36,7 +36,7 @@ class projectadmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['title','department','project_member' ]
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['department', 'project_member', 'donor']
+    autocomplete_fields = ['department', 'project_member', 'donor', 'project_topic']
 
     def member(self, obj):
         return "\n, ".join([p.name for p in obj.project_member.all()])
