@@ -37,6 +37,7 @@ class Career(models.Model):
     keterangan = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+    link = models.URLField(blank=True, null=True)
     publish = models.BooleanField(default=False)
 
 
