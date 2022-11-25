@@ -396,4 +396,18 @@ class ExternalPublications(models.Model):
         verbose_name_plural = ("External Publications")
 
 
+class EventSession(models.Model):
+    Title = models.CharField(max_length=150)
+    Events = models.ForeignKey(Event, on_delete=models.CASCADE)
+    Speakers = models.ManyToManyField(Person, blank=True)
+    Time = models.DateField(blank=True, null=True)
+    Start = models.TimeField(blank=True, null=True)
+    End = models.TimeField(blank=True, null=True)
+    Image = models.ImageField(upload_to = 'Event/session/')
 
+    def __str__(self):
+        return self.Title
+
+    class Meta:
+        verbose_name = ("Events Session")
+        verbose_name_plural = ("Events Sessions")
