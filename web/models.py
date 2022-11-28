@@ -400,6 +400,7 @@ class ExternalPublications(models.Model):
 class EventSession(models.Model):
     Title = models.CharField(max_length=150)
     Events = models.ForeignKey(Event, on_delete=models.CASCADE)
+    Moderator = models.ForeignKey(Person, blank=True, null=True,  on_delete=models.CASCADE, related_name="session_moderator")
     Speakers = models.ManyToManyField(Person, blank=True)
     Time = models.DateField(blank=True, null=True)
     Start = models.TimeField(blank=True, null=True)
