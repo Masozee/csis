@@ -27,7 +27,7 @@
     .center-cropped {
         object-fit: none; /* Do not scale the image */
         object-position: center; /* Center the image within the element */
-        height: 500px;
+        height: 800px;
         width: 100%;
         }
 </style>
@@ -71,29 +71,27 @@
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="page-title text-black text-left" >
-                    {% for b in publications.editor.all %}
-                        {% if b.name %}
+                        {% if publications.editor.all %}
                         <h5>Editor : </h5>
+                         {% endif %}
                         <div class="row">
-
                         {% for f in publications.editor.all %}
                             <div class="col-lg-6 col-md-6">
                                 <a href="{% if f.profile_url %}{{ f.profile_url }}{% else %}{{ empty }}{% endif %}">
-                                <h4>{{ f.name }}</h4>
+                                <h4 style="margin-bottom: 0px !important;">{{ f.name }}</h4>
                                 <h5 class="small">{{f.position}}<br><span>{{f.organization}}</span></h5>
                                 </a>
                             </div>
                         {% endfor %}
                         </div>
-                        {% endif %}
-                    {% endfor %}
+                        <br>
                         <h5>Authors : </h5>
                         <div class="row">
 
                         {% for f in publications.authors.all %}
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 pb-2">
                                 <a href="{% if f.profile_url %}{{ f.profile_url }}{% else %}{{ empty }}{% endif %}">
-                                <h4>{{ f.name }}</h4>
+                                <h4 style="margin-bottom: 0px !important;">{{ f.name }}</h4>
                                 <h5 class="small">{{f.position}}<br><span>{{f.organization}}</span></h5>
                                 </a>
                             </div>

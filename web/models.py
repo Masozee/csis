@@ -257,6 +257,7 @@ class Publication(models.Model):
 class TaggedEvent(TaggedItemBase):
     content_object = models.ForeignKey('Event', on_delete=models.CASCADE)
 
+
 class Event(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=320)
@@ -278,6 +279,7 @@ class Event(models.Model):
     link = models.URLField(blank=True, null=True)
     youtube = EmbedVideoField(blank=True, null=True)
     description = RichTextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     tags = TaggableManager(through=TaggedEvent)
@@ -413,3 +415,27 @@ class EventSession(models.Model):
     class Meta:
         verbose_name = ("Events Session")
         verbose_name_plural = ("Events Sessions")
+
+class SpeakerCategory(models.Model):
+    Title = models.CharField(max_length=30)
+    order = models.PositiveIntegerField()
+    keterangan = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.Title
+
+    class Meta:
+        verbose_name = ("Speaker Category")
+        verbose_name_plural = ("Speaker Categories")
+class EventSpeaker(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.PROTECT)
+    category = models.ForeignKey(SpeakerCategory, on_delete=models.PROTECT)
+    speakers = models.ManyToManyField(Person, blank=True)
+
+    def __str__(self):
+        return self.event
+
+    class Meta:
+        verbose_name = ("Event's Speaker")
+        verbose_name_plural = ("Event's Speakers")
+

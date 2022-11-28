@@ -104,7 +104,7 @@ section.dark, .dark section { background-color: #1e2022; color: #2e2e2e; }
 
 #page-title[data-bg-parallax], #page-title[data-bg-video] { background-color: #1e2022; }
 
-#header[data-transparent="true"] + #page-title { top: -120px; margin-bottom: -124px; position: relative; padding: 220px 0 160px 0; }
+#header[data-transparent="true"] + #page-title { top: -120px; margin-bottom: -124px; position: relative; padding: 220px 0 100px 0; }
 
 .dark #page-title, #page-title.dark { background-color: #1e2022; }
 
