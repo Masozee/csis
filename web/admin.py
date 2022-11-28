@@ -2,6 +2,7 @@ from unicodedata import category
 from django.contrib import admin
 from django.utils.html import format_html
 from import_export.admin import ImportExportModelAdmin
+from django.template.defaultfilters import truncatechars
 
 # Register your models here.
 from .models import *
@@ -43,18 +44,23 @@ class projectadmin(ImportExportModelAdmin, admin.ModelAdmin):
         
     def dept(self, obj):
         return "\n, ".join([p.name for p in obj.department.all()])
-      
-    
+
 admin.site.register(Project, projectadmin)
 
-
+class SpeakerCatAdmin(admin.ModelAdmin):
+    list_display = ('Title','order')
+    search_fields = ['Title']
+admin.site.register(SpeakerCategory, SpeakerCatAdmin)
 class sessionAdmin(admin.TabularInline):
     model = EventSession
     autocomplete_fields = ['Speakers', 'Moderator']
+class speakerAdmin(admin.TabularInline):
+    model = EventSpeaker
+    autocomplete_fields = ['speakers', 'category']
 
 class eventadmin(ImportExportModelAdmin, admin.ModelAdmin):
     inlines = [
-        sessionAdmin,
+        speakerAdmin, sessionAdmin
     ]
 
     list_display = ('title', 'dept','date_start','date_end','speakers', 'project', 'publish')
@@ -104,14 +110,6 @@ class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     def donors(self, obj):
         return "\n, ".join([p.Nama for p in obj.donor.all()])
-    def save_model(self, request, obj, form, change):
-        if obj.id == None:
-           obj.added_by = request.user
-           super().save_model(request, obj, form, change)
-
-        else:
-
-           super().save_model(request, obj, form, change)
 
 admin.site.register(Publication, publicationadmin)
 

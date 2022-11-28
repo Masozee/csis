@@ -11,6 +11,7 @@ from embed_video.fields  import  EmbedVideoField
 from datetime import date
 from django.conf import settings
 from django.db.models import Q
+from django.template.defaultfilters import truncatechars
 
 
 # Create your models here.
@@ -187,6 +188,11 @@ class Project(models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
+    @property
+    def short_title(self):
+        return truncatechars(self.title, 35)
+
+
 class Publication_category(models.Model):
     name = models.CharField(max_length=150)
     slug = models.SlugField(default='', editable=False, max_length=200)
@@ -246,6 +252,8 @@ class Publication(models.Model):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
+
+
     
     @property
     def tgl(self):
@@ -433,7 +441,7 @@ class EventSpeaker(models.Model):
     speakers = models.ManyToManyField(Person, blank=True)
 
     def __str__(self):
-        return self.event
+        return self.event.title
 
     class Meta:
         verbose_name = ("Event's Speaker")
