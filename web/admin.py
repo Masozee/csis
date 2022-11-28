@@ -50,7 +50,7 @@ admin.site.register(Project, projectadmin)
 
 class sessionAdmin(admin.TabularInline):
     model = EventSession
-    autocomplete_fields = ['Speakers']
+    autocomplete_fields = ['Speakers', 'Moderator']
 
 class eventadmin(ImportExportModelAdmin, admin.ModelAdmin):
     inlines = [
