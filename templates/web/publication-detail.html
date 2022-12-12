@@ -67,7 +67,6 @@
 
                     </div>
 
-
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <div class="page-title text-black text-left" >
@@ -107,7 +106,7 @@
         <section id="images-pub" class="sidebar-left">
             <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{publications.image}}" alt="" class="center-cropped">
                 {% if publications.image_credit %}
-                    <div class="container">
+                    <div class="container p-b-15">
                         <p style="bottom: 0; font-size: 10px;">{{publications.credit|safe}}</p>
                     </div>
                 {% endif %}
@@ -144,7 +143,30 @@
                                             </div>
                                             </div>
                                     </div>
-                                   
+
+                                    <div class="post-item ">
+                                                <div class="row">
+                                                    {% if publications.partner.all %}
+                                                    <h4 class="p-b-10">Partner(s) :</h4>
+
+                                                        {% for a in publications.partner.all %}
+
+                                                        <div class="post-item-wrap col-lg-3">
+                                                            <div class="post-image">
+                                                                <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
+                                                                    <img alt="" src="{{ a.profile_img }}" style="max-height: 50px;">
+                                                                </a>
+
+                                                            </div>
+                                                            <div class="post-item-description-2">
+                                                                <h4 class="pb-0" style="font-size: smaller;"><a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">{{a.name}}</a></h4>
+                                                            </div>
+
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
                                     
                                     <!-- Comments -->
                                     

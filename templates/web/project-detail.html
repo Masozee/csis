@@ -2,6 +2,30 @@
 {% extends 'web/base.html' %}
 {% load static %}
 
+{% block OG %}    <!-- Open Graph / Facebook -->
+    <title>{{projects.title}}</title>
+
+    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{projects.image}}" />
+    <meta property="og:image:secure_url" content="{{ request.get_full_path }}" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="{{projects.description | safe| truncatewords_html:10}}" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.get_full_path }}">
+    <meta property="og:title" content="{{projects.title}}">
+    <meta property="og:description" content="{{projects.description | striptags  | truncatewords_html:20}}">
+    <meta property="og:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{projects.image}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="CSIS Events">
+    <meta property="twitter:url" content="{{ request.get_full_path }}">
+    <meta property="twitter:title" content="{{projects.title}}">
+    <meta property="twitter:description" content="{{projects.description | striptags | truncatewords_html:50}} ">
+    <meta property="twitter:image" content="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{projects.image}}">
+        <!-- Document title -->
+{% endblock OG%}
+
 {% block content %}
         <section id="page-title" style="background-color:#005354; width: 100%">
             <div class="container">
@@ -83,12 +107,17 @@
 
                     <div class="content col-lg-4">
                         <div class="side-video">
-                            <h3>Partners: </h3>
-                            {% for a in projects.donor.all %}
-                            <img src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.logo}}" class="side-img" alt="">
-                                <h4>{{a.Nama}}</h4>
-
+                        {% if projects.partner %}
+                            <h4 class="p-b-15">Partners: </h4>
+                            {% for a in projects.partner.all %}
+                                <div class="post-thumbnail-entry">
+                                    <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" style="max-height: 70px">
+                                    <div class="post-thumbnail-content p-t-5">
+                                        <a href="{{ a.external_profile }}"><p>{{a.name}}</p></a>
+                                    </div>
+                                </div>
                             {% endfor %}
+                        {% endif %}
                         </div>
                         <br>
                         <div class="widget">

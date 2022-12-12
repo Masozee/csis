@@ -68,17 +68,17 @@
                     <h4 class="post-meta-date">
                         
                         {% if acara.date_end %}
-                        <i class="icon-calendar"></i> <small>Event date and time</small><br>
-                            <span style="padding-left: 25px;">{{acara.tgl}}</span>
+                        <small>Event date and time :</small><br>
+                            <span>{{acara.tgl}} |</span>
                         {% else %}
-                        <i class="icon-calendar"></i> <small>Start event</small><br>
-                            {{acara.tgl_one_day}}
+                        <small>Start event :</small><br>
+                            {{acara.tgl_one_day}} |
                         {% endif %}                         
-                        <span style="padding-left: 25px;">{{acara.time_start |time:'H:i'}} - {{acara.time_end |time:'H:i'}} (UTC+7)</span>
+                        <span>{{acara.time_start |time:'H:i'}} - {{acara.time_end |time:'H:i'}} (UTC+7)</span>
                         <br>
                         {% if acara.location %}
-                        <i class="icon-map"></i> <small>Location</small><br>
-                        <p>{{ acara.location }}</p>
+                        <small>Location :</small><br>
+                        <span>{{ acara.location }}</span>
                         {% endif %}
 
                     </h4>
@@ -212,6 +212,33 @@
                                                             <div class="post-item-description-2">
                                                                 <h4 class="pb-0" style="font-size: smaller;"><a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">{{a.name}}</a></h4>
                                                                 <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
+                                                            </div>
+
+                                                        </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div id="blog" class="grid-layout col-lg-12 pt-5 " data-item="post-item">
+                                            <!-- Post item-->
+                                            <div class="post-item ">
+                                                <div class="row">
+                                                    {% if acara.partner.all %}
+                                                    <h4 class="p-b-10">Partner(s) :</h4>
+
+                                                        {% for a in acara.partner.all %}
+
+                                                        <div class="post-item-wrap col-lg-3">
+                                                            <div class="post-image">
+                                                                <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
+                                                                    <img alt="" src="{{ a.profile_img }}" style="max-height: 50px;">
+                                                                </a>
+
+                                                            </div>
+                                                            <div class="post-item-description-2">
+                                                                <h4 class="pb-0" style="font-size: smaller;"><a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">{{a.name}}</a></h4>
                                                             </div>
 
                                                         </div>

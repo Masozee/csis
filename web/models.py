@@ -12,9 +12,13 @@ from datetime import date
 from django.conf import settings
 from django.db.models import Q
 from django.template.defaultfilters import truncatechars
+from django.core.validators import RegexValidator
 
 
 # Create your models here.
+phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
+
+
 class Department (models.Model):
     name = models.CharField(max_length=150)
     slug = models.SlugField(default='', editable=False, max_length=320)
@@ -65,8 +69,7 @@ class Topic(models.Model):
     
     def main_topic(self):
         return self.objects.all(parent__isNull=True)
-    
-    
+
     def sub_topic(self):
         return self.topic_set.select_related('parent')
 
@@ -76,14 +79,16 @@ class Person (models.Model):
         ('Staff', 'Staff'),
         ('Foundation', 'Foundation'),
         ('Speaker', 'Speaker'),
-        ('Colleague', 'Colleague')
+        ('Colleague', 'Colleague'),
+        ('Partner', 'Partner'),
+
     )
 
     name = models.CharField(max_length=150)
     slug = models.SlugField(default='', editable=False, max_length=160)
     photo = models.ImageField(upload_to = 'person/', blank=True, null=True)
-    position = models.CharField(max_length=150)
-    organization = models.CharField(max_length=100)
+    position = models.CharField(max_length=150, blank=True, null=True)
+    organization = models.CharField(max_length=100,blank=True, null=True)
     category = models.CharField(max_length=10, choices=KATEGORI_CHOICES)
     expertise = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
@@ -96,6 +101,9 @@ class Person (models.Model):
     order = models.PositiveIntegerField(blank=True,null=True)
     twitter = models.URLField(blank=True, null=True)
     facebook = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+    phoneNumber = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True, null=True, blank=True)
+    contactPerson = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     external_profile = models.URLField(default='#', blank=True, null=True)
@@ -105,8 +113,8 @@ class Person (models.Model):
         return self.name
         
     class Meta:
-        verbose_name = ("People and Partner")
-        verbose_name_plural = ("People and Partners")
+        verbose_name = ("Network")
+        verbose_name_plural = ("Networks")
     
     def save(self, *args, **kwargs):
         value = self.name
@@ -140,8 +148,8 @@ class Donor(models.Model):
         return self.Nama
         
     class Meta:
-        verbose_name = ("Donor")
-        verbose_name_plural = ("Donors")
+        verbose_name = ("Partner")
+        verbose_name_plural = ("Partners")
     
     def save(self, *args, **kwargs):
         value = self.Nama
@@ -163,7 +171,7 @@ class Project(models.Model):
     title = models.CharField(max_length=300)
     slug = models.SlugField(default='', editable=False, max_length=160)
     department = models.ManyToManyField(Department, blank=True)
-    donor = models.ManyToManyField(Donor, blank=True)
+    partner = models.ManyToManyField(Person, blank=True,related_name="Project_Partner", limit_choices_to={'category': "Partner"})
     project_member = models.ManyToManyField(Person)
     project_topic = models.ManyToManyField(Topic, blank=True)
     description = RichTextField()
@@ -262,6 +270,17 @@ class Publication(models.Model):
     def credit(self):
         return "Credit image : "+" "+self.image_credit
 
+    @property
+    def partner(self):
+        # Check if self.project is not None
+        if self.project is not None:
+            # Use the getattr() function to safely access the partner attribute
+            partners = getattr(self.project, "partner", None)
+        else:
+            partners = None
+
+        return partners
+
 class TaggedEvent(TaggedItemBase):
     content_object = models.ForeignKey('Event', on_delete=models.CASCADE)
 
@@ -327,6 +346,17 @@ class Event(models.Model):
     
     def waktu(self):
         return self.waktu_mulai.strftime('%H:%M') +" - "+ self.waktu_selesai.strftime('%H:%M')
+
+    @property
+    def partner(self):
+        # Check if self.project is not None
+        if self.project is not None:
+            # Use the getattr() function to safely access the partner attribute
+            partners = getattr(self.project, "partner", None)
+        else:
+            partners = None
+
+        return partners
 
 class TaggedNews(TaggedItemBase):
     content_object = models.ForeignKey('News', on_delete=models.CASCADE)
@@ -435,6 +465,7 @@ class SpeakerCategory(models.Model):
     class Meta:
         verbose_name = ("Speaker Category")
         verbose_name_plural = ("Speaker Categories")
+
 class EventSpeaker(models.Model):
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
     category = models.ForeignKey(SpeakerCategory, on_delete=models.PROTECT)

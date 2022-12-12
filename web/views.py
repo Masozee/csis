@@ -112,6 +112,7 @@ def Acara(request):
 
 def AcaraDetail(request, Event_slug):
     acara = Event.objects.get(slug=Event_slug)
+
     post_related = acara.tags.similar_objects()[:5]
     post_recent = Event.objects.all().order_by('-date_start').distinct()[:5]
 
@@ -300,7 +301,7 @@ def post_search(request):
             query = SearchQuery(q)
 
             results = Publication.objects.annotate(
-                rank=SearchRank(vector, query, cover_density=True)).order_by('-rank').distinct()
+                rank=SearchRank(vector, query, cover_density=False)).order_by('-rank').distinct()
 
     return render(request, 'web/search.html',
                   {'form': form,
