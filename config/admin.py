@@ -8,9 +8,6 @@ class SliderAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('title', 'url', 'image', 'show', 'date_created')
 admin.site.register(Slider, SliderAdmin)
 
-class CDAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('cdid', 'ket')
-admin.site.register(CodebookOrder, CDAdmin)
 
 class CareerAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('title', 'date_created', 'date_modified')

@@ -87,7 +87,7 @@ admin.site.register(Publication_category, pubcatadmin)
 
 
 class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish', 'donors')
+    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish', 'partners')
     list_filter = ('publish','department', 'category')
     search_fields = ['title','authors__name','partners__Nama']
     date_hierarchy = 'date_created'
@@ -102,8 +102,8 @@ class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
     def author(self, obj):
         return "\n, ".join([p.name for p in obj.authors.all()])
 
-    def donors(self, obj):
-        return "\n, ".join([p.Nama for p in obj.donor.all()])
+    def partners(self, obj):
+        return "\n, ".join([p.Nama for p in obj.partners.all()])
 
 admin.site.register(Publication, publicationadmin)
 
