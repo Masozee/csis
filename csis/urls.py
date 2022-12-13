@@ -16,6 +16,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('web.url')),
+    path('', include('tools.url')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('password-reset', auth_views.PasswordResetView.as_view(template_name="users/password_reset.html"),
          name="password_reset"),

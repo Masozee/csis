@@ -364,3 +364,11 @@ def faq(request):
         "FAQobjects": a
     }
     return render(request, "web/faq.html", context)
+
+def partners(request):
+    a = Person.objects.filter(category = 'Partner').order_by('name').exclude(name__icontains ='CSIS')
+
+    context = {
+        "partner": a
+    }
+    return render(request, "web/partners.html", context)

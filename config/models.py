@@ -53,32 +53,6 @@ class Career(models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
-class Partnership(models.Model):
-    N = '0'
-    I = '1'
-
-    KATEGORI_CHOICES = (
-        (N, 'Nasional'),
-        (I, 'Internasional'),
-    )
-
-    name = models.CharField(max_length=200)
-    url = models.URLField(blank=True, null=True)
-    logo = models.ImageField(upload_to='partnership')
-    about = models.TextField(blank=True, null=True)
-    kategori = models.CharField(max_length=1, choices=KATEGORI_CHOICES)
-    keterangan = models.TextField(blank=True, null=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(auto_now=True)
-    publish = models.BooleanField(default=False)
-
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = ("Partnership")
-        verbose_name_plural = ("Partnership")
 
 class FAQ(models.Model):
     question = models.TextField()

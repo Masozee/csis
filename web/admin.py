@@ -85,20 +85,14 @@ class pubcatadmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ['name',]
 admin.site.register(Publication_category, pubcatadmin)
 
-class DonorAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('Nama', 'url', 'publish')
-    search_fields = ['Nama']
-    date_hierarchy = 'date_created'
-    readonly_fields = ('date_created', 'date_modified')
-admin.site.register(Donor, DonorAdmin)
 
 class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish', 'donors')
     list_filter = ('publish','department', 'category')
-    search_fields = ['title','authors__name','donor__Nama']
+    search_fields = ['title','authors__name','partners__Nama']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
-    autocomplete_fields = ['project', 'editor', 'authors','department', 'category', 'topic', 'donor']
+    autocomplete_fields = ['project', 'editor', 'authors','department', 'category', 'topic', 'partners']
     actions = [make_published]
     list_per_page=15
         

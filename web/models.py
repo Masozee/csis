@@ -133,37 +133,6 @@ class Person (models.Model):
             return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{self.photo}'
         return f'https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/avatar.png'
 
-
-class Donor(models.Model):
-    Nama = models.CharField(max_length=200)
-    slug = models.SlugField(default='', editable=False, max_length=160)
-    url = models.URLField(blank=True, null=True)
-    logo = models.ImageField(upload_to = 'donor/')
-    deskripsi = models.TextField(blank=True, null=True)
-    publish = models.BooleanField(default=False)
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.Nama
-        
-    class Meta:
-        verbose_name = ("Partner")
-        verbose_name_plural = ("Partners")
-    
-    def save(self, *args, **kwargs):
-        value = self.Nama
-        self.slug = slugify(value, allow_unicode=True)
-        super().save(*args, **kwargs)
-
-
-    @property
-    def projectdonor(self):
-        return Project.objects.filter(donor = self)
-
-    @property
-    def publikasidonor(self):
-        return Publication.objects.filter(donor = self)
 class TaggedProject(TaggedItemBase):
     content_object = models.ForeignKey('Project', on_delete=models.CASCADE)
 
@@ -237,7 +206,7 @@ class Publication(models.Model):
         null=True, blank=True, on_delete=models.SET_NULL)
     topic = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
-    donor = models.ManyToManyField(Donor, blank=True)
+    partners = models.ManyToManyField(Person, blank=True,related_name="Publication_Partner", limit_choices_to={'category': "Partner"})
     image = models.ImageField(upload_to = 'publication/')
     image_credit = models.TextField(blank=True, null=True)
     cover = models.ImageField(upload_to = 'publication/cover/', blank=True, null=True)

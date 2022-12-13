@@ -1,0 +1,50 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block OG %}    <!-- Open Graph / Facebook -->
+    <title>About CSIS</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.get_full_path }}">
+    <meta property="og:title" content="Centre for Strategic and International Studies">
+    <meta property="og:description" content="The Centre for Strategic and International Studies (CSIS) in Jakarta is an independent, non-profit organisation focusing on policy-oriented studies on domestic and international issues. It was established in 1971.">
+    <meta property="og:image" content="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="CSIS Partners">
+    <meta property="twitter:url" content="{{ request.get_full_path }}">
+    <meta property="twitter:title" content="Centre for Strategic and International Studies">
+    <meta property="twitter:description" content="The Centre for Strategic and International Studies (CSIS) in Jakarta is an independent, non-profit organisation focusing on policy-oriented studies on domestic and international issues. It was established in 1971.">
+    <meta property="twitter:image" content="https://s3-csis-web.s3.amazonaws.com/static/web/logo.png">
+        <!-- Document title -->
+{% endblock OG%}
+
+{% block content %}
+
+        <section id="page-title" style="background-image: linear-gradient(90deg, rgba(3,1,2,1) 10%, rgba(34,23,17,0.24693627450980393) 72%), url('https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/static/web/1.jpeg'); width: 100%; background-size: cover;">
+            <div class="container">
+                <div class="page-title text-white text-center" >
+                    <h4>About Centre for Strategic and International Studies</h4>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center p-b-15">
+                        <h2>Our Partners</h2>
+                    </div>
+                </div>
+                <ul class="grid grid-4-columns">
+                    {% for b in partner %}
+                    <li style="height: 170px; text-align: center;">
+                        <a href="{{b.external_profile}}"><img src="{{b.profile_img}}" alt="" style="display: block; margin: auto; width: 170px;" ></a>
+                       
+                    </li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+        </section>
+        <!-- Footer -->
+{% endblock %}    
