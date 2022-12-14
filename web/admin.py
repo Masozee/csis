@@ -87,9 +87,9 @@ admin.site.register(Publication_category, pubcatadmin)
 
 
 class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish', 'partners')
+    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish')
     list_filter = ('publish','department', 'category')
-    search_fields = ['title','authors__name','partners__Nama']
+    search_fields = ['title','authors__name','partners__name']
     date_hierarchy = 'date_created'
     readonly_fields = ('date_created', 'date_modified')
     autocomplete_fields = ['project', 'editor', 'authors','department', 'category', 'topic', 'partners']
@@ -103,7 +103,7 @@ class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
         return "\n, ".join([p.name for p in obj.authors.all()])
 
     def partners(self, obj):
-        return "\n, ".join([p.Nama for p in obj.partners.all()])
+        return "\n, ".join([p.name for p in obj.partners.all()])
 
 admin.site.register(Publication, publicationadmin)
 
