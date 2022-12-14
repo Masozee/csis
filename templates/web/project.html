@@ -27,52 +27,87 @@
                 </div>
             </div>
         </section>
-       
-        <section id="page-content">
+       <section id="page-content" class="sidebar-right">
             <div class="container">
+                <!-- post content -->
+                <!-- Page title -->
+                <div class="page-title pb-5">
+                    <div class="breadcrumb float-left">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li><a href="{% url 'project' %}">Projects</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <hr>
                 <!-- end: Page title -->
                 <!-- Blog -->
-                <div id="blog" class="grid-layout post-4-columns m-b-30" data-item="post-item">
+                <div id="blog" class="grid-layout col-lg-12 pt-5" data-item="post-item">
                     <!-- Post item-->
-                    {% for a in projects %}
-                    <div class="post-item">
-                        
-                        <div class="post-item-wrap">
+                    <div class="post-item ">
+                        <div class="row">
+
+                        {% for a in projects %}
+                        <div class="post-item-wrap col-lg-4 p-b-15">
                             <div class="post-image">
                                 <a href="/project/{{a.title | slugify}}">
-                                    <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}">
+                                    <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}" >
                                 </a>
+
                             </div>
                             <div class="post-item-description-2">
-                                <h2><a href="/project/{{a.title | slugify}}">{{a.title}}
-                                    </a></h2>
-                         
-                                <a href="/project/{{a.title | slugify}}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+
+                                <h2><a href="/project/{{a.title | slugify}}">{{a.title}}</a></h2>
+
                             </div>
-                            
+                            <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                         </div>
-                        <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
+                        {% endfor %}
+
+                    </div>
                     </div>
                     <!-- end: Post item-->
-                    {% endfor %}
-                   </div>
-                   
+
+                </div>
+
                 <!-- end: Blog -->
                 <!-- Pagination -->
                 <ul class="pagination">
-                    {% if projects.has_previous  %}
-                    <li class="page-item"><a class="page-link" href="?page=1"><i class="fa fa-angle-left"></i></a></li>
-                    {% endif %}
-                    {% for n in projects.paginator.page_range %}
-                        {% if projects.number == n %}
-                        <li class="page-item"><a class="page-link" href="#">{{ n }}</a></li>
-                        {% elif n > projects.number|add:'-2' and n < projects.number|add:'2' %}
-                        <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+
+
+
+                    {% if projects.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ projects.previous_page_number }}">« Previous page</a></li>
+
+                      {% if projects.number > 3 %}
+                          <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                        {% if projects.number > 4 %}
+                            <li class="page-item"><span class="page-link">...</span></li>
                         {% endif %}
+                      {% endif %}
+                    {% endif %}
+
+                    {% for num in projects.paginator.page_range %}
+                      {% if projects.number == num %}
+                          <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                      {% elif num > projects.number|add:'-2' and num < projects.number|add:'2' %}
+                          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                      {% endif %}
                     {% endfor %}
 
-                    {% if berita.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ projects.paginator.num_pages }}"><i class="fa fa-angle-right"></i></a></li>
+                    {% if projects.has_next %}
+                      {% if projects.number < projects.paginator.num_pages|add:'-3' %}
+                          <li class="page-item"><span class="page-link">...</span></li>
+                          <li class="page-item"><a class="page-link" href="?page={{ projects.paginator.num_pages }}">{{ projects.paginator.num_pages }}</a></li>
+                      {% elif projects.number < projects.paginator.num_pages|add:'-2' %}
+                          <li class="page-item"><a class="page-link" href="?page={{ projects.paginator.num_pages }}">{{ projects.paginator.num_pages }}</a></li>
+                      {% endif %}
+
+                        <li class="page-item"><a class="page-link" href="?page={{ projects.next_page_number }}">Next Page »</a></li>
                     {% endif %}
 
                 </ul>
@@ -80,6 +115,5 @@
             </div>
             <!-- end: post content -->
         </section>
-        <!-- end: Content -->
-        <!-- Footer -->
+
      {% endblock %}

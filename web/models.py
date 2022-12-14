@@ -144,7 +144,7 @@ class Project(models.Model):
     project_member = models.ManyToManyField(Person)
     project_topic = models.ManyToManyField(Topic, blank=True)
     description = RichTextField()
-    image = models.ImageField(upload_to = 'project/')
+    image = models.ImageField(upload_to = 'project/', help_text="max height 1280px")
     periode_start = models.DateField(blank=True, null=True)
     periode_end = models.DateField(blank=True, null=True)
     publish = models.BooleanField(default=False)
