@@ -8,5 +8,6 @@ urlpatterns = [
     
    
     re_path('S/Test/', toolsviews.redirect_view, name='redirect'),
+    path('form/', TemplateView.as_view(template_name="shortcode-forms.html"), name ='form'),
     
-]   
+]
