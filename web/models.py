@@ -154,6 +154,14 @@ class Person (models.Model):
         super().save(*args, **kwargs)
 
     @property
+    def events(self):
+        return Event.objects.filter(topic=self, publish=True).order_by('-date_start')[:7]
+
+    @property
+    def publications(self):
+        return Publication.objects.filter(topic=self, publish=True).order_by('-date_publish')[:7]
+
+    @property
     def profile_url(self):
         if self.category == 'Scholar':
             return f'/scholar/{self.slug}'
@@ -472,8 +480,8 @@ class SpeakerCategory(models.Model):
         verbose_name_plural = ("Speaker Categories")
 
 class EventSpeaker(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.PROTECT)
-    category = models.ForeignKey(SpeakerCategory, on_delete=models.PROTECT)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    category = models.ForeignKey(SpeakerCategory, on_delete=models.CASCADE)
     speakers = models.ManyToManyField(Person, blank=True)
 
     def __str__(self):

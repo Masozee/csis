@@ -51,7 +51,7 @@ def home(request):
    
     print = Publication.objects.filter(publish=True, highlight=True).order_by('-date_publish').distinct()[:1]
     small_pub = Publication.objects.filter(publish=True).order_by('-date_publish').distinct()[:3]
-    acara = Event.objects.filter(publish=True).order_by('-date_start').distinct()[:5]
+    acara = Event.objects.filter(publish=True).order_by('-date_start').distinct()[:4]
     project = Project.objects.filter(publish=True).order_by('-date_created').distinct()[:2]
     slider = Slider.objects.filter(show=True).order_by('-date_created')
     
