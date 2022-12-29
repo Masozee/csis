@@ -49,27 +49,7 @@
                                 <div class="post-item-wrap">
                                     
                                     <div class="post-item-description">
-                                        <div class="post-meta">
-                                            
-                                            <div class="post-meta-share">
-                                                <a class="btn btn-xs btn-slide btn-facebook" href="#">
-                                                    <i class="fab fa-facebook-f"></i>
-                                                    <span>Facebook</span>
-                                                </a>
-                                                <a class="btn btn-xs btn-slide btn-twitter" href="#" data-width="100">
-                                                    <i class="fab fa-twitter"></i>
-                                                    <span>Twitter</span>
-                                                </a>
-                                                <a class="btn btn-xs btn-slide btn-linkedin" href="#" data-width="118">
-                                                    <i class="fab fa-linkedin"></i>
-                                                    <span>Linkedin</span>
-                                                </a>
-                                                <a class="btn btn-xs btn-slide btn-googleplus" href="mailto:" data-width="80">
-                                                    <i class="icon-mail"></i>
-                                                    <span>Mail</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        
                                         <span class="text-justify">{{Dept.description | safe}}</span>
                                     </div>
                                                                   
@@ -87,12 +67,13 @@
                         <div id="blog" class="grid-layout col-lg-12 pt-5" data-item="post-item">
                             <!-- Post item-->
                             <div class="post-item ">
+                                <h2 class="pb-5">Department's Scholars</h2>
                                 <div class="row">
                                     {% for a in lead %}
                                     <div class="post-item-wrap col-lg-3">
                                         <div class="post-image">
                                             <a href="/scholar/{{a.name | slugify}}">
-                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" >
+                                                <img alt="" src="{{a.profile_img}}" >
                                             </a>
                                             
                                         </div>
@@ -107,7 +88,7 @@
                                     <div class="post-item-wrap col-lg-3">
                                         <div class="post-image">
                                             <a href="/scholar/{{a.name | slugify}}">
-                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.photo}}" >
+                                                <img alt="" src="{{a.profile_img}}" >
                                             </a>
                                             
                                         </div>
@@ -128,8 +109,9 @@
             <div class="container">
                 <div id="blog" class="grid-layout col-lg-12 pt-5" data-item="post-item">
                     <div class="post-item ">
+                        <h2 class="pb-5">Publications</h2>
                         <div class="row">
-                            {% for a in publication %}
+                            {% for a in Dept.publications %}
                                 <div class="post-item-wrap col-lg-3 bg-slate-200">
                                         <div class="post-image">
                                             <a href="/publication/{{a.title | slugify}}">
@@ -152,6 +134,70 @@
                 </div>
             </div>
         </section>
+
+        {% if Dept.events %}
+        <section id="page-content" class="sidebar-right" style="background-color: #69696917;">
+            <div class="container">
+                <div id="blog" class="grid-layout col-lg-12 pt-5" data-item="post-item">
+                    <div class="post-item ">
+                        <h2>Events</h2>
+                        <div class="row">
+                            {% for a in Dept.events %}
+                                <div class="post-item-wrap col-lg-3 bg-slate-200">
+                                        <div class="post-image pt-4">
+                                            <a href="/event/{{a.title | slugify}}">
+                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}" >
+                                            </a>
+                                        </div>
+                                        <div class="post-item-description-2">
+                                            <p>{{a.date_start |date:"d b Y"}}</p>
+                                            <h2><a href="/event/{{a.title | slugify}}">{{a.title}}</a></h2>
+                                        </div>
+                                        <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
+                                </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                                <!-- end: Post item-->
+                                
+                </div>
+            </div>
+        </section>
+        {% endif%}
         <!-- end: Page Content -->
+
+        {% if Dept.projects %}
+        <section id="page-content" class="sidebar-right">
+            <div class="container">
+                <div id="blog" class="grid-layout col-lg-12 pt-0" data-item="post-item">
+                    
+                    <div class="post-item ">
+                        <h2 class="pb-5">Projects</h2>
+                        <div class="row">
+                            {% for a in Dept.projects %}
+                                <div class="post-item-wrap col-lg-3 bg-slate-200">
+                                        <div class="post-image">
+                                            <a href="/project/{{a.title | slugify}}">
+                                                <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{a.image}}" >
+                                            </a>
+                                        </div>
+                                        <div class="post-item-description-2">
+                                            
+                                            <h2><a href="/project/{{a.title | slugify}}">{{a.title}}</a></h2>
+                                            
+                                        </div>
+                                        <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
+                                </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                                <!-- end: Post item-->
+                                
+                </div>
+            </div>
+        </section>
+        {% endif %}
         <!-- Footer -->
  {% endblock %}

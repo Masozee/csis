@@ -42,6 +42,22 @@ class Department (models.Model):
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
 
+    @property
+    def events(self):
+        return Event.objects.filter(department=self, publish=True).order_by('-date_start')[:7]
+
+    @property
+    def projects(self):
+        return Project.objects.filter(department=self, publish=True)
+
+    @property
+    def peoples(self):
+        return Person.objects.filter(department=self, is_active=True, category='Scholar').order_by('name')
+
+    @property
+    def publications(self):
+        return Publication.objects.filter(department=self, publish=True).order_by('-date_publish')[:7]
+
 class Topic(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(default='', editable=False, max_length=320)
@@ -75,7 +91,7 @@ class Topic(models.Model):
 
     @property
     def events(self):
-        return Event.objects.filter(topic=self, publish=True).order_by('-time_start')[:7]
+        return Event.objects.filter(topic=self, publish=True).order_by('-date_start')[:7]
 
     @property
     def projects(self):

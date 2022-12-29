@@ -126,9 +126,9 @@ def AcaraDetail(request, Event_slug):
 
 def DepartmentDetail(request, Department_slug):
     dept = Department.objects.get(slug=Department_slug)
-    publication = Publication.objects.filter( department = dept.id)
+    publication = Publication.objects.filter( department = dept.id).order_by("-date_publish")[:7]
     lead = Person.objects.filter( department = dept.id, order = 4, is_active=True)
-    scholars = Person.objects.filter( department = dept.id, is_active=True).exclude( order = 4).order_by('-order')
+    scholars = Person.objects.filter( department = dept.id, is_active=True).exclude( order = 4).order_by('name')
     acara = Event.objects.filter( department = dept.id)
 
     context = {
@@ -180,10 +180,16 @@ def PublicationDetail(request, Publication_slug):
 def PublicationCategoryDetail(request, Publication_category_slug):
     pub = Publication_category.objects.get(slug=Publication_category_slug)
     publications_category = Publication.objects.filter(category=pub)
+    dept = Department.objects.filter(publish=True).order_by('-name')
+    author = Person.objects.filter(category='Scholar', is_active=True).order_by('-name')
+    category = Publication_category.objects.all().order_by('-name')
 
     context = {
        "publications" : publications_category,
        "pub": pub,
+       "Dept": dept,
+       "Scholars": author,
+       "categories": category,
     }
     return render(request, "web/publications.html", context)
 
