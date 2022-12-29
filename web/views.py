@@ -24,7 +24,7 @@ def filter(request):
 
     title_contains_query = request.GET.get('title_contains')
     dept_contains_query = request.GET.get('dept_contains')
-    person_contains_query = request.GET.get('person_contains')
+    person_contains_query = request.GET.get('author_contains')
     category_contains_query = request.GET.get('category_contains')
     topic_contains_query = request.GET.get('topic_contains')
 
@@ -38,7 +38,7 @@ def filter(request):
         qs = qs.filter(authors__name__icontains=person_contains_query)
 
     if is_valid_query(category_contains_query):
-        qs = qs.filter(publication_category__name__icontains=category_contains_query)
+        qs = qs.filter(category__name__icontains=category_contains_query)
 
     if is_valid_query(topic_contains_query):
         qs = qs.filter(topic__name__icontains=topic_contains_query)
@@ -142,6 +142,9 @@ def DepartmentDetail(request, Department_slug):
 
 def Publications(request):
     publication = Publication.objects.filter(publish=True).order_by('-date_publish').distinct()
+    dept = Department.objects.filter(publish=True).order_by('-name')
+    author = Person.objects.filter(category='Scholar', is_active=True).order_by('-name')
+    category = Publication_category.objects.all().order_by('-name')
     paginator = Paginator(publication, 12)  # Show 25 contacts per page
 
     page = request.GET.get('page')
@@ -151,8 +154,15 @@ def Publications(request):
         publications = paginator.page(1)
     except EmptyPage:
         publications = paginator.page(paginator.num_pages)
+
+    context = {
+        "Dept": dept,
+        "publications":publications,
+        "Scholars": author,
+        "categories": category,
+    }
     
-    return render(request, "web/publications.html", {"publications":publications})
+    return render(request, "web/publications.html", context)
 
 def PublicationDetail(request, Publication_slug):
     publication = Publication.objects.get(slug=Publication_slug)

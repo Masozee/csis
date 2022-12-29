@@ -150,19 +150,19 @@ AWS_LOCATION = 'static'
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 '''
-
+'''
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-
+'''
 STATIC_URL          = '/static/'
 STATICFILES_DIRS    = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
 #STATIC_ROOT         = os.path.join(BASE_DIR, 'static')
-#MEDIA_URL           = '/media/'
-#MEDIA_ROOT          = os.path.join(BASE_DIR, 'media')
+MEDIA_URL           = '/media/'
+MEDIA_ROOT          = os.path.join(BASE_DIR, 'media')
 
 #setting tanggal---------------------------
 DATE_INPUT_FORMATS = ['%d-%m-%Y']

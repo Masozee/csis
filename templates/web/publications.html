@@ -76,6 +76,61 @@
                 <hr>
                 <!-- end: Page title -->
                 <!-- Blog -->
+                <form method="get" formaction="/publications/filter/" >
+                <div class="row m-b-20">
+                    
+                    <div class="col-lg-3">
+                        <div class="order-select">
+                            <h6>filter by Department</h6>
+                           
+                            
+                                <select class="form-select" name="dept_contains" id="dept_contains">
+                                    <option value="" selected="selected">----</option>
+                                    {% for a in Dept%}
+                                    <option value="{{a.name}}">{{a.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="order-select">
+                            <h6>filter by Author</h6>
+                            
+                            
+                                <select class="form-select" name="author_contains" id="author_contains">
+                                    <option value="" selected="selected">----</option>
+                                    {% for a in Scholars %}
+                                    <option value="{{a.name}}">{{a.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="order-select">
+                            <h6>filter by Categories</h6>
+                            
+                           
+                                <select class="form-select" name="category_contains" id="category_contains">
+                                    <option value="" selected="selected">----</option>
+                                    {% for a in categories %}
+                                    <option value="{{a.name}}">{{a.name}}</option>
+                                    {% endfor %}
+                                </select>
+                           
+                        </div>
+                    </div>
+                   
+                    <div class="col-lg-3">
+                        <div class="order-select">
+                            <h6>Search</h6>
+                           
+                            <button  type="submit" value="search" formaction="/publications/filter/" class="btn btn-primary btn-block side-video">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
                 <div id="blog" class="grid-layout col-lg-12 pt-5" data-item="post-item">
                     <!-- Post item-->
                     <div class="post-item ">

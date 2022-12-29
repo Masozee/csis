@@ -73,6 +73,22 @@ class Topic(models.Model):
     def sub_topic(self):
         return self.topic_set.select_related('parent')
 
+    @property
+    def events(self):
+        return Event.objects.filter(topic=self, publish=True).order_by('-time_start')[:7]
+
+    @property
+    def projects(self):
+        return Project.objects.filter(project_topic=self, publish=True)
+
+    @property
+    def peoples(self):
+        return Person.objects.filter(expertise=self, is_active=True, category='Scholar').order_by('name')
+
+    @property
+    def publications(self):
+        return Publication.objects.filter(topic=self, publish=True).order_by('-date_publish')[:7]
+
 class Person (models.Model):
     KATEGORI_CHOICES = (
         ('Scholar', 'Scholar'),
@@ -93,7 +109,7 @@ class Person (models.Model):
     expertise = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
     is_active = models.BooleanField()
-    description = RichTextField()
+    description = RichTextField(blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     tags = TaggableManager(blank=True)
@@ -151,7 +167,7 @@ class Project(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
-    tags = TaggableManager(through=TaggedProject)
+    tags = TaggableManager(through=TaggedProject, blank=True)
 
     def __str__(self):
         return self.title

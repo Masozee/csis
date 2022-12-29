@@ -1363,7 +1363,7 @@ h6:not(:last-child), .h6:not(:last-child) { margin-bottom: 6px; }
 
 .display-4 { font-weight: 400; }
 
-p { font-size: 1rem; font-style: normal; font-weight: 400; text-transform: none; line-height: 1.7; letter-spacing: 0; color: #3c4043; font-family: "AdobeClean", sans-serif; }
+p { font-size: 1rem; font-style: normal; font-weight: 400; text-transform: none; line-height: 1.5; letter-spacing: 0; color: #3c4043; font-family: "AdobeClean", sans-serif; }
 
 ul.bullets { list-style: inside; }
 
@@ -1831,7 +1831,7 @@ Portfolio
 
 .single-post .post-item .post-item-description { padding: 22px 0; line-height: 28px; color: #676767; }
 
-.single-post .post-item .post-item-description p { font-size: 16px; }
+.single-post .post-item .post-item-description p { font-size: 14px; }
 
 .single-post .post-item .post-item-description > h2, .single-post .post-item .post-item-description > h2 > a { font-size: 34px; letter-spacing: 0; line-height: 38px; margin-bottom: 12px; margin-top: 8px; color: #1e2022; }
 
