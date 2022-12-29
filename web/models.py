@@ -343,6 +343,10 @@ class Event(models.Model):
 
         return partners
 
+    @property
+    def session(self):
+        return EventSession.objects.filter(Events=self)
+
 class TaggedNews(TaggedItemBase):
     content_object = models.ForeignKey('News', on_delete=models.CASCADE)
 
