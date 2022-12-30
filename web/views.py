@@ -317,7 +317,7 @@ def post_search(request):
             query = SearchQuery(q)
 
             results = Publication.objects.annotate(
-                rank=SearchRank(vector, query, cover_density=False)).order_by('-rank').distinct()
+                rank=SearchRank(vector, query, cover_density=True)).filter(rank__gte=0.1).order_by('-date_publish').distinct()
 
     return render(request, 'web/search.html',
                   {'form': form,
@@ -325,10 +325,16 @@ def post_search(request):
                    'results': results})
 
 def Publications_query(request):
+    dept = Department.objects.filter(publish=True).order_by('-name')
+    author = Person.objects.filter(category='Scholar', is_active=True).order_by('-name')
+    category = Publication_category.objects.all().order_by('-name')
     qs = filter(request)
 
     context = {
-        'queryset': qs,
+        "queryset": qs,
+        "Dept": dept,
+        "Scholars": author,
+        "categories": category,
     }
 
     return render(request, "web/results.html", context)

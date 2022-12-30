@@ -224,80 +224,17 @@
                                         {% if acara.session%}
                                         <h3 class="p-5">Event Session</h2>
                                         <div class="toggle accordion accordion-simple pb-5">
+                                            {% for b in acara.session.all %}
                                             <div class="ac-item">
-                                                <h5 class="ac-title">Session 1: Lorem Ipsum dolor sit amet | 23 Mar 2022 6:00 PM</h5>
+                                                <h5 class="ac-title">{{b.Title}}</h5>
                                                 <div class="ac-content">
                                                     <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
                                                     <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect
                                                         my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. </p>
                                                 </div>
                                             </div>
-                                            <div class="ac-item">
-                                                <h5 class="ac-title"> Session 2: Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
-                                                <div class="ac-content">
-                                                    <i class="icon-calendar"></i>  24 Mar 2022 - 6:00 PM |  <i class="icon-external-link"></i>  register
-                                                    <hr>
-                                                    
-                                                        <div class="row">
-                                                            {% if acara.opening_speech.all %}
-                                                                {% for a in acara.opening_speech.all %}
-                                                                <div class="post-item-wrap col-lg-3">
-                                                                   <p><b>Welcoming Remarks</b></p>
-                                                                    <div class="post-image">
-                                                                        <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
-        
-                                                                            <img alt="" src="{{a.profile_img}}" >
-        
-                                                                        </a>
-        
-                                                                    </div>
-                                                                    <div class="post-item-description-2">
-                                                                        <h4 class="pb-0" style="font-size: smaller;"><a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">{{a.name}}</a></h4>
-                                                                        <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
-                                                                    </div>
-                                                                </div>
-                                                                {% endfor %}
-                                                            {% endif %}
-        
-                                                            
-        
-                                                        </div>
-                                                      
-                                                </div>
-                                            </div>
-                                            <div class="ac-item">
-                                                <h5 class="ac-title"> Session 3: Quae, voluptate deleniti? Dolores adipisci esse  | 24 Mar 2022 6:00 PM</h5>
-                                                <div class="ac-content">
-                                                    <i class="icon-calendar"></i>  24 Mar 2022 - 6:00 PM |  <i class="icon-external-link"></i>  register
-                                                    <hr>
-                                                    
-                                                        <div class="row">
-                                                            {% if acara.opening_speech.all %}
-                                                                {% for a in acara.opening_speech.all %}
-                                                                <div class="post-item-wrap col-lg-3">
-                                                                   <p><b>Welcoming Remarks</b></p>
-                                                                    <div class="post-image">
-                                                                        <a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">
-        
-                                                                            <img alt="" src="{{a.profile_img}}" >
-        
-                                                                        </a>
-        
-                                                                    </div>
-                                                                    <div class="post-item-description-2">
-                                                                        <h4 class="pb-0" style="font-size: smaller;"><a href="{% if a.profile_url %}{{ a.profile_url }}{% else %}{{ empty }}{% endif %}">{{a.name}}</a></h4>
-                                                                        <p class="pb-4" style="font-size: smaller;">{{a.position}} <br> {{a.organization}}</p>
-                                                                    </div>
-                                                                </div>
-                                                                {% endfor %}
-                                                            {% endif %}
-        
-                                                            
-        
-                                                        </div>
-                                                      
-                                                </div>
-                                            </div>
+                                            {% endfor %}
+                                           
                                         </div>
                                         <hr>
                                         <div id="blog" class="grid-layout col-lg-12 pt-5 " data-item="post-item">
