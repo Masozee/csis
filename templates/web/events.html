@@ -29,17 +29,50 @@
         </section>
         <section id="page-content">
             <div class="container">
-                <!-- Portfolio Filter >
-                <nav class="grid-filter gf-outline" data-layout="#blog">
-                    <ul>
-                        <li class="active"><a href="#" data-category="*">Show All</a></li>
-                        <li><a href="#" data-category=".bc-previous">Previous Events</a></li>
-                    </ul>
-                    <div class="grid-active-title">Show All</div>
-                </nav>
-                <!-- end: Portfolio Filter -->
+            <form method="get" formaction="/events/filter/" >
+               <div class="row m-b-20 grey-bg">
+
+                    <div class="col-lg-3 p-t-10 m-b-20">
+                        <h3 class="m-b-20">CSIS Events and Webinar</h3>
+
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="order-select">
+                            <h6>filter by Researcher</h6>
+
+                            <select class="form-select" name="author_contains" id="author_contains">
+                                    <option value="" selected="selected">----</option>
+                                    {% for a in Scholars %}
+                                    <option value="{{a.name}}">{{a.name}}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="order-select">
+                            <h6>filter by Department</h6>
+                             <select class="form-select" name="dept_contains" id="dept_contains">
+                                    <option value="" selected="selected">----</option>
+                                    {% for a in Dept%}
+                                    <option value="{{a.name}}">{{a.name}}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                    </div>
+                     <div class="col-lg-3">
+                        <div class="order-select">
+                            <h6>Search</h6>
+
+                            <button  type="submit" value="search" formaction="/events/filter/" class="btn btn-primary btn-block side-video">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+                <hr>
                 <!-- Blog -->
-                <div id="blog" class="grid-layout post-thumbnails m-b-30" data-item="post-item">
+                <div id="blog" class="grid-layout post-thumbnails m-b-30 pt-5" data-item="post-item">
                     {% for a in acara %}<!-- Post item-->
                     <div class="post-item border">
                             <div class="row">

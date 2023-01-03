@@ -92,7 +92,8 @@ def ScholarDetail(request, Person_slug):
 
 def Acara(request):
     acara = Event.objects.filter(publish=True).order_by('-date_start').distinct()
-    
+    dept = Department.objects.filter(publish=True).order_by('-name')
+    author = Person.objects.filter(category='Scholar', is_active=True).order_by('-name')
     paginator = Paginator(acara, 5)  # Show 25 contacts per page
 
     page = request.GET.get('page')
@@ -105,6 +106,8 @@ def Acara(request):
 
     context = {
         "acara": acara,
+        "Dept": dept,
+        "Scholars": author,
         
     }
     
@@ -118,6 +121,7 @@ def AcaraDetail(request, Event_slug):
 
     context = {
         "acara": acara,
+
         "post_related": post_related,
         "post_recent": post_recent,
         
