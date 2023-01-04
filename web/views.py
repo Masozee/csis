@@ -46,6 +46,37 @@ def filter(request):
 
     return qs
 
+def Acara_filter(request):
+    qs = Acara.objects.filter(publish=True).order_by('-date_publish').distinct()
+    dept = Department.objects.filter(publish=True).order_by('-date_created').distinct()
+    staff = Person.objects.all().order_by('-name')
+    category = Publication_category.objects.all()
+    topic = Topic.objects.all()
+
+    title_contains_query = request.GET.get('title_contains')
+    dept_contains_query = request.GET.get('dept_contains')
+    person_contains_query = request.GET.get('author_contains')
+    category_contains_query = request.GET.get('category_contains')
+    topic_contains_query = request.GET.get('topic_contains')
+
+    if is_valid_query(title_contains_query):
+        qs = qs.filter(title__icontains=title_contains_query)
+
+    if is_valid_query(dept_contains_query):
+        qs = qs.filter(department__name__icontains=dept_contains_query)
+
+    if is_valid_query(person_contains_query):
+        qs = qs.filter(authors__name__icontains=person_contains_query)
+
+    if is_valid_query(category_contains_query):
+        qs = qs.filter(category__name__icontains=category_contains_query)
+
+    if is_valid_query(topic_contains_query):
+        qs = qs.filter(topic__name__icontains=topic_contains_query)
+
+
+    return qs
+
 # Create your views here.
 def home(request):
    

@@ -30,7 +30,7 @@
         <section id="page-content">
             <div class="container">
             <form method="get" formaction="/events/filter/" >
-               <div class="row m-b-20 grey-bg p-t-20 shadow-lg rounded-3">
+               <div class="row m-b-20 grey-bg p-t-20 shadow-lg rounded-3 p-l-10 p-r-10">
 
                     <div class="col-lg-3 m-b-20">
 
@@ -76,7 +76,7 @@
 
                 </div>
             </form>
-                <hr>
+
                 <!-- Blog -->
                 <div id="blog" class="grid-layout post-thumbnails m-b-30 pt-5" data-item="post-item">
                     {% for a in acara %}<!-- Post item-->
@@ -153,4 +153,111 @@
                 <!-- end: Pagination -->
             </div>
         </section>
+{% endblock %}
+{% block js %}
+        <script src="{% static 'web/include/moment/moment.min.js' %}"></script>
+        <script src="{% static 'web/include/daterangepicker/daterangepicker.js' %}"></script>
+        <script>
+            jQuery(document).ready(function() {
+                //form_daterangepicker_1
+                $("#form_daterangepicker_1").daterangepicker({});
+                //form_daterangepicker_2
+                $('#form_daterangepicker_2').daterangepicker({}, function(start, end) {
+                    $("#form_daterangepicker_2 .form-control").val(start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD"));
+                });
+                //form_daterangepicker_3
+                $('#form_daterangepicker_3').daterangepicker({
+                    timePicker: true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale: {
+                        format: 'YYYY-MM-DD hh:mm A'
+                    }
+                }, function(start, end) {
+                    $("#form_daterangepicker_3 .form-control").val(start.format("YYYY-MM-DD hh:mm A") + " - " + end.format("YYYY-MM-DD hh:mm A"));
+                });
+                //form_daterangepicker_4
+                $('#form_daterangepicker_4').daterangepicker({
+                    timePicker: true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale: {
+                        format: 'YYYY-MM-DD hh:mm A'
+                    }
+                }, function(start, end) {
+                    $("#form_daterangepicker_4 .form-control").val(start.format("YYYY-MM-DD hh:mm A") + " - " + end.format("YYYY-MM-DD hh:mm A"));
+                    INSPIRO.elements.notification("A new date & time selection was made: " + start.format('YY-MM-DD hh:mm A') + ' to ' + end.format('YY-MM-DD hh:mm A'));
+                });
+                //daterangepicker_5
+                var start = moment().subtract(29, 'days');
+                var end = moment();
+                $('#form_daterangepicker_5').daterangepicker({
+                    startDate: start,
+                    endDate: end,
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, function(start, end) {
+                    $('#form_daterangepicker_5 .form-control').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                });
+                //daterangepicker_6
+                var start_6 = moment().subtract(29, 'days');
+                var end_6 = moment();
+                $('#form_daterangepicker_6_span').daterangepicker({
+                    startDate: start_6,
+                    endDate: end_6,
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, function(start_6, end_6) {
+                    $('#form_daterangepicker_6_span span').html(start_6.format('MMMM D, YYYY') + ' - ' + end_6.format('MMMM D, YYYY'));
+                    $('#form_daterangepicker_6').val(start_6.format('MMMM D, YYYY') + ' - ' + end_6.format('MMMM D, YYYY'));
+                });
+                //modal code
+                //form_daterangepicker_1_modal
+                $('#form_daterangepicker_1_modal').daterangepicker({}, function(start, end) {
+                    $("#form_daterangepicker_1_modal .form-control").val(start.format("YYYY-MM-DD") + " - " + end.format("YYYY-MM-DD"));
+                });
+                //form_daterangepicker_2_modal
+                $('#form_daterangepicker_2_modal').daterangepicker({
+                    timePicker: true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale: {
+                        format: 'YYYY-MM-DD hh:mm A'
+                    }
+                }, function(start, end) {
+                    $("#form_daterangepicker_2_modal .form-control").val(start.format("YYYY-MM-DD hh:mm A") + " - " + end.format("YYYY-MM-DD hh:mm A"));
+                });
+                //form_daterangepicker_3_modal
+                var start_modal = moment().subtract(29, 'days');
+                var end_modal = moment();
+                $('#form_daterangepicker_3_modal').daterangepicker({
+                    startDate: start_modal,
+                    endDate: end_modal,
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, function(start_6, end_modal) {
+                    $('#form_daterangepicker_3_modal .form-control').val(start_modal.format('MMMM D, YYYY') + ' - ' + end_modal.format('MMMM D, YYYY'));
+                });
+            });
+        </script>
+        <!--Template functions-->
+
 {% endblock %}

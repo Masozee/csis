@@ -126,6 +126,20 @@
                                         <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                                 </div>
                             {% endfor %}
+                            <div class="col-lg-3">
+                                <div class="grid-item">
+                                    <div class="grid-item-wrap">
+                                        <div class="grid-image">
+                                            <img alt="Image Lightbox" src="{% static 'web/images/landscape_putih.png' %}" />
+                                        </div>
+
+                                        <div class="grid-description">
+                                                <a href="/publications/filter/?dept_contains=International+Relations&author_contains=&category_contains=" class="btn btn-light btn-roundeded">Show All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             
                         </div>
                     </div>
@@ -156,6 +170,20 @@
                                         <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                                 </div>
                             {% endfor %}
+
+                            <div class="col-lg-3">
+                                <div class="grid-item">
+                                    <div class="grid-item-wrap pt-4">
+                                        <div class="grid-image" >
+                                            <img alt="Image Lightbox" src="{% static 'web/images/portrait_putih.png' %}" />
+                                        </div>
+                                        <div class="grid-description">
+                                            <a href="{% url 'event' %}" class="btn btn-light btn-roundeded">All events</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             
                         </div>
                     </div>
@@ -190,6 +218,21 @@
                                         <div class="line-bottom" style="position:absolute; bottom: 0px;"></div>
                                 </div>
                             {% endfor %}
+                            {% if Dept.projects.count > 7 %}
+                            <div class="col-lg-3">
+                                <div class="grid-item">
+                                    <div class="grid-item-wrap">
+                                        <div class="grid-image">
+                                            <img alt="Image Lightbox" src="{% static 'web/images/landscape_putih.png' %}" />
+                                        </div>
+
+                                        <div class="grid-description">
+                                                <a href="/publications/filter/?dept_contains=International+Relations&author_contains=&category_contains=" class="btn btn-light btn-roundeded">Show All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
                             
                         </div>
                     </div>
