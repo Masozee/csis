@@ -87,21 +87,21 @@
                             {% for post in results %}
                             <div class="post-item">
                                 <div class="post-item-wrap">
-                                    <div class="post-image">
-                                        <a href="#">
-                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{post.image}}" style="max-width: 400px;">
+                                    <div class="post-image p-b-10">
+                                        <a href=/publication/{{post.title | slugify}}">
+                                            <img alt="" src="https://s3-csis-web.s3.ap-southeast-1.amazonaws.com/{{post.image}}" style="max-height: 300px; width: auto">
                                         </a>
-                                        <span class="post-meta-category"><a href="">{{post.category}}</a></span>
                                     </div>
                                     <div class="post-item-description">
                                         <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{post.date_publish}}</span>
                                         <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>{% for a in post.authors.all %}{% if forloop.first %}{% else %}{% if forloop.last %} and {% else %}, {% endif %}{% endif %}{{a.name}}{% endfor %}</a></span>
-                                        <h2><a href="/publication/{{post.title | slugify}}">{{post.title}}
-                                            </a></h2>
+                                        <h2><a href="/publication/{{post.title | slugify}}">{{post.title}}</a></h2>
+                                        <p class="post-meta-category">{{post.category}}</p>
                                        {{post.description | safe |truncatechars_html:200 }}
-                                        <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                                        <a href="/publication/{{post.title | slugify}}" class="item-link">Read More <i class="icon-chevron-right"></i></a>
                                     </div>
                                 </div>
+                                <hr>
                             </div>
                             <!-- end: Post item-->
                             {% empty %}
