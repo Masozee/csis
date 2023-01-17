@@ -205,6 +205,9 @@ def PublicationDetail(request, Publication_slug):
     publication = Publication.objects.get(slug=Publication_slug)
     post_related = publication.tags.similar_objects()[:5]
     post_recent = Publication.objects.all().order_by('-date_publish').distinct()[:5]
+
+    publication.viewed += 1
+    publication.save()
     
     context = {
         "publications": publication,

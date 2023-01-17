@@ -88,11 +88,11 @@ admin.site.register(Publication_category, pubcatadmin)
 
 
 class publicationadmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('title','author', 'category','date_publish','dept', 'project', 'publish')
+    list_display = ('title','author', 'category','date_publish','dept', 'viewed', 'publish')
     list_filter = ('publish','department', 'category')
     search_fields = ['title','authors__name','partners__name']
     date_hierarchy = 'date_created'
-    readonly_fields = ('date_created', 'date_modified')
+    readonly_fields = ('date_created', 'date_modified', 'viewed')
     autocomplete_fields = ['project', 'editor', 'authors','department', 'category', 'topic', 'partners']
     actions = [make_published]
     list_per_page=15

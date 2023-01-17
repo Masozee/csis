@@ -257,6 +257,7 @@ class Publication(models.Model):
     publish = models.BooleanField(default=False)
     highlight = models.BooleanField(default=False)
     tags = TaggableManager(through=TaggedPublication, blank=True)
+    viewed = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
