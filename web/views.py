@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import *
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.shortcuts import redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import *
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -7,7 +9,7 @@ from django.db.models import Q
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from config.models import *
-
+from tools.models import *
 
 
 def page_not_found_view(request, exception):
@@ -429,3 +431,16 @@ def partners(request):
         "partner": a
     }
     return render(request, "web/partners.html", context)
+
+def redirect_view(request, Shorten_kategori, Shorten_ShortenWord):
+    try:
+        shortener = Shorten.objects.get(ShortenWord=Shorten_ShortenWord, kategori=Shorten_kategori)
+
+        shortener.times_followed += 1
+
+        shortener.save()
+
+        return HttpResponseRedirect(shortener.Url)
+
+    except:
+        raise Http404('Sorry this link is broken :(')

@@ -1,6 +1,7 @@
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from web import views as webviews
+from tools import views as toolsviews
 
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     path('partners/', webviews.partners, name='partners'),
     re_path('careers/(?P<Career_slug>[\w-]+)/$', webviews.careerDetail, name='career-detail'),
     path('external-publications/', webviews.extpub, name='external-publications'),
+    path('<str:Shorten_kategori>/<str:Shorten_ShortenWord>', webviews.redirect_view, name='redirect'),
 ]   

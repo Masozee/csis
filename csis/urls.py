@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
 
+
 admin.sites.AdminSite.site_header = 'Centre for Strategic and International Studies'
 admin.sites.AdminSite.site_title = 'Centre for Strategic and International Studies'
 admin.sites.AdminSite.index_title = 'Centre for Strategic and International Studies'
@@ -16,7 +17,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('web.url')),
-    path('', include('tools.url')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('password-reset', auth_views.PasswordResetView.as_view(template_name="users/password_reset.html"),
          name="password_reset"),
