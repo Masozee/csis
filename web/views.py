@@ -437,7 +437,7 @@ def partners(request):
 
 def redirect_view(request, Shorten_kategori, Shorten_ShortenWord):
     try:
-        shortener = Shorten.objects.get(ShortenWord=Shorten_ShortenWord, kategori=Shorten_kategori)
+        shortener = Shorten.objects.get(ShortenWord=Shorten_ShortenWord, kategori=Shorten_kategori, publish=True)
 
         shortener.times_followed += 1
 

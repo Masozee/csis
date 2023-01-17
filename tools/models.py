@@ -25,7 +25,7 @@ class Shorten(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return 'localhost:8000/'+ self.kategori +'/' + self.ShortenWord
+        return self.Judul
     
     class Meta:
         verbose_name = ("Shorten URL")
