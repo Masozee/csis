@@ -31,5 +31,5 @@ urlpatterns = [
     path('partners/', webviews.partners, name='partners'),
     re_path('careers/(?P<Career_slug>[\w-]+)/$', webviews.careerDetail, name='career-detail'),
     path('external-publications/', webviews.extpub, name='external-publications'),
-    path('<str:Shorten_kategori>/<str:Shorten_ShortenWord>', webviews.redirect_view, name='redirect'),
+    re_path('(?P<Shorten_kategori>[\w-]+)/(?P<Shorten_ShortenWord>[\w-]+)', webviews.redirect_view, name='redirect'),
 ]   
