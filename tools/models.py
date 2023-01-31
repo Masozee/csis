@@ -12,6 +12,7 @@ class Shorten(models.Model):
         ('E', 'Events'),
         ('A', 'Article'),
         ('M', 'Meeting'),
+        ('S', 'Speaker'),
         ('O', 'Others'),
     )
 
@@ -49,6 +50,7 @@ class selfhelp(models.Model):
 class Support_step(models.Model):
     support = models.ForeignKey(selfhelp, on_delete=models.CASCADE)
     step = models.CharField(max_length=300)
+    image = models.ImageField(upload_to='step/', blank=True, null=True)
     proses = RichTextField()
 
     def __str__(self):

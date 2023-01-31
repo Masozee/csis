@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect, FileResponse
 from django.shortcuts import redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import *
@@ -208,6 +208,13 @@ def PublicationDetail(request, Publication_slug):
 
     publication.viewed += 1
     publication.save()
+
+    if request.method =='POST':
+        publication.download_count += 1
+        publication.save()
+        response = FileResponse(publication.file)
+        response['Content-Disposition'] = 'attachment; filename="{}"'.format(publication.file)
+        return response
     
     context = {
         "publications": publication,
@@ -223,6 +230,16 @@ def PublicationCategoryDetail(request, Publication_category_slug):
     dept = Department.objects.filter(publish=True).order_by('-name')
     author = Person.objects.filter(category='Scholar', is_active=True).order_by('-name')
     category = Publication_category.objects.all().order_by('-name')
+
+    paginator = Paginator(publications_category, 12)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        publications_category = paginator.page(page)
+    except PageNotAnInteger:
+        publications_category = paginator.page(1)
+    except EmptyPage:
+        publications_category = paginator.page(paginator.num_pages)
 
     context = {
        "publications" : publications_category,
@@ -323,10 +340,10 @@ def bod(request):
     return render(request, "web/bod.html", {"scholar":bod})
 
 def yayasan(request):
-    advisor = Foundation.objects.filter(id=2 ).order_by("-member__order")[:1]
-    BoT = Foundation.objects.filter( id=3 ).order_by("-member__order")[:1]
-    BoD = Foundation.objects.filter( id=4 ).order_by("-member__order")[:1]
-    BoS = Foundation.objects.filter( id=5 ).order_by("-member__order")[:1]
+    advisor = Foundation.objects.filter(id=2, publish=True ).order_by("-member__order")[:1]
+    BoT = Foundation.objects.filter( id=3 ).order_by("member__order")[:1]
+    BoD = Foundation.objects.filter( id=4 ).order_by("member__order")[:1]
+    BoS = Foundation.objects.filter( id=5 ).order_by("member__order")[:1]
 
     context = {
         "advisor": advisor,
@@ -369,6 +386,18 @@ def Publications_query(request):
     author = Person.objects.filter(category='Scholar', is_active=True).order_by('-name')
     category = Publication_category.objects.all().order_by('-name')
     qs = filter(request)
+
+    paginator = Paginator(qs, 12)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        qs = paginator.page(page)
+    except PageNotAnInteger:
+        qs = paginator.page(1)
+    except EmptyPage:
+        qs = paginator.page(paginator.num_pages)
+
+
 
     context = {
         "queryset": qs,

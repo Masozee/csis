@@ -125,7 +125,7 @@ class Person (models.Model):
     expertise = models.ManyToManyField(Topic, blank=True)
     department = models.ManyToManyField(Department, blank=True)
     is_active = models.BooleanField()
-    description = RichTextField(blank=True)
+    description = RichTextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     tags = TaggableManager(blank=True)
@@ -147,6 +147,7 @@ class Person (models.Model):
     class Meta:
         verbose_name = ("Network")
         verbose_name_plural = ("Networks")
+        ordering = ['order', 'name']
     
     def save(self, *args, **kwargs):
         value = self.name
@@ -258,6 +259,7 @@ class Publication(models.Model):
     highlight = models.BooleanField(default=False)
     tags = TaggableManager(through=TaggedPublication, blank=True)
     viewed = models.IntegerField(default=0)
+    download_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -265,13 +267,12 @@ class Publication(models.Model):
     class Meta:
         verbose_name = ("Publication")
         verbose_name_plural = ("Publications")
+
     
     def save(self, *args, **kwargs):
         value = self.title
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
-
-
     
     @property
     def tgl(self):
@@ -416,6 +417,7 @@ class Foundation(models.Model):
     class Meta:
         verbose_name = ("BOD/Foundations")
         verbose_name_plural = ("BOD/Foundations")
+
     
     def save(self, *args, **kwargs):
         value = self.Title

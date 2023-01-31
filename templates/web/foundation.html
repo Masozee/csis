@@ -21,6 +21,7 @@
                     <span>Pellentesque ipsum erat, facilisis ut venenatis eu, sodales vel dolor. The most happiest time of the day!. Morbi sagittis, sem quis lacinia faucibus. </span>
                 </div-->
                 <div class="row team-members m-b-40">
+                    {% if advisor  %}
                     <div class="row">
                         <h2 class="pb-5">Advisors</h2>
                         {% for c in advisor %}
@@ -78,6 +79,7 @@
                         {% endfor %}
                         {% endfor %}
                     </div>
+                    {% endif %}
                     <div class="row">
                         <h2 class="pb-5">Board of Trustees</h2>
                         {% for c in BoT %}
