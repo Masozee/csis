@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'web',
     'api',
     'taggit',
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'clearcache',
     'import_export',
     'tools',
+    'robots'
 ]
 
 MIDDLEWARE = [
@@ -63,7 +66,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates/')],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -72,6 +74,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'web.context_processors.menu',
                 'django_webp.context_processors.webp',
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },
@@ -98,6 +104,7 @@ DATABASES = {
         'PORT': config('DB_PORT'),
     }
 }
+SITE_ID = 1
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -193,3 +200,6 @@ THUMBNAIL_ALIASES = {
         'avatar': {'size': (50, 50), 'crop': True},
     },
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+ROBOTS_USE_SITEMAP = False
