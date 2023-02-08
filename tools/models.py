@@ -19,7 +19,7 @@ class Shorten(models.Model):
     )
 
     Judul = models.CharField(max_length=300,blank=True, null=True)
-    ShortenWord = models.CharField(max_length=30, unique=True, validators=[RegexValidator(r'^\S*$', 'No spaces are allowed.')],)
+    ShortenWord = models.CharField(max_length=30, validators=[RegexValidator(r'^\S*$', 'No spaces are allowed.')],)
     Url = models.URLField()
     times_followed = models.PositiveIntegerField(default=0)
     kategori = models.CharField(max_length=2, choices=STATUS_CHOICES)
@@ -33,6 +33,7 @@ class Shorten(models.Model):
     class Meta:
         verbose_name = ("Shorten URL")
         verbose_name_plural = ("Shorten URL")
+        unique_together = ('Url', 'ShortenWord', 'kategori')
 
     @property
     def shorted(self):
