@@ -15,7 +15,7 @@ SECRET_KEY = config('PROD_SECRET_KEY'),
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'beta.csis.or.id']
+ALLOWED_HOSTS = ['localhost', 'csis.or.id', 'www.csis.or.id']
 
 
 # Application definition
@@ -56,8 +56,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
-#    'django.middleware.cache.UpdateCacheMiddleware',
-#    'django.middleware.cache.FetchFromCacheMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'csis.urls'
