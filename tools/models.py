@@ -13,6 +13,8 @@ class Shorten(models.Model):
         ('A', 'Article'),
         ('M', 'Meeting'),
         ('S', 'Speaker'),
+        ('L', 'Live'),
+        ('R', 'RSVP'),
         ('O', 'Others'),
     )
 
